@@ -48,9 +48,7 @@ You should now have 5 pieces of information:
 
 Fork this repo.
 
-Untick the `Copy main branch only`.
-
-![untick copy main branch only](images/copy-main-branch-only-unticked.jpg)
+![just fork](images/fork_repo.png)
 
 ### Create GitHub Personal Access Token
 
