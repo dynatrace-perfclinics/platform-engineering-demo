@@ -205,18 +205,6 @@ output = run_command(["kubectl", "-n", "backstage", "create", "secret", "generic
                       f"--from-literal=DT_ALL_INGEST_TOKEN={DT_ALL_INGEST_TOKEN}"
                     ])
 
-# Wait for backstage deployment to be created
-wait_for_artifact_to_exist(namespace="backstage", artifact_type="deployment", artifact_name="backstage")
-#wait_for_deployment_to_exist(namespace="backstage", deployment_name="backstage")
-
-# Then wait for it to be ready
-#output = run_command(["kubectl", "wait", "--for=condition=Available=True", "deployments", "-n", "backstage", "backstage", f"--timeout={STANDARD_TIMEOUT}"])
-
-# backstage deployment is ready
-# restart backstage to pick up secret and start successfully
-output = run_command(["kubectl", "-n", "backstage", "rollout", "restart", "deployment/backstage"])
-output = run_command(["kubectl", "-n", "backstage", "rollout", "status", "deployment/backstage", f"--timeout={STANDARD_TIMEOUT}"])
-
 # Create secret for OneAgent in dynatrace namespace
 output = run_command([
     "kubectl", "-n", "dynatrace", "create", "secret", "generic", "hot-day-platform-engineering",
@@ -228,3 +216,15 @@ output = run_command([
 output = run_command(["kubectl", "-n", "monaco", "create", "secret", "generic", "monaco-secret", f"--from-literal=monacoToken={DT_MONACO_TOKEN}"])
 # Create monaco-secret in dynatrace namespace
 output = run_command(["kubectl", "-n", "dynatrace", "create", "secret", "generic", "monaco-secret", f"--from-literal=monacoToken={DT_MONACO_TOKEN}"])
+
+# Wait for backstage deployment to be created
+wait_for_artifact_to_exist(namespace="backstage", artifact_type="deployment", artifact_name="backstage")
+#wait_for_deployment_to_exist(namespace="backstage", deployment_name="backstage")
+
+# Then wait for it to be ready
+#output = run_command(["kubectl", "wait", "--for=condition=Available=True", "deployments", "-n", "backstage", "backstage", f"--timeout={STANDARD_TIMEOUT}"])
+
+# backstage deployment is ready
+# restart backstage to pick up secret and start successfully
+output = run_command(["kubectl", "-n", "backstage", "rollout", "restart", "deployment/backstage"])
+output = run_command(["kubectl", "-n", "backstage", "rollout", "status", "deployment/backstage", f"--timeout={STANDARD_TIMEOUT}"])

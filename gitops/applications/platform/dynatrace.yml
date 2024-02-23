@@ -10,7 +10,7 @@ metadata:
 spec:
   source:
     repoURL: "https://github.com/GITHUB_REPOSITORY_PLACEHOLDER.git"
-    targetRevision: codespace
+    targetRevision: main
     path: "gitops/manifests/platform/dynatrace"
   destination:
     namespace: dynatrace

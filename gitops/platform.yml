@@ -9,7 +9,7 @@ spec:
   source:
     path: "gitops/applications/platform"
     repoURL: "https://github.com/GITHUB_REPOSITORY_PLACEHOLDER.git"
-    targetRevision: codespace
+    targetRevision: main
   destination:
     namespace: argocd
     server: 'https://kubernetes.default.svc'

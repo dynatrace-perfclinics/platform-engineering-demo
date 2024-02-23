@@ -10,7 +10,7 @@ metadata:
 spec:
   sources:
     - repoURL: "https://github.com/GITHUB_REPOSITORY_PLACEHOLDER.git"
-      targetRevision: codespace
+      targetRevision: main
       path: "gitops/manifests/platform/opentelemetry"
     - repoURL: 'https://open-telemetry.github.io/opentelemetry-helm-charts'
       targetRevision: 0.71.0

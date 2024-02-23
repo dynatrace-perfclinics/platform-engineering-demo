@@ -40,7 +40,7 @@ spec:
                   memory: 16Mi
 
     - repoURL: "https://github.com/GITHUB_REPOSITORY_PLACEHOLDER.git"
-      targetRevision: codespace
+      targetRevision: main
       path: "gitops/manifests/platform/keptn"
   destination:
     namespace: keptn
