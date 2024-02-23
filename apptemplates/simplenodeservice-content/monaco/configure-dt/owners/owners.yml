@@ -1,0 +1,24 @@
+configs:
+- id: ${{ values.teamIdentifier }}
+  type:
+    settings:
+      schema: builtin:ownership.teams
+      scope: environment
+  config:
+    name: ${{ values.teamIdentifier }}
+    template: appteam.json
+    parameters:
+      descr: ${{ values.teamFullName }}
+      team_id: ${{ values.teamIdentifier }}
+      development: true
+      security: false
+      operations: true
+      infrastructure: false
+      lineOfBusiness: false
+      slackChannel: somewhere
+      slackURL: https://somewhere.slack.com/archives/${{ values.teamIdentifier }}
+      email: ${{ values.teamEmail }}
+      addInfoKey: costcode
+      addInfoValue: ${{ values.teamIdentifier }}
+      addInfoUrl: https://example.com/${{ values.teamIdentifier }}
+    skip: false

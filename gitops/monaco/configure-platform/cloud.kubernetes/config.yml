@@ -1,0 +1,17 @@
+configs:
+- id: kubernetes-monitoring-hotday
+  config:
+    name: kubernetes-monitoring-settings
+    template: config.json
+    skip: true
+    parameters:
+      cloudApplicationPipelineEnabled: true
+      pvcMonitoringEnabled: false
+      openMetricsPipelineEnabled: true
+      openMetricsBuiltinEnabled: true
+      eventProcessingActive: true
+      filterEvents: false
+  type:
+    settings:
+      schema: builtin:cloud.kubernetes.monitoring
+      scope: KUBERNETES_CLUSTER-EA8B54908AF294D2

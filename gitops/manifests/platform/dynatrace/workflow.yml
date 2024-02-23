@@ -1,0 +1,39 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: wf-monaco-conf-cluster-
+  namespace: dynatrace
+  labels:
+    workflows.argoproj.io/archive-strategy: "false"
+  annotations:
+    workflows.argoproj.io/description: |
+      Workflow triggers after DT install to configure DT platform for the base IDP
+    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  entrypoint: git-clone
+  templates:
+  - name: git-clone
+    inputs:
+      artifacts:
+      - name: git-files
+        path: /src
+        git:
+          repo: "https://github.com/GITHUB_REPOSITORY_PLACEHOLDER.git"
+    container:
+      image: dynatrace/dynatrace-configuration-as-code:latest
+      args: [
+        "deploy",
+        "--project",
+        "configure-platform",
+        "/src/gitops/monaco/manifest.yml",
+        "--environment",
+        "prod-api-token-only"
+      ]
+      env:
+      - name: monacoToken
+        valueFrom:
+          secretKeyRef:
+            name: monaco-secret
+            key: monacoToken
+      workingDir: /src

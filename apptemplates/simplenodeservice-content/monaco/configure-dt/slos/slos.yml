@@ -1,0 +1,14 @@
+configs:
+- id: ${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}_slo
+  config:
+    name: "${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }} Availability"
+    parameters:
+      metricName: "${{ values.projectName }}_${{ values.teamIdentifier }}_${{ values.releaseStage }}_availability"
+      metricExpression: "(100)*(builtin:service.errors.server.successCount:splitBy()):value:default(0)/(builtin:service.requestCount.server:splitBy()):value:default(0)"
+      filter: "type(SERVICE), tag([KUBERNETES]app.kubernetes.io/part-of:${{ values.projectName }}-${{ values.teamIdentifier }}),tag([KUBERNETES]dynatrace-release-stage:${{ values.releaseStage }})"
+      thresholdTarget: "99.98"
+      thresholdWarning: "99.99"
+    template: slos.json
+    skip: false
+  type:
+    api: slo

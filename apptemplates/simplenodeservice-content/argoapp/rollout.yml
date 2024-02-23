@@ -1,0 +1,58 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: "${{ values.projectName }}-${{ values.teamIdentifier }}"
+  namespace: "${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}-cd"
+  labels:
+    dt.owner: "${{ values.teamIdentifier }}"
+spec:
+  replicas: 2
+  strategy:
+    canary:
+      steps:
+      - setWeight: 50
+      - pause: {duration: 5s}
+      - setWeight: 100
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: userinterface
+  template:
+    metadata:
+      labels:
+        dt.owner: "${{ values.teamIdentifier }}"
+        app.kubernetes.io/name: userinterface
+        app.kubernetes.io/part-of: "${{ values.projectName }}-${{ values.teamIdentifier }}"
+        app.kubernetes.io/version: "${{ values.appVersion }}"
+        dynatrace-release-stage: "${{ values.releaseStage }}"
+        backstage.io/component: "default.${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}"
+    spec:
+      containers:
+      - name: rollouts-demo
+        image: grabnerandi/simplenodeservice:${{ values.appVersion }}
+        env:
+        - name: DT_RELEASE_VERSION
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.labels['app.kubernetes.io/version']
+        - name: DT_RELEASE_PRODUCT
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.labels['app.kubernetes.io/part-of']
+        - name: DT_RELEASE_STAGE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.labels['dynatrace-release-stage']
+        - name: DT_CUSTOM_PROP
+          value: "owner=${{ values.teamIdentifier }} project=${{ values.projectName }} stage=${{ values.releaseStage }}"
+        - name: DT_TAGS
+          value: "dt.owner=${{ values.teamIdentifier }}"
+        ports:
+        - name: http
+          containerPort: 8080
+          protocol: TCP
+        resources:
+          requests:
+            memory: 3Mi
+            cpu: 5m

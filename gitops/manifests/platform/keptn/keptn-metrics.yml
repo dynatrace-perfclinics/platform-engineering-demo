@@ -1,0 +1,26 @@
+apiVersion: metrics.keptn.sh/v1alpha3
+kind: KeptnMetricsProvider
+metadata:
+  name: dev-dynatrace
+  namespace: keptn
+spec:
+  type: dynatrace
+  targetServer: "DT_TENANT_LIVE_PLACEHOLDER"
+  secretKeyRef:
+    name: dt-metrics-read-token
+    key: DT_TOKEN
+# KeptnMetrics should be created
+# By the target application, not "globally" by Keptn
+# Otherwise, the app can be deleted leaving this KeptnMetric
+# Which causes argo sync errors because namespace no longer exists
+# ---
+# apiVersion: metrics.keptn.sh/v1alpha3
+# kind: KeptnMetric
+# metadata:
+#   name: sns-availability
+#   namespace: app1-user1
+# spec:
+#   provider:
+#     name: dev-dynatrace
+#   query: "func:slo.sns_availability"
+#   fetchIntervalSeconds: 10

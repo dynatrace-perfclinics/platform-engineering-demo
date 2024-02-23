@@ -1,0 +1,227 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  namespace: dynatrace
+  generateName: dynatrace-presync-notification-
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: bizevent-pusher
+        image: ghcr.io/dynatrace-oss/bizevent-pusher:v1.1.1
+        args: [
+          "--tenant",
+          "$(TENANT_URL)",
+          "--oauth-client-id",
+          "$(OAUTH_CLIENT_ID)",
+          "--oauth-client-secret",
+          "$(OAUTH_CLIENT_SECRET)",
+          "--account_urn",
+          "$(ACCOUNT_URN)",
+          "--payload",
+           "{ \"event.provider\": \"argocd\", \"event.type\": \"sync.prepare\", 
+             \"app_name\": \"${{ values.projectName }}-${{ values.teamIdentifier }}\",
+             \"proj_name\": \"${{ values.projectName }}\",
+             \"stage\": \"${{ values.releaseStage }}\", 
+             \"owner\":\"${{ values.teamIdentifier }}\", 
+             \"git\" : \"https://gitlab.BASE_DOMAIN_PLACEHOLDER/group1/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}-cd\",
+             \"argocd\" : \"https://argo.BASE_DOMAIN_PLACEHOLDER/applications/argocd/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}-cd\",
+             \"result\": \"success\" 
+          }"
+        ]
+        env:
+        - name: TENANT_URL
+          valueFrom:
+            secretKeyRef:
+              name: dt-bizevent-oauth-details
+              key: dtTenant
+        - name: OAUTH_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: dt-bizevent-oauth-details
+              key: oAuthClientID
+        - name: OAUTH_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: dt-bizevent-oauth-details
+              key: oAuthClientSecret
+        - name: ACCOUNT_URN
+          valueFrom:
+            secretKeyRef:
+              name: dt-bizevent-oauth-details
+              key: accountURN
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  namespace: dynatrace
+  generateName: dynatrace-sync-notification-
+  annotations:
+    argocd.argoproj.io/hook: Sync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: bizevent-pusher
+        image: ghcr.io/dynatrace-oss/bizevent-pusher:v1.1.1
+        args: [
+          "--tenant",
+          "$(TENANT_URL)",
+          "--oauth-client-id",
+          "$(OAUTH_CLIENT_ID)",
+          "--oauth-client-secret",
+          "$(OAUTH_CLIENT_SECRET)",
+          "--account_urn",
+          "$(ACCOUNT_URN)",
+          "--payload",
+          "{ \"event.provider\": \"argocd\", \"event.type\": \"sync.started\", 
+             \"app_name\": \"${{ values.projectName }}-${{ values.teamIdentifier }}\",
+             \"proj_name\": \"${{ values.projectName }}\",
+             \"stage\": \"${{ values.releaseStage }}\", 
+             \"owner\":\"${{ values.teamIdentifier }}\", 
+             \"git\" : \"https://gitlab.BASE_DOMAIN_PLACEHOLDER/group1/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}-cd\",
+             \"argocd\" : \"https://argo.BASE_DOMAIN_PLACEHOLDER/applications/argocd/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}-cd\",
+             \"result\": \"success\" 
+          }"
+        ]
+        env:
+        - name: TENANT_URL
+          valueFrom:
+            secretKeyRef:
+              name: dt-bizevent-oauth-details
+              key: dtTenant
+        - name: OAUTH_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: dt-bizevent-oauth-details
+              key: oAuthClientID
+        - name: OAUTH_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: dt-bizevent-oauth-details
+              key: oAuthClientSecret
+        - name: ACCOUNT_URN
+          valueFrom:
+            secretKeyRef:
+              name: dt-bizevent-oauth-details
+              key: accountURN              
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  namespace: dynatrace
+  generateName: dynatrace-postsync-notification-
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: bizevent-pusher
+        image: ghcr.io/dynatrace-oss/bizevent-pusher:v1.1.1
+        args: [
+          "--tenant",
+          "$(TENANT_URL)",
+          "--oauth-client-id",
+          "$(OAUTH_CLIENT_ID)",
+          "--oauth-client-secret",
+          "$(OAUTH_CLIENT_SECRET)",
+          "--account_urn",
+          "$(ACCOUNT_URN)",
+          "--payload",
+          "{ \"event.provider\": \"argocd\", \"event.type\": \"sync.finished\", 
+             \"app_name\": \"${{ values.projectName }}-${{ values.teamIdentifier }}\",
+             \"proj_name\": \"${{ values.projectName }}\",
+             \"stage\": \"${{ values.releaseStage }}\", 
+             \"owner\":\"${{ values.teamIdentifier }}\", 
+             \"git\" : \"https://gitlab.BASE_DOMAIN_PLACEHOLDER/group1/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}-cd\",
+             \"argocd\" : \"https://argo.BASE_DOMAIN_PLACEHOLDER/applications/argocd/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}-cd\",
+             \"result\": \"success\" 
+          }"
+        ]
+        env:
+        - name: TENANT_URL
+          valueFrom:
+            secretKeyRef:
+              name: dt-bizevent-oauth-details
+              key: dtTenant
+        - name: OAUTH_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: dt-bizevent-oauth-details
+              key: oAuthClientID
+        - name: OAUTH_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: dt-bizevent-oauth-details
+              key: oAuthClientSecret
+        - name: ACCOUNT_URN
+          valueFrom:
+            secretKeyRef:
+              name: dt-bizevent-oauth-details
+              key: accountURN
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  namespace: dynatrace
+  generateName: dynatrace-postsync-notification-
+  annotations:
+    argocd.argoproj.io/hook: SyncFail
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: bizevent-pusher
+        image: ghcr.io/dynatrace-oss/bizevent-pusher:v1.1.1
+        args: [
+          "--tenant",
+          "$(TENANT_URL)",
+          "--oauth-client-id",
+          "$(OAUTH_CLIENT_ID)",
+          "--oauth-client-secret",
+          "$(OAUTH_CLIENT_SECRET)",
+          "--account_urn",
+          "$(ACCOUNT_URN)",
+          "--payload",
+          "{ \"event.provider\": \"argocd\", \"event.type\": \"sync.finished\", 
+             \"app_name\": \"${{ values.projectName }}-${{ values.teamIdentifier }}\",
+             \"proj_name\": \"${{ values.projectName }}\",
+             \"stage\": \"${{ values.releaseStage }}\", 
+             \"owner\":\"${{ values.teamIdentifier }}\", 
+             \"git\" : \"https://gitlab.BASE_DOMAIN_PLACEHOLDER/group1/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}-cd\",
+             \"argocd\" : \"https://argo.BASE_DOMAIN_PLACEHOLDER/applications/argocd/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}-cd\",
+             \"result\": \"failed\" 
+          }"          
+        ]
+        env:
+        - name: TENANT_URL
+          valueFrom:
+            secretKeyRef:
+              name: dt-bizevent-oauth-details
+              key: dtTenant
+        - name: OAUTH_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: dt-bizevent-oauth-details
+              key: oAuthClientID
+        - name: OAUTH_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: dt-bizevent-oauth-details
+              key: oAuthClientSecret
+        - name: ACCOUNT_URN
+          valueFrom:
+            secretKeyRef:
+              name: dt-bizevent-oauth-details
+              key: accountURN

@@ -1,0 +1,78 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+  labels:
+    dt.owner: "platform_team"
+  name: opentelemetry
+  namespace: argocd
+spec:
+  sources:
+    - repoURL: "https://github.com/GITHUB_REPOSITORY_PLACEHOLDER.git"
+      targetRevision: codespace
+      path: "gitops/manifests/platform/opentelemetry"
+    - repoURL: 'https://open-telemetry.github.io/opentelemetry-helm-charts'
+      targetRevision: 0.71.0
+      chart: opentelemetry-collector
+      helm:
+        values: |
+          extraEnvs:
+            - name: DT_URL
+              valueFrom:
+                secretKeyRef:
+                  name: dt-details
+                  key: DT_URL
+            - name: DT_OTEL_ALL_INGEST_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: dt-details
+                  key: DT_OTEL_ALL_INGEST_TOKEN
+          mode: daemonset
+          presets:
+            logsCollection:
+              enabled: true
+              includeCollectorLogs: true
+            kubernetesAttributes:
+              enabled: true
+            kubeletMetrics:
+              enabled: true
+          config:
+            receivers:
+              otlp:
+                protocols:
+                  grpc:
+                    endpoint: "0.0.0.0:4317" # https://github.com/open-telemetry/opentelemetry-helm-charts/issues/222#issuecomment-1149259626
+                  http:
+                    endpoint: "0.0.0.0:4318"
+            exporters:
+              otlphttp:
+                endpoint: "$DT_URL/api/v2/otlp"
+                headers:
+                  Authorization: "Api-Token $DT_OTEL_ALL_INGEST_TOKEN"
+            service:
+              pipelines:
+                traces:
+                  receivers: [otlp]
+                  processors: []
+                  exporters: [otlphttp]
+                metrics:
+                  receivers: [otlp]
+                  processors: []
+                  exporters: [otlphttp]
+                logs:
+                 exporters: [otlphttp]
+  destination:
+    namespace: opentelemetry
+    server: 'https://kubernetes.default.svc'
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        maxDuration: 3m0s
+        factor: 2

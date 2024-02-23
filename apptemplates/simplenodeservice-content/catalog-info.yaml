@@ -1,0 +1,47 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: "${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}"
+  title: "${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}"
+  description: "Template for the ${{ values.projectName }} owned and operated by ${{ values.teamIdentifier }} in environment ${{ values.releaseStage }}"
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    # Not working
+    'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/name=userinterface'
+    'backstage.io/kubernetes-namespace': '${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}-cd'
+    argocd/app-name: ${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}-cd
+  links:
+    - url: https://github.com/GITHUB_REPOSITORY_PLACEHOLDER
+      title: Github Repo
+      icon: github
+    - url: https://${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}.BASE_DOMAIN_PLACEHOLDER # TODO - when ingress is figured out
+      title: "Browse Application"
+      icon: subject
+    - title: View in ArgoCD
+      icon: catalog
+      url: https://CODESPACE_NAME_PLACEHOLDER-ARGOCD_PORT_NUMBER_PLACEHOLDER.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER/applications/argocd/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}-cd # TODO not replacing placeholders. Investigate.
+    - title: View in Dynatrace
+      icon: catalog
+      url: DT_TENANT_APPS_PLACEHOLDER
+    - url: https://community.dynatrace.com
+      title: Dynatrace community
+      icon: dashboard
+spec:
+  type: website
+  owner: ${{ values.teamIdentifier }}
+  lifecycle: ${{ values.releaseStage }}
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: ${{ values.teamIdentifier }}
+  description: Group for application team ${{ values.teamIdentifier }}
+spec:
+  type: business-unit
+  profile:
+    displayName: ${{ values.teamFullName }}
+    email: ${{ values.teamEmail }}
+    picture: https://example.com/staff/jenny-with-party-hat.jpeg
+  parent: applications
+  children: []
+#   members: [jdoe]

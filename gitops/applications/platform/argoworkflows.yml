@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+  labels:
+    dt.owner: "platform_team"
+  name: workflows
+  namespace: argocd
+spec:
+  sources:
+    - repoURL: 'https://argoproj.github.io/argo-helm'
+      targetRevision: 0.36.1
+      chart: argo-workflows
+      helm:
+        values: |
+          server:
+            authMode: "server"
+  destination:
+    namespace: argocd
+    server: 'https://kubernetes.default.svc'
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        maxDuration: 3m0s
+        factor: 2

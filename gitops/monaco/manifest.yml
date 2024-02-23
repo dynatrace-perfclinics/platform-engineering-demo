@@ -1,0 +1,27 @@
+manifestVersion: 1.0
+projects:
+  - name: configure-platform
+    path: configure-platform
+
+environmentGroups:
+  - name: development
+    environments:
+      - name: prod-api-token-only
+        # .live. when using API token only
+        # .apps. when using API + oAuth or just oAuth
+        url:
+          value: "DT_TENANT_LIVE_PLACEHOLDER"
+        auth:
+          token:
+            name: "monacoToken" 
+      - name: prod-api-and-oauth
+        url:
+          value: "DT_TENANT_APPS_PLACEHOLDER"
+        auth:
+          token:
+            name: "monacoToken"
+          oAuth:
+            clientId:
+              name: MONACO_OAUTH_CLIENT_ID
+            clientSecret:
+              name: MONACO_OAUTH_CLIENT_SECRET

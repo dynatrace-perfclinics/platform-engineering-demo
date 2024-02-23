@@ -1,0 +1,14 @@
+configs:
+- id: ${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}_synthetic
+  config:
+    name: "Healthcheck ${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}"
+    parameters:
+      baseUrl: "https://${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}.BASE_DOMAIN_PLACEHOLDER"
+      frequencyMin: "1"
+      enabled: "true"
+      geoLocation: "GEOLOCATION-3F7C50D0C9065578"
+      teamIdentifier: "${{ values.teamIdentifier }}"
+    template: health-check-http.json
+    skip: false
+  type:
+    api: synthetic-monitor

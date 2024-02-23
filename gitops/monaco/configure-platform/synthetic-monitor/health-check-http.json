@@ -1,0 +1,67 @@
+{
+    "anomalyDetection": {
+      "loadingTimeThresholds": {
+        "enabled": true,
+        "thresholds": []
+      },
+      "outageHandling": {
+        "globalOutage": true,
+        "globalOutagePolicy": {
+          "consecutiveRuns": 1
+        },
+        "localOutage": false,
+        "localOutagePolicy": {
+          "affectedLocations": null,
+          "consecutiveRuns": null
+        }
+      }
+    },
+    "automaticallyAssignedApps": [],
+    "enabled": {{ .enabled }},
+    "frequencyMin": {{ .frequencyMin }},
+    "locations": [
+      "{{ .geoLocation }}"
+    ],
+    "managementZones": [],
+    "manuallyAssignedApps": [],
+    "name": "{{.name}}",
+    "requests": [
+      {
+        "name": "Homepage",
+        "sequenceNumber": 1
+      }
+    ],
+    "script": {
+      "requests": [
+        {
+          "configuration": {
+            "acceptAnyCertificate": true,
+            "followRedirects": true,
+            "shouldNotPersistSensitiveData": false
+          },
+          "description": "Homepage",
+          "method": "{{ .httpMethod }}",
+          "url": "{{ .baseUrl }}",
+          "validation": {
+            "rules": [
+              {
+                "passIfFound": false,
+                "type": "httpStatusesList",
+                "value": "\u003e=400"
+              }
+            ]
+          }
+        }
+      ],
+      "version": "1.0"
+    },
+    "tags": [
+      {
+        "context": "CONTEXTLESS",
+        "key": "{{ .tagKey }}",
+        "source": "USER",
+        "value": "{{ .teamIdentifier }}"
+      }
+    ],
+    "type": "HTTP"
+}

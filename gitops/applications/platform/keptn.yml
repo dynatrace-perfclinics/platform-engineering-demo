@@ -1,0 +1,60 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "5"
+  labels:
+    dt.owner: "platform_team"
+  name: keptn
+  namespace: argocd
+spec:
+  sources:
+    - repoURL: 'https://charts.lifecycle.keptn.sh'
+      targetRevision: 0.3.0
+      chart: keptn
+      helm:
+        values: |
+          certificateOperator:
+            manager:
+              resources:
+                requests:
+                  cpu: 5m
+                  memory: 16Mi
+          lifecycleOperator:
+            manager:
+              resources:
+                requests:
+                  cpu: 5m
+                  memory: 16Mi
+          metricsOperator:
+            manager:
+              resources:
+                requests:
+                  cpu: 5m
+                  memory: 16Mi
+          scheduler:
+            scheduler:
+              resources:
+                requests:
+                  cpu: 5m
+                  memory: 16Mi
+
+    - repoURL: "https://github.com/GITHUB_REPOSITORY_PLACEHOLDER.git"
+      targetRevision: codespace
+      path: "gitops/manifests/platform/keptn"
+  destination:
+    namespace: keptn
+    server: 'https://kubernetes.default.svc'
+  project: default
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true  
+    automated:
+      prune: true
+      selfHeal: true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        maxDuration: 3m0s
+        factor: 2

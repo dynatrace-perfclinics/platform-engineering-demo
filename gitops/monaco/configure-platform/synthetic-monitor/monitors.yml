@@ -1,0 +1,61 @@
+configs:
+- id: gitlab-health-check-platform-synthetic
+  config:
+    name: "gitlab | platform | healthcheck"
+    parameters:
+      baseUrl: "https://gitlab.BASE_DOMAIN"
+      frequencyMin: "1"
+      enabled: "true"
+      geoLocation: "GEOLOCATION-3F7C50D0C9065578"
+      teamIdentifier: "platform_team"
+      tagKey: "owner"
+      httpMethod: "GET"
+    template: health-check-http.json
+    skip: false
+  type:
+    api: synthetic-monitor
+- id: backstage-health-check-platform-synthetic
+  config:
+    name: "backstage | platform | healthcheck"
+    parameters:
+      baseUrl: "https://backstage.BASE_DOMAIN"
+      frequencyMin: "1"
+      enabled: "true"
+      geoLocation: "GEOLOCATION-3F7C50D0C9065578"
+      teamIdentifier: "platform_team"
+      tagKey: "owner"
+      httpMethod: "GET"
+    template: health-check-http.json
+    skip: false
+  type:
+    api: synthetic-monitor
+- id: argo-health-check-platform-synthetic
+  config:
+    name: "argo | platform | healthcheck"
+    parameters:
+      baseUrl: "https://argo.BASE_DOMAIN"
+      frequencyMin: "1"
+      enabled: "true"
+      geoLocation: "GEOLOCATION-3F7C50D0C9065578"
+      teamIdentifier: "platform_team"
+      tagKey: "owner"
+      httpMethod: "GET"
+    template: health-check-http.json
+    skip: false
+  type:
+    api: synthetic-monitor
+- id: workflows-health-check-platform-synthetic
+  config:
+    name: "argo workflows | platform | healthcheck"
+    parameters:
+      baseUrl: "https://workflows.BASE_DOMAIN"
+      frequencyMin: "1"
+      enabled: "true"
+      geoLocation: "GEOLOCATION-3F7C50D0C9065578"
+      teamIdentifier: "platform_team"
+      tagKey: "owner"
+      httpMethod: "GET"
+    template: health-check-http.json
+    skip: false
+  type:
+    api: synthetic-monitor

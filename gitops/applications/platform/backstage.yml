@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "6"
+  labels:
+    dt.owner: "platform_team"
+  name: backstage
+  namespace: argocd
+spec:
+  source:
+    repoURL: "https://github.com/GITHUB_REPOSITORY_PLACEHOLDER.git"
+    targetRevision: codespace
+    path: "gitops/manifests/platform/backstage"
+  destination:
+    namespace: backstage
+    server: 'https://kubernetes.default.svc'
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        maxDuration: 3m0s
+        factor: 2

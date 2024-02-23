@@ -1,0 +1,49 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: customer-apps
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - git:
+      repoURL: "https://github.com/GITHUB_REPOSITORY_PLACEHOLDER.git"
+      revision: HEAD
+      directories:
+      - path: "customer-apps/*"
+  template:
+    metadata:
+      name: '{{.path.basename}}'
+      annotations:
+        notifications.argoproj.io/subscribe.on-created.dynatrace: ""
+        notifications.argoproj.io/subscribe.on-deployed.dynatrace: ""
+        notifications.argoproj.io/subscribe.on-health-degraded.dynatrace: ""
+        notifications.argoproj.io/subscribe.on-sync-failed.dynatrace: ""
+        notifications.argoproj.io/subscribe.on-sync-running.dynatrace: ""
+        notifications.argoproj.io/subscribe.on-sync-succeeded.dynatrace: ""
+    spec:
+      project: "default"
+      source:
+        repoURL: "https://github.com/GITHUB_REPOSITORY_PLACEHOLDER.git"
+        targetRevision: HEAD
+        path: '{{.path.path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{.path.basename}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+          allowEmpty: true
+        syncOptions:
+          - Validate=true
+          - CreateNamespace=true
+          - PrunePropagationPolicy=foreground
+          - PruneLast=true
+        retry:
+          limit: 5
+          backoff:
+            duration: 5s
+            factor: 2
+            maxDuration: 3m

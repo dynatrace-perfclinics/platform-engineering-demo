@@ -1,0 +1,28 @@
+configs:
+- id: prepend-platform-pg-naming
+  config:
+    name: "prepend platform"
+    template: prepend-platform-name-process-group-naming-rule.json
+    skip: false
+    parameters:
+      string_match: "platform_team"
+  type:
+    api: conditional-naming-processgroup
+- id: prepend-team-name-service-naming
+  config:
+    name: "prepend team name"
+    template: prepend-team-name-service-naming-rule.json
+    skip: false
+    parameters:
+      string_match: "platform_team"
+  type:
+    api: conditional-naming-service
+- id: prepend-platform-service-naming
+  config:
+    name: "prepend platform"
+    template: prepend-platform-service-naming.json
+    skip: false
+    parameters:
+      string_match: "platform_team"
+  type:
+    api: conditional-naming-service

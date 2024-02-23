@@ -1,0 +1,52 @@
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: platform
+  description: The platform team
+spec:
+  type: business-unit
+  profile:
+    displayName: Platform
+    email: platform@dynatrace.training
+    picture: https://example.com/groups/bu-infrastructure.jpeg
+#   parent: ops
+  children: []
+#   members: [jdoe]
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: applications
+  description: All our application teams
+spec:
+  type: business-unit
+  profile:
+    displayName: Application Teams
+    email: appteams@dynatrace.training
+    picture: https://example.com/groups/bu-infrastructure.jpeg
+#   parent: ops
+  children: []
+#   members: [jdoe]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: agardner
+spec:
+  profile:
+    displayName: Adam Gardner
+    email: adam.gardner@dynatrace.com
+    picture: https://raw.githubusercontent.com/cncf/people/main/images/adamgardner.jpg
+  memberOf: [platform]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: agrabner
+spec:
+  profile:
+    displayName: Andreas Grabner
+    email: andreas.grabner@dynatrace.com
+    picture: https://raw.githubusercontent.com/cncf/people/main/images/andreas-grabner.jpg
+  memberOf: [platform]

@@ -1,0 +1,262 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: app-creator
+  title: Create a New Application
+  description: Create a new application from a template
+  tags:
+    - simplenodeservice
+  links:
+    - url: https://www.dynatrace.com/trial
+      title: Dynatrace Trial
+      icon: docs
+    - url: https://github.com/grabnerandi/simplenodeservice
+      title: simplenodeservice on GitHub
+      icon: search
+spec:
+  owner: infrastructure
+  type: service
+  parameters:
+    - title: Choose a Project
+      properties:
+        projectName:
+          title: Choose a Project
+          type: string
+          description: Which project would you like to deploy?
+          enum:
+            - 'simplenodeservice'
+          # - 'project2TODOX'
+          #enumNames:
+          #  - 'simplenodeservice'
+          #  - 'project2TODO'
+          default: 'simplenodeservice'
+    - title: Your Team's Details
+      required:
+        - teamIdentifier
+        - teamFullName
+        - teamEmail
+      properties:
+        teamIdentifier:
+          title: Team identifier
+          description: Your unique internal team identifier (eg. team01)
+          type: string
+          pattern: '^team\d+$' # must match `team` + 1 or more digit. eg. `team1`, `team123`, `team9843` all valid. `team` invalid.
+          ui:placeholder: 'teamIdentifier'
+          default: 'team01'
+        teamFullName:
+          title: Full name of the team 
+          description: Your real team name (eg. Team Best App Ever)
+          type: string
+          ui:placeholder: 'teamFullName'
+          default: "Team 01"
+        teamEmail:
+          title: Team Email
+          description: Dummy email to reach your team (eg. team01@example.com)
+          type: string
+          ui:placeholder: 'teamEmail'
+          default: "team01@example.com"
+    - title: Application Details
+      required:
+        - appVersion
+        - releaseStage
+        - doraEnabled
+        - includeSecurityScans
+        - includeDTConfig
+      properties:
+        appVersion:
+          title: Application Version
+          description: SemVer eg. 1.0.2
+          type: string
+          default: "1.0.2"
+#          pattern: "^\d+.\d+.\d+$"
+        releaseStage:
+          title: "Software Lifecycle Stage"
+          description: "Which stage is this software in? (eg. preprod)"
+          type: string
+          default: "preprod"
+        doraEnabled:
+          title: "DORA metric tracking enabled?"
+          description: "Enable automatic DORA metric and OpenTelemetry trace generation for this application?"
+          type: string
+          enum:
+            - 'enabled'
+            - 'not enabled'
+          default: "enabled"          
+        includeSecurityScans:
+          title: "Include Security scans?"
+          description: "Scan this app automatically and push results to Dynatrace?"
+          type: boolean
+          default: true
+        includeDTConfig:
+          title: "Include Dynatrace Configuration?"
+          description: "Include level 1 (basic) Dynatrace Configuration as Code for this application?"
+          type: boolean
+          default: true
+  steps:
+    - id: fetch-base
+      name: Fetch Base
+      action: fetch:template
+      input:
+        url: "apptemplates/${{ parameters.projectName }}-content"
+        targetPath: "customer-apps/${{ parameters.projectName }}-${{ parameters.teamIdentifier}}-${{ parameters.releaseStage }}"
+        values:
+         projectName: ${{ parameters.projectName }}
+         teamIdentifier: ${{ parameters.teamIdentifier }}
+         teamFullName: ${{ parameters.teamFullName }}
+         teamEmail: ${{ parameters.teamEmail }}
+         appVersion: ${{ parameters.appVersion }}
+         releaseStage: ${{ parameters.releaseStage }}
+         doraEnabled: ${{ parameters.doraEnabled }}
+         includeSecurityScans: ${{ parameters.includeSecurityScans }}
+         includeDTConfig: ${{ parameters.includeDTConfig }}
+         # TESTING githubUser: 
+    # - id: publish-privacy-survey
+    #   name: Publish Privacy Survey
+    #   action: privacySurvey:publish
+    #   input:
+    #     survey: ${{ parameters.privacySurvey }}
+    # - id: rename-files
+    #   name: Rename Files
+    #   action: fs:rename
+    #   input:
+    #     files:
+    #       - from: to-be-renamed.txt
+    #         to: a-renamed-file.txt
+    - id: delete-security-scan-files
+      name: Delete security scan files
+      if: ${{ parameters.includeSecurityScans === false }}
+      action: fs:delete
+      input:
+        files:
+          - "./${{ parameters.projectName }}-content/argoapp/securityScanJob.yml"
+    - id: delete-monaco-files
+      name: Delete DT Configuration Files
+      if: ${{ parameters.includeDTConfig === false }}
+      action: fs:delete
+      input:
+        files:
+          - "./${{ parameters.projectName }}-content/monaco"
+          - "./${{ parameters.projectName}}-content/argoapp/workflow-post-sync-apply-monaco.yml"
+    # - id: debug
+    #   name: List workspace
+    #   action: debug:log
+    #   input:
+    #     listWorkspace: true
+    #     securityScans: ${{ parameters.includeSecurityScans }}
+    #     projectName: "./${{ parameters.projectName }}-template"
+    - id: publish
+      action: publish:github:pull-request
+      name: Push Changes to Github
+      input:
+        repoUrl: "github.com?repo=GITHUB_REPO_NAME_PLACEHOLDER&owner=GITHUB_ORG_NAME_PLACEHOLDER"
+        branchName: "main"
+        title: "Onboard ${{ parameters.projectName }} for ${{ parameters.teamIdentifier }} in ${{ parameters.releaseStage }}"
+        description: "This is the description of the PR for ${{ parameters.projectName }} > ${{ parameters.teamIdentifier }} in ${{ parameters.releaseStage }}"
+    #     sourcePath: "./${{ parameters.projectName }}-content"
+    #     repoVisibility: 'public'
+        # defaultBranch: 'main'
+        # gitAuthorName: ${{ parameters.teamIdentifier }}
+        # gitAuthorEmail: "${{ parameters.teamIdentifier }}@dynatrace.training"
+        commitMessage: "Initial commit from ${{ parameters.teamIdentifier }} for template ${{ parameters.projectName }} in ${{ parameters.releaseStage }}"
+        sourcePath: "customer-apps"
+        targetPath: "customer-apps"
+    - id: catalog
+      name: Register to Catalog
+      action: catalog:register
+      input:
+        repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
+        optional: true
+  output:
+    links:
+      # - title: View on Github
+      #   url: ${{ steps.publish.output.remoteUrl }}
+      # - title: View in Catalog
+      #   icon: catalog
+      #   entityRef: ${{ steps.catalog.output.entityRef }}
+      - title: View in ArgoCD
+        icon: catalog
+        url: https://CODESPACE_NAME_PLACEHOLDER-ARGOCD_PORT_NUMBER_PLACEHOLDER.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER/applications/argocd/${{ parameters.projectName }}-${{ parameters.teamIdentifier }}-${{ parameters.releaseStage }}-cd
+      - title: View in Dynatrace
+        icon: catalog
+        url: DT_TENANT_APPS_PLACEHOLDER
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: gather-feedback
+  title: Platform Feedback Form
+  description: Help us improve this platform. Provide feedback here.
+  tags:
+    - platform
+    - feedback
+  links:
+    - url: https://www.example.com/platformteam
+      title: Platform Improvement Process
+      icon: docs
+spec:
+  owner: infrastructure
+  type: platform
+  parameters:
+    - title: Feedback Form
+      properties:
+        feedbackType:
+          title: Feedback Type
+          type: string
+          description: Which project would you like to deploy?
+          enum:
+            - 'improvement'
+            - 'feature'
+            - 'bug'
+            - 'praise'
+          enumNames:
+            - 'An existing platform feature could be improved...'
+            - 'The platform needs to do...'
+            - 'Help! Something is broken!'
+            - 'The platform is great. Just saying thanks!'
+          default: 'improvement'
+        userIdentifier:
+          title: Your Name (optional)
+          description: (optional) Your name
+          type: string
+          ui:placeholder: 'yourName'
+          default: 'testing'
+        feedback:
+          title: "Leave your feedback below"
+          type: string
+          ui:widget: textarea
+          ui:options:
+            rows: 10
+          default: "Talk to us..."
+        keepMeInformed:
+          title: "Stay informed of progress on this item?"
+          description: "Tick this box if you want email updates on this item to be sent from the platform team."
+          type: boolean
+          default: true
+  steps:
+    - id: send-event
+      name: Submit Feedback
+      action: http:backstage:request
+      input:
+        method: "POST"
+        # This proxy is set in app-config.production.yaml
+        # It should actually point to the bizevent ingest
+        # But I don't know how to use backstage + oAuth
+        # Q in #backstage: https://cloud-native.slack.com/archives/C01B5HYR2R3/p1701406188130209
+        path: "/proxy/dteventingest"
+        #path: "/notifications"
+        headers:
+          Content-Type: "application/json; charset=utf-8"
+        body: |
+          {
+            "eventType": "CUSTOM_INFO",
+            "properties": {
+              "type": "${{ parameters.feedbackType }}",
+              "user": "${{ parameters.userIdentifier }}",
+              "feedback": "${{ parameters.feedback }}",
+              "stay-informed": "${{ parameters.keepMeInformed }}",
+              "source": "backstage",
+              "template": "platform-feedback"
+            },
+            "timeout": 1,
+            "title": "ℹ️ Platform Feedback ℹ️"
+          }

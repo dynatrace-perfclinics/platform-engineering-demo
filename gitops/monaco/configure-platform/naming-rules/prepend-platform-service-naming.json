@@ -1,0 +1,22 @@
+{
+  "displayName": "{{.name}}",
+  "enabled": true,
+  "nameFormat": "platform | {Service:DetectedName}",
+  "rules": [
+    {
+      "comparisonInfo": {
+        "caseSensitive": true,
+        "negate": false,
+        "operator": "EQUALS",
+        "type": "STRING",
+        "value": "{{ .string_match }}"
+      },
+      "key": {
+        "attribute": "CLOUD_APPLICATION_NAMESPACE_LABELS",
+        "dynamicKey": "dt.owner",
+        "type": "STRING"
+      }
+    }
+  ],
+  "type": "SERVICE"
+}

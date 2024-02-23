@@ -1,0 +1,9 @@
+---
+apiVersion: options.keptn.sh/v1alpha1
+kind: KeptnConfig
+metadata:
+  name: keptnconfigotel
+  namespace: keptn
+spec:
+  OTelCollectorUrl: 'otel-collector.opentelemetry.svc.cluster.local:4317'
+  keptnAppCreationRequestTimeoutSeconds: 30

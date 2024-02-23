@@ -1,0 +1,161 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backstage-config
+  namespace: backstage
+data:
+  app-config.production.yaml: |
+    app:
+      title: DT HOT Day - Backstage
+      baseUrl: https://${BASE_DOMAIN}-${BACKSTAGE_PORT_NUMBER}.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}
+
+    organization:
+      name: DT HOT Day - Backstage
+
+    backend:
+      baseUrl: https://${BASE_DOMAIN}-${BACKSTAGE_PORT_NUMBER}.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}
+      listen:
+        port: ${BACKSTAGE_PORT_NUMBER} # set the port Backstage is listening on: 7007
+      csp:
+        # Content-Security-Policy directives follow the Helmet format: https://helmetjs.github.io/#reference
+        # Default Helmet Content-Security-Policy values can be removed by setting the key to false
+        connect-src: ["'self'", 'http:', 'https:']
+        img-src: ["'self'", "https:"]
+      cors:
+        origin: https://${BASE_DOMAIN}-${BACKSTAGE_PORT_NUMBER}.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}
+        methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
+        credentials: true
+      # If you want to use Postgres see https://backstage.io/docs/tutorials/switching-sqlite-postgres/
+      database:
+        client: better-sqlite3
+        connection: ':memory:'
+      reading:
+        allow:
+          - host: '*'
+
+    # See http://backstage.io/docs/features/techdocs/configuration
+    techdocs:
+      builder: 'local'
+      generator:
+        runIn: 'local'
+      publisher:
+        type: 'local'
+
+    # See https://backstage.io/docs/auth/
+    auth:
+      providers: {}
+
+    # See https://backstage.io/docs/features/software-templates/configuration
+    scaffolder: {}
+
+    # See https://backstage.io/docs/integrations/
+    integrations:
+      github:
+        - host: github.com
+          token: ${GITHUB_TOKEN}
+      # gitlab:
+      #   - host: gitlab.BASE_DOMAIN_PLACEHOLDER
+      #     apiBaseUrl: https://gitlab.BASE_DOMAIN_PLACEHOLDER/api/v4
+      #     token: ${GITLAB_TOKEN}
+    catalog:
+      rules:
+        - allow: [Component, Template, User, Group]
+      import:
+        entityFilename: catalog-info.yaml
+      locations: []
+      providers:
+        # GitHub discovery: https://backstage.io/docs/integrations/github/discovery/
+        # Don't forget to define an integration for GitHub
+        github:
+          backstage:
+            organization: ${GITHUB_ORG}
+            catalogPath: '**/catalog-info.yaml' # this will search recursively all folders for catalog-info.yaml files
+            filters:
+              repository: ".*${GITHUB_REPO}"
+              branch: "codespace"
+            #   repository: ".*"
+            schedule:
+              frequency: { minutes: 5 }
+              timeout: { minutes: 3 }
+        # GitLab discovery: https://backstage.io/docs/integrations/gitlab/discovery/
+        # Don't forget to define an integration for your GitLab host(s)
+        # gitlab:
+        #   public:
+        #     host: gitlab.BASE_DOMAIN_PLACEHOLDER
+        #     apiBaseUrl: https://gitlab.BASE_DOMAIN_PLACEHOLDER/api/v4
+        #     # proxySecure: true
+        #     branch: main
+        #     skipForkedRepos: true
+        #     entityFilename: catalog-info.yaml
+        #     schedule:
+        #       frequency: { seconds: 10 }
+        #       timeout: { minutes: 1 }
+              
+    # See https://github.com/RoadieHQ/roadie-backstage-plugins/tree/main/plugins/backend/backstage-plugin-argo-cd-backend
+    argocd:
+      appLocatorMethods:
+        - type: 'config'
+          instances:
+            - name: argocd
+              # eg. https://friendly-space-capybara-6vwwx95557r3q47-30100.app.github.dev
+              url: https://${BASE_DOMAIN}-ARGOCD_PORT_NUMBER_PLACEHOLDER.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER
+              token: ${ARGOCD_TOKEN}
+              
+    # See https://backstage.io/docs/features/kubernetes/configuration
+    #kubernetes:
+    #  serviceLocatorMethod:
+    #    type: singleTenant
+    #  clusterLocatorMethods:
+    #    - type: config
+    #      clusters:
+    #        - url: http://127.0.0.1:9999
+    #          name: local-k8s
+    #          authProvider: 'serviceAccount'
+    #          skipTLSVerify: false
+    #          skipMetricsLookup: true
+    #          dashboardApp: standard
+    #          #caData: ${K8S_CONFIG_CA_DATA}
+    #          #caFile: '' # local path to CA file
+    #          #customResources:
+    #          #  - group: 'argoproj.io'
+    #          #    apiVersion: 'v1alpha1'
+    #          #    plural: 'rollouts'
+    kubernetes:
+      serviceLocatorMethod:
+        type: multiTenant
+      clusterLocatorMethods:
+        - type: config
+          clusters: []
+    proxy:
+      endpoints:
+        '/dteventingest':
+          target: "${DT_TENANT_LIVE}/api/v2/events/ingest"
+          method: "POST"
+          headers:
+            Content-Type: "application/json; charset=utf-8"
+            Authorization: "Api-Token ${DT_ALL_INGEST_TOKEN}"
+    dynatrace:
+      environments:
+        - name: ${DT_TENANT_NAME}
+          url: ${DT_TENANT_APPS}
+          tokenUrl: ${DT_SSO_TOKEN_URL}
+          accountUrn: ${DT_OAUTH_ACCOUNT_URN}
+          clientId: ${DT_OAUTH_CLIENT_ID}
+          clientSecret: ${DT_OAUTH_CLIENT_SECRET}
+      queries:
+      - id: logs
+        query: >
+          fetch logs
+          | filter contains(k8s.namespace.name, "$${componentName}")
+          | filter content != " "
+          | fields timestamp, content 
+          | sort timestamp
+          | limit 10
+      - id: validations
+        query: >
+          fetch bizevents
+          | filter event.type == "guardian.validation.finished"
+          | parse execution_context, "JSON:context"
+          | filter contains(context[component_name], "$${componentName}")
+          | sort timestamp desc
+          | fields timestamp, name=guardian.name, buildId=context[buildId], status=validation.status, executionId=validation.workflow.execution.id

@@ -1,0 +1,24 @@
+configs:
+- id: platformteam
+  type:
+    settings:
+      schema: builtin:ownership.teams
+      scope: environment
+  config:
+    name: platform team
+    template: teamoutline.json
+    parameters:
+      descr: Platform team
+      team_id: platform_team
+      development: true
+      security: false
+      operations: true
+      infrastructure: false
+      lineOfBusiness: false
+      slackChannel: somewhere
+      slackURL: https://somewhere.slack.com/archives/ABC1234
+      email: platformteam@example.com
+      addInfoKey: costcode
+      addInfoValue: platform
+      addInfoUrl: https://example.com/platformTeam
+    skip: false

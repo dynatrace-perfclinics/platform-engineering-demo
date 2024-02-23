@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-cm
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: argocd-cm
+    app.kubernetes.io/part-of: argocd
+data:
+  # create a user account for 'alice'
+  # provide apiKey and login access + enable the account by default
+  accounts.alice: apiKey, login
+  accounts.alice.enabled: "true"
+  # Enables application status badge feature
+  statusbadge.enabled: "true"
+  context: |
+    argocdUrl: "https://CODESPACE_NAME_PLACEHOLDER-ARGOCD_PORT_NUMBER_PLACEHOLDER.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER"  

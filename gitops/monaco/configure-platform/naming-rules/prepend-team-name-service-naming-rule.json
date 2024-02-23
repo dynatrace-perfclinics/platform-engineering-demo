@@ -1,0 +1,22 @@
+{
+  "displayName": "{{.name}}",
+  "enabled": true,
+  "nameFormat": "{ProcessGroup:KubernetesRuleResult/DT_RELEASE_PRODUCT=[a-z]+-([a-z0-9]++)} | {ProcessGroup:KubernetesRuleResult/DT_RELEASE_STAGE=([a-z0-9]++)} | {Service:DetectedName}",
+  "rules": [
+    {
+      "comparisonInfo": {
+        "caseSensitive": null,
+        "negate": false,
+        "operator": "EXISTS",
+        "type": "STRING",
+        "value": null
+      },
+      "key": {
+        "attribute": "CLOUD_APPLICATION_LABELS",
+        "dynamicKey": "dt.owner",
+        "type": "STRING"
+      }
+    }
+  ],
+  "type": "SERVICE"
+}

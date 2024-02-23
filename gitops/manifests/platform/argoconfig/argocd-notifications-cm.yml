@@ -1,0 +1,184 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-notifications-cm
+  namespace: argocd
+data:
+  service.webhook.dynatrace: |
+    url: $dynatrace-url
+    headers:
+    - name: Authorization
+      value: Api-Token $dynatrace-token
+    - name: Content-Type
+      value: application/json
+  template.app-sync-succeeded: |
+    webhook:
+      dynatrace:
+        method: POST
+        path: /api/v2/events/ingest
+        body: |
+          {
+            "eventType" : "CUSTOM_INFO",
+            "title": "ArgoCD: app-sync-succeeded: {{.app.metadata.name}}",
+            "properties": {
+              "action" : "app-sync-succeeded",
+              "repo_url": "{{.app.spec.source.repoURL}}",
+              "revisions" : "{{.app.status.operationState.operation.sync.revision}}",
+              "commit_url" : "{{.app.spec.source.repoURL}}/-/commit/{{.app.status.operationState.operation.sync.revision}}",
+              "target_url" : "{{.context.argocdUrl}}/applications/{{.app.metadata.name}}",
+              "app_name": "{{.app.metadata.name}}",
+              "source" : "ArgoCD",
+              "sync_status" : "{{.app.status.sync.status}}",
+              "synced_at" : "{{.app.status.operationState.finishedAt}}"
+            }
+          }
+  template.app-sync-running: |
+    webhook:
+      dynatrace:
+        method: POST
+        path: /api/v2/events/ingest
+        body: |
+          {
+            "eventType" : "CUSTOM_INFO",
+            "title": "ArgoCD: app-sync-running: {{.app.metadata.name}}",
+            "properties": {
+              "action" : "app-sync-running",
+              "repo_url": "{{.app.spec.source.repoURL}}",
+              "revisions" : "{{.app.status.operationState.operation.sync.revision}}",
+              "commit_url" : "{{.app.spec.source.repoURL}}/-/commit/{{.app.status.operationState.operation.sync.revision}}",
+              "target_url" : "{{.context.argocdUrl}}/applications/{{.app.metadata.name}}",
+              "app_name": "{{.app.metadata.name}}",
+              "source" : "ArgoCD",
+              "sync_status" : "{{.app.status.sync.status}}",
+              "synced_at" : "{{.app.status.operationState.finishedAt}}"
+            }
+          }    
+  template.app-sync-failed: |
+    webhook:
+      dynatrace:
+        method: POST
+        path: /api/v2/events/ingest
+        body: |
+          {
+            "eventType" : "CUSTOM_INFO",
+            "title": "ArgoCD: app-sync-failed: {{.app.metadata.name}}",
+            "properties": {
+              "action" : "app-sync-failed",
+              "repo_url": "{{.app.spec.source.repoURL}}",
+              "revisions" : "{{.app.status.operationState.operation.sync.revision}}",
+              "commit_url" : "{{.app.spec.source.repoURL}}/-/commit/{{.app.status.operationState.operation.sync.revision}}",
+              "target_url" : "{{.context.argocdUrl}}/applications/{{.app.metadata.name}}",
+              "app_name": "{{.app.metadata.name}}",
+              "source" : "ArgoCD",
+              "sync_status" : "{{.app.status.sync.status}}",
+              "synced_at" : "{{.app.status.operationState.finishedAt}}"
+            }
+          }
+  template.app-created: |
+    webhook:
+      dynatrace:
+        method: POST
+        path: /api/v2/events/ingest
+        body: |
+          {
+            "eventType" : "CUSTOM_INFO",
+            "title": "ArgoCD: app-created: {{.app.metadata.name}}",
+            "properties": {
+              "action" : "app-created",
+              "repo_url": "{{.app.spec.source.repoURL}}",
+              "revisions" : "{{.app.status.operationState.operation.sync.revision}}",
+              "commit_url" : "{{.app.spec.source.repoURL}}/-/commit/{{.app.status.operationState.operation.sync.revision}}",
+              "target_url" : "{{.context.argocdUrl}}/applications/{{.app.metadata.name}}",
+              "app_name": "{{.app.metadata.name}}",
+              "source" : "ArgoCD",
+              "sync_status" : "{{.app.status.sync.status}}",
+              "synced_at" : "{{.app.status.operationState.finishedAt}}"
+            }
+          }
+  template.app-deployed: |
+    webhook:
+      dynatrace:
+        method: POST
+        path: /api/v2/events/ingest
+        body: |
+          {
+            "eventType" : "CUSTOM_INFO",
+            "title": "ArgoCD: app-deployed: {{.app.metadata.name}}",
+            "properties": {
+              "action" : "app-deployed",
+              "repo_url": "{{.app.spec.source.repoURL}}",
+              "revisions" : "{{.app.status.operationState.operation.sync.revision}}",
+              "commit_url" : "{{.app.spec.source.repoURL}}/-/commit/{{.app.status.operationState.operation.sync.revision}}",
+              "target_url" : "{{.context.argocdUrl}}/applications/{{.app.metadata.name}}",
+              "app_name": "{{.app.metadata.name}}",
+              "source" : "ArgoCD",
+              "sync_status" : "{{.app.status.sync.status}}",
+              "synced_at" : "{{.app.status.operationState.finishedAt}}"
+            }
+          }
+  template.app-health-degraded: |
+    webhook:
+      dynatrace:
+        method: POST
+        path: /api/v2/events/ingest
+        body: |
+          {
+            "eventType" : "CUSTOM_INFO",
+            "title": "ArgoCD: app-health-degraded: {{.app.metadata.name}}",
+            "properties": {
+              "action" : "app-health-degraded",
+              "repo_url": "{{.app.spec.source.repoURL}}",
+              "revisions" : "{{.app.status.operationState.operation.sync.revision}}",
+              "commit_url" : "{{.app.spec.source.repoURL}}/-/commit/{{.app.status.operationState.operation.sync.revision}}",
+              "target_url" : "{{.context.argocdUrl}}/applications/{{.app.metadata.name}}",
+              "app_name": "{{.app.metadata.name}}",
+              "source" : "ArgoCD",
+              "sync_status" : "{{.app.status.sync.status}}",
+              "synced_at" : "{{.app.status.operationState.finishedAt}}"
+            }
+          }                
+  trigger.on-created: |
+    - description: Application is created.
+      oncePer: app.metadata.name
+      send:
+      - app-created
+      when: "true"
+#  trigger.on-deleted: |
+#    - description: Application is deleted.
+#      oncePer: app.metadata.name
+#      send:
+#      - app-deleted
+#      when: app.metadata.deletionTimestamp != nil
+  trigger.on-deployed: |
+    - description: Application is synced and healthy. Triggered once per commit.
+      oncePer: app.status.operationState?.syncResult?.revision
+      send:
+      - app-deployed
+      when: app.status.operationState != nil and app.status.operationState.phase in ['Succeeded']
+        and app.status.health.status == 'Healthy'
+  trigger.on-health-degraded: |
+    - description: Application has degraded
+      send:
+      - app-health-degraded
+      when: app.status.health.status == 'Degraded'
+  trigger.on-sync-failed: |
+    - description: Application syncing has failed
+      send:
+      - app-sync-failed
+      when: app.status.operationState != nil and app.status.operationState.phase in ['Error',
+        'Failed']
+  trigger.on-sync-running: |
+    - description: Application is being synced
+      send:
+      - app-sync-running
+      when: app.status.operationState != nil and app.status.operationState.phase in ['Running']
+#  trigger.on-sync-status-unknown: |
+#    - description: Application status is 'Unknown'
+#      send:
+#      - app-sync-status-unknown
+#      when: app.status.sync.status == 'Unknown'
+  trigger.on-sync-succeeded: |
+    - description: Application syncing has succeeded
+      send:
+      - app-sync-succeeded
+      when: app.status.operationState != nil and app.status.operationState.phase in ['Succeeded']
