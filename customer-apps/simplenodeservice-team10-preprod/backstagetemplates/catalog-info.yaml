@@ -1,0 +1,47 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: "simplenodeservice-team10-preprod"
+  title: "simplenodeservice-team10-preprod"
+  description: "Template for the simplenodeservice owned and operated by team10 in environment preprod"
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    # Not working
+    'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/name=userinterface'
+    'backstage.io/kubernetes-namespace': 'simplenodeservice-team10-preprod-cd'
+    argocd/app-name: simplenodeservice-team10-preprod-cd
+  links:
+    - url: https://github.com/agardnerIT/platform-engineering-demo
+      title: Github Repo
+      icon: github
+    - url: https://simplenodeservice-team10-preprod.BASE_DOMAIN_PLACEHOLDER # TODO - when ingress is figured out
+      title: "Browse Application"
+      icon: subject
+    - title: View in ArgoCD
+      icon: catalog
+      url: https://humble-orbit-gx66v4rrw47c965j-30100.app.github.dev/applications/argocd/simplenodeservice-team10-preprod-cd # TODO not replacing placeholders. Investigate.
+    - title: View in Dynatrace
+      icon: catalog
+      url: https://jao16384.sprint.apps.dynatracelabs.com
+    - url: https://community.dynatrace.com
+      title: Dynatrace community
+      icon: dashboard
+spec:
+  type: website
+  owner: team10
+  lifecycle: preprod
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: team10
+  description: Group for application team team10
+spec:
+  type: business-unit
+  profile:
+    displayName: Team 10
+    email: team10@example.com
+    picture: https://example.com/staff/jenny-with-party-hat.jpeg
+  parent: applications
+  children: []
+#   members: [jdoe]
