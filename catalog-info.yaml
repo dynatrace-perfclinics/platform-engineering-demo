@@ -2,7 +2,7 @@ apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
   name: app-creator
-  title: Create a New Application (204)
+  title: Create a New Application (205)
   description: Create a new application from a template
   tags:
     - simplenodeservice
@@ -156,25 +156,35 @@ spec:
     #     projectName: "./${{ parameters.projectName }}-template"
 
     - id: publish
-      action: publish:github
-      name: Publish to GitHub
+      action: publish:github:pull-request
+      name: Create Pull Request
       input:
         repoUrl: "github.com?repo=platform-engineering-demo&owner=agardnerIT"
-        branchName: "main"
-        # sourcePath: "./customer-apps/${{ parameters.projectName }}-${{ parameters.teamIdentifier}}-${{ parameters.releaseStage }}"
-        repoVisibility: 'public'
-        defaultBranch: 'main'
-        gitAuthorName: ${{ parameters.teamIdentifier }}
-        gitAuthorEmail: ${{ parameters.teamIdentifier }}@dynatrace.training
-        gitCommitMessage: Initial commit from ${{ parameters.teamIdentifier }} for template ${{ parameters.projectName }} in ${{ parameters.releaseStage }}
-        topics: ["${{ parameters.projectName }}", "${{ parameters.releaseStage }}", "${{ parameters.teamIdentifier }}", "from-template", "backstage" ]
-        token: ${{ secrets.githubPAT }}
-    - id: catalog
-      name: Register to Catalog
-      action: catalog:register
-      input:
-        repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
-        optional: true
+        branchName: "newapp"
+        targetBranchName: "main"
+        title: "PR Title"
+        description: "The PR description"
+
+    # - id: publish
+    #   action: publish:github
+    #   name: Publish to GitHub
+    #   input:
+    #     repoUrl: "github.com?repo=platform-engineering-demo&owner=agardnerIT"
+    #     branchName: "main"
+    #     # sourcePath: "./customer-apps/${{ parameters.projectName }}-${{ parameters.teamIdentifier}}-${{ parameters.releaseStage }}"
+    #     repoVisibility: 'public'
+    #     defaultBranch: 'main'
+    #     gitAuthorName: ${{ parameters.teamIdentifier }}
+    #     gitAuthorEmail: ${{ parameters.teamIdentifier }}@dynatrace.training
+    #     gitCommitMessage: Initial commit from ${{ parameters.teamIdentifier }} for template ${{ parameters.projectName }} in ${{ parameters.releaseStage }}
+    #     topics: ["${{ parameters.projectName }}", "${{ parameters.releaseStage }}", "${{ parameters.teamIdentifier }}", "from-template", "backstage" ]
+    #     token: ${{ secrets.githubPAT }}
+    # - id: catalog
+    #   name: Register to Catalog
+    #   action: catalog:register
+    #   input:
+    #     repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
+    #     optional: true
     # OLD BELOW
     # - id: publish
     #   action: publish:github
