@@ -22,7 +22,7 @@ metadata:
       url: https://CODESPACE_NAME_PLACEHOLDER-ARGOCD_PORT_NUMBER_PLACEHOLDER.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER/applications/argocd/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}-cd # TODO not replacing placeholders. Investigate.
     - title: View in Dynatrace
       icon: catalog
-      url: DT_TENANT_APPS_PLACEHOLDER
+      url: https://jao16384.sprint.apps.dynatracelabs.com
     - url: https://community.dynatrace.com
       title: Dynatrace community
       icon: dashboard

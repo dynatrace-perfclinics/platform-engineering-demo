@@ -178,7 +178,7 @@ spec:
         url: https://CODESPACE_NAME_PLACEHOLDER-ARGOCD_PORT_NUMBER_PLACEHOLDER.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER/applications/argocd/${{ parameters.projectName }}-${{ parameters.teamIdentifier }}-${{ parameters.releaseStage }}-cd
       - title: View in Dynatrace
         icon: catalog
-        url: DT_TENANT_APPS_PLACEHOLDER
+        url: https://jao16384.sprint.apps.dynatracelabs.com
 ---
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
