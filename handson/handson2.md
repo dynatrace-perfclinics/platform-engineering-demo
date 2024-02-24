@@ -35,10 +35,6 @@ What you should have learned is:
 
 Now lets explore the GitLab repository a bit closer. There are a couple of interesting things
 
-**1: NAME of the Repository**
-
-The name of the repository ends in `-cd`. This is important as we have configured ArgoCD through a so called **ApplicationSet** to automatically watch out for GitLab repositories that end with `-cd`
-
 **2: ARGOCD folder with deployment CRDs**
 
 This folder contains all CRDs (Custom Resource Definitions) that ArgoCD will deploy/synchronize with K8s. To have a closer look:

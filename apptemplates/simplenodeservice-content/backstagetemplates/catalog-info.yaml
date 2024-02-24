@@ -8,8 +8,8 @@ metadata:
     backstage.io/techdocs-ref: dir:.
     # Not working
     'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/name=userinterface'
-    'backstage.io/kubernetes-namespace': '${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}-cd'
-    argocd/app-name: ${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}-cd
+    'backstage.io/kubernetes-namespace': '${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}'
+    argocd/app-name: ${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}
   links:
     - url: https://github.com/GITHUB_REPOSITORY_PLACEHOLDER
       title: Github Repo
@@ -19,7 +19,7 @@ metadata:
       icon: subject
     - title: View in ArgoCD
       icon: catalog
-      url: https://CODESPACE_NAME_PLACEHOLDER-ARGOCD_PORT_NUMBER_PLACEHOLDER.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER/applications/argocd/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}-cd # TODO not replacing placeholders. Investigate.
+      url: https://CODESPACE_NAME_PLACEHOLDER-ARGOCD_PORT_NUMBER_PLACEHOLDER.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER/applications/argocd/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }} # TODO not replacing placeholders. Investigate.
     - title: View in Dynatrace
       icon: catalog
       url: DT_TENANT_APPS_PLACEHOLDER

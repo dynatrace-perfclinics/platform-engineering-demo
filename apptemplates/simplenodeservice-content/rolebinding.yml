@@ -3,7 +3,7 @@ kind: Role
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: dynatrace-oneagent-metadata-viewer
-  namespace: "${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}-cd"
+  namespace: "${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}"
 rules:
 - apiGroups: [""]
   resources: ["pods"]
@@ -13,7 +13,7 @@ kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: dynatrace-oneagent-metadata-viewer-binding
-  namespace: "${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}-cd"
+  namespace: "${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}"
 subjects:
 - kind: ServiceAccount
   name: default

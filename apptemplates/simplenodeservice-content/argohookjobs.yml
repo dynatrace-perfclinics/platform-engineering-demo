@@ -28,8 +28,8 @@ spec:
              \"proj_name\": \"${{ values.projectName }}\",
              \"stage\": \"${{ values.releaseStage }}\", 
              \"owner\":\"${{ values.teamIdentifier }}\", 
-             \"git\" : \"https://gitlab.BASE_DOMAIN_PLACEHOLDER/group1/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}-cd\",
-             \"argocd\" : \"https://argo.BASE_DOMAIN_PLACEHOLDER/applications/argocd/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}-cd\",
+             \"git\" : \"https://gitlab.BASE_DOMAIN_PLACEHOLDER/group1/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}\",
+             \"argocd\" : \"https://argo.BASE_DOMAIN_PLACEHOLDER/applications/argocd/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}\",
              \"result\": \"success\" 
           }"
         ]
@@ -85,8 +85,8 @@ spec:
              \"proj_name\": \"${{ values.projectName }}\",
              \"stage\": \"${{ values.releaseStage }}\", 
              \"owner\":\"${{ values.teamIdentifier }}\", 
-             \"git\" : \"https://gitlab.BASE_DOMAIN_PLACEHOLDER/group1/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}-cd\",
-             \"argocd\" : \"https://argo.BASE_DOMAIN_PLACEHOLDER/applications/argocd/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}-cd\",
+             \"git\" : \"https://gitlab.BASE_DOMAIN_PLACEHOLDER/group1/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}\",
+             \"argocd\" : \"https://argo.BASE_DOMAIN_PLACEHOLDER/applications/argocd/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}\",
              \"result\": \"success\" 
           }"
         ]
@@ -142,8 +142,8 @@ spec:
              \"proj_name\": \"${{ values.projectName }}\",
              \"stage\": \"${{ values.releaseStage }}\", 
              \"owner\":\"${{ values.teamIdentifier }}\", 
-             \"git\" : \"https://gitlab.BASE_DOMAIN_PLACEHOLDER/group1/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}-cd\",
-             \"argocd\" : \"https://argo.BASE_DOMAIN_PLACEHOLDER/applications/argocd/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}-cd\",
+             \"git\" : \"https://gitlab.BASE_DOMAIN_PLACEHOLDER/group1/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}\",
+             \"argocd\" : \"https://argo.BASE_DOMAIN_PLACEHOLDER/applications/argocd/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}\",
              \"result\": \"success\" 
           }"
         ]
@@ -199,8 +199,8 @@ spec:
              \"proj_name\": \"${{ values.projectName }}\",
              \"stage\": \"${{ values.releaseStage }}\", 
              \"owner\":\"${{ values.teamIdentifier }}\", 
-             \"git\" : \"https://gitlab.BASE_DOMAIN_PLACEHOLDER/group1/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}-cd\",
-             \"argocd\" : \"https://argo.BASE_DOMAIN_PLACEHOLDER/applications/argocd/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}-cd\",
+             \"git\" : \"https://gitlab.BASE_DOMAIN_PLACEHOLDER/group1/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}\",
+             \"argocd\" : \"https://argo.BASE_DOMAIN_PLACEHOLDER/applications/argocd/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}\",
              \"result\": \"failed\" 
           }"          
         ]

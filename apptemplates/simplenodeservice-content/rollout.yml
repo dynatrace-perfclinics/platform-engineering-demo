@@ -3,7 +3,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
   name: "${{ values.projectName }}-${{ values.teamIdentifier }}"
-  namespace: "${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}-cd"
+  namespace: "${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}"
   labels:
     dt.owner: "${{ values.teamIdentifier }}"
 spec:

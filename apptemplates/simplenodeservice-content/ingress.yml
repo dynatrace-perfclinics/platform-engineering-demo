@@ -3,7 +3,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: "${{ values.projectName }}-${{ values.teamIdentifier }}"
-  namespace: "${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}-cd"
+  namespace: "${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}"
   labels:
     dt.owner: "${{ values.teamIdentifier }}"
   annotations:
