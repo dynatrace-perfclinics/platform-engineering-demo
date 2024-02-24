@@ -68,7 +68,7 @@ spec:
           description: SemVer eg. 1.0.2
           type: string
           default: "1.0.2"
-          pattern: "^\d+.\d+.\d+$"
+          pattern: '^\d+.\d+.\d+$'
         releaseStage:
           title: "Software Lifecycle Stage"
           description: "Which stage is this software in? (eg. preprod)"
@@ -150,7 +150,7 @@ spec:
         entityRef: ${{ steps.catalog.output.entityRef }}
       - title: View in ArgoCD
         icon: catalog
-        url: https://CODESPACE_NAME_PLACEHOLDER-ARGOCD_PORT_NUMBER_PLACEHOLDER.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER/applications/argocd/${{ parameters.projectName }}-${{ parameters.teamIdentifier }}-${{ parameters.releaseStage }}-cd
+        url: https://CODESPACE_NAME_PLACEHOLDER-ARGOCD_PORT_NUMBER_PLACEHOLDER.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER/applications/argocd/${{ parameters.projectName }}-${{ parameters.teamIdentifier }}-${{ parameters.releaseStage }}
       - title: View in Dynatrace
         icon: catalog
         url: DT_TENANT_APPS_PLACEHOLDER
