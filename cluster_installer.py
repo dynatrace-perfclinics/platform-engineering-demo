@@ -107,10 +107,6 @@ github_org = get_github_org(github_repo=GITHUB_ORG_SLASH_REPOSITORY)
 do_file_replace(pattern="./**/*.y*ml", find_string="GITHUB_ORG_NAME_PLACEHOLDER", replace_string=github_org, recursive=True)
 git_commit(target_file="-A", commit_msg="update GITHUB_ORG_NAME_PLACEHOLDER", push=False)
 
-# Find and replace GITHUB_ORG_SLASH_REPOSITORY with real text. eg. `.app.github.dev`
-do_file_replace(pattern="./**/*.y*ml", find_string="GITHUB_ORG_SLASH_REPOSITORY", replace_string=GITHUB_ORG_SLASH_REPOSITORY, recursive=True)
-git_commit(target_file="-A", commit_msg="update GITHUB_ORG_SLASH_REPOSITORY", push=True)
-
 # Find and replace CODESPACE_NAME_PLACEHOLDER with real text. eg. `fantastic-onion-123ab233`
 do_file_replace(pattern="./**/*.y*ml", find_string="CODESPACE_NAME_PLACEHOLDER", replace_string=CODESPACE_NAME, recursive=True)
 git_commit(target_file="-A", commit_msg="update CODESPACE_NAME_PLACEHOLDER", push=False)
