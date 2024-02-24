@@ -50,6 +50,16 @@ Fork this repo.
 
 ![just fork](images/fork_repo.png)
 
+### ⚠️ Enable Actions in your Fork ⚠️
+
+> ⚠️ This step is important! ⚠️
+
+This demo uses one GitHub action to automatically merge Pull Requests when apps are onboarded.
+
+In your fork, go to `Actions` and click the green button: `I understand my workflows, go ahead and enable them`.
+
+![enable actions](images/enable_actions.png)
+
 ### Create GitHub Personal Access Token
 
 Go [here](https://github.com/settings/personal-access-tokens/new) and create a new "fine grained" token:
