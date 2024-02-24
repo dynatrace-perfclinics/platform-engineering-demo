@@ -1,0 +1,58 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: "simplenodeservice-team01"
+  namespace: "simplenodeservice-team01-preprod-cd"
+  labels:
+    dt.owner: "team01"
+spec:
+  replicas: 2
+  strategy:
+    canary:
+      steps:
+      - setWeight: 50
+      - pause: {duration: 5s}
+      - setWeight: 100
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: userinterface
+  template:
+    metadata:
+      labels:
+        dt.owner: "team01"
+        app.kubernetes.io/name: userinterface
+        app.kubernetes.io/part-of: "simplenodeservice-team01"
+        app.kubernetes.io/version: "1.0.2"
+        dynatrace-release-stage: "preprod"
+        backstage.io/component: "default.simplenodeservice-team01-preprod"
+    spec:
+      containers:
+      - name: rollouts-demo
+        image: grabnerandi/simplenodeservice:1.0.2
+        env:
+        - name: DT_RELEASE_VERSION
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.labels['app.kubernetes.io/version']
+        - name: DT_RELEASE_PRODUCT
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.labels['app.kubernetes.io/part-of']
+        - name: DT_RELEASE_STAGE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.labels['dynatrace-release-stage']
+        - name: DT_CUSTOM_PROP
+          value: "owner=team01 project=simplenodeservice stage=preprod"
+        - name: DT_TAGS
+          value: "dt.owner=team01"
+        ports:
+        - name: http
+          containerPort: 8080
+          protocol: TCP
+        resources:
+          requests:
+            memory: 3Mi
+            cpu: 5m

@@ -1,0 +1,14 @@
+configs:
+- id: simplenodeservice-team01-preprod_synthetic
+  config:
+    name: "Healthcheck simplenodeservice-team01-preprod"
+    parameters:
+      baseUrl: "https://simplenodeservice-team01-preprod.BASE_DOMAIN_PLACEHOLDER"
+      frequencyMin: "1"
+      enabled: "true"
+      geoLocation: "GEOLOCATION-3F7C50D0C9065578"
+      teamIdentifier: "team01"
+    template: health-check-http.json
+    skip: false
+  type:
+    api: synthetic-monitor
