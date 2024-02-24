@@ -1,0 +1,9 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: "simplenodeservice-team07-preprod-cd"
+  labels:
+    dt.owner: "team07"
+  annotations:
+    keptn.sh/lifecycle-toolkit: "enabled"
