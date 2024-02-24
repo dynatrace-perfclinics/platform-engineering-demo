@@ -9,7 +9,7 @@ metadata:
   namespace: argocd
 spec:
   source:
-    repoURL: "https://github.com/GITHUB_REPOSITORY_PLACEHOLDER.git"
+    repoURL: "https://github.com/agardnerIT/platform-engineering-demo.git"
     targetRevision: main
     path: "gitops/manifests/platform/backstage"
   destination:

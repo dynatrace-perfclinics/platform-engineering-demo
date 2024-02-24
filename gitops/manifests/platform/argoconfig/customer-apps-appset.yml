@@ -8,7 +8,7 @@ spec:
   goTemplateOptions: ["missingkey=error"]
   generators:
   - git:
-      repoURL: "https://github.com/GITHUB_REPOSITORY_PLACEHOLDER.git"
+      repoURL: "https://github.com/agardnerIT/platform-engineering-demo.git"
       revision: HEAD
       directories:
       - path: "customer-apps/*"
@@ -25,7 +25,7 @@ spec:
     spec:
       project: "default"
       source:
-        repoURL: "https://github.com/GITHUB_REPOSITORY_PLACEHOLDER.git"
+        repoURL: "https://github.com/agardnerIT/platform-engineering-demo.git"
         targetRevision: HEAD
         path: '{{.path.path}}'
       destination:

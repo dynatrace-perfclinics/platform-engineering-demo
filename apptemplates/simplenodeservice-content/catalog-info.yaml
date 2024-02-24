@@ -11,7 +11,7 @@ metadata:
     'backstage.io/kubernetes-namespace': '${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}-cd'
     argocd/app-name: ${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}-cd
   links:
-    - url: https://github.com/GITHUB_REPOSITORY_PLACEHOLDER
+    - url: https://github.com/agardnerIT/platform-engineering-demo
       title: Github Repo
       icon: github
     - url: https://${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}.BASE_DOMAIN_PLACEHOLDER # TODO - when ingress is figured out
