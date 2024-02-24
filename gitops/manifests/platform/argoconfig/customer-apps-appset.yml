@@ -12,6 +12,8 @@ spec:
       revision: HEAD
       directories:
       - path: "customer-apps/*"
+      - exclude: true
+        path: "customer-apps/*/backstagetemplates"
   template:
     metadata:
       name: '{{.path.basename}}'
