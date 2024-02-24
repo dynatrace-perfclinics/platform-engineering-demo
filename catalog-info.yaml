@@ -2,7 +2,7 @@ apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
   name: app-creator
-  title: Create a New Application (202)
+  title: Create a New Application (203)
   description: Create a new application from a template
   tags:
     - simplenodeservice
@@ -92,6 +92,16 @@ spec:
           description: "Include level 1 (basic) Dynatrace Configuration as Code for this application?"
           type: boolean
           default: true
+    - title: GitHub Authentication
+      description: Provide a GitHub PAT with XXXXX permissions
+      required:
+        - githubPAT
+        - password
+      properties:
+        githubPAT:
+          type: string
+          # use the built in Secret field extension
+          ui:field: Secret
   steps:
     - id: fetch-base
       name: Fetch Base
@@ -159,6 +169,7 @@ spec:
         gitAuthorEmail: ${{ parameters.teamIdentifier }}@dynatrace.training
         gitCommitMessage: Initial commit from ${{ parameters.teamIdentifier }} for template ${{ parameters.projectName }} in ${{ parameters.releaseStage }}
         topics: ["${{ parameters.projectName }}", "${{ parameters.releaseStage }}", "${{ parameters.teamIdentifier }}", "from-template", "backstage" ]
+        token: ${{ secrets.githubPAT }}
     - id: catalog
       name: Register to Catalog
       action: catalog:register
