@@ -109,26 +109,14 @@ spec:
          doraEnabled: ${{ parameters.doraEnabled }}
          includeSecurityScans: ${{ parameters.includeSecurityScans }}
          includeDTConfig: ${{ parameters.includeDTConfig }}
-         # TESTING githubUser: 
-    # - id: publish-privacy-survey
-    #   name: Publish Privacy Survey
-    #   action: privacySurvey:publish
-    #   input:
-    #     survey: ${{ parameters.privacySurvey }}
-    # - id: rename-files
-    #   name: Rename Files
-    #   action: fs:rename
-    #   input:
-    #     files:
-    #       - from: to-be-renamed.txt
-    #         to: a-renamed-file.txt
     - id: delete-security-scan-files
       name: Delete security scan files
       if: ${{ parameters.includeSecurityScans === false }}
       action: fs:delete
       input:
         files:
-          - "./${{ parameters.projectName }}-content/argoapp/securityScanJob.yml"
+          - "./customer-apps/${{ parameters.projectName }}-${{ parameters.teamIdentifier }}-${{ parameters.releaseStage }}/monaco"
+          - "./customer-apps/${{ parameters.projectName }}-${{ parameters.teamIdentifier }}-${{ parameters.releaseStage }}/workflow-post-sync-apply-monaco.yml"
     - id: delete-monaco-files
       name: Delete DT Configuration Files
       if: ${{ parameters.includeDTConfig === false }}
@@ -137,42 +125,29 @@ spec:
         files:
           - "./${{ parameters.projectName }}-content/monaco"
           - "./${{ parameters.projectName}}-content/argoapp/workflow-post-sync-apply-monaco.yml"
-    # - id: debug
-    #   name: List workspace
-    #   action: debug:log
-    #   input:
-    #     listWorkspace: true
-    #     securityScans: ${{ parameters.includeSecurityScans }}
-    #     projectName: "./${{ parameters.projectName }}-template"
     - id: publish
       action: publish:github:pull-request
-      name: Push Changes to Github
+      name: Create Pull Request
       input:
         repoUrl: "github.com?repo=GITHUB_REPO_NAME_PLACEHOLDER&owner=GITHUB_ORG_NAME_PLACEHOLDER"
-        branchName: "main"
-        title: "Onboard ${{ parameters.projectName }} for ${{ parameters.teamIdentifier }} in ${{ parameters.releaseStage }}"
-        description: "This is the description of the PR for ${{ parameters.projectName }} > ${{ parameters.teamIdentifier }} in ${{ parameters.releaseStage }}"
-    #     sourcePath: "./${{ parameters.projectName }}-content"
-    #     repoVisibility: 'public'
-        # defaultBranch: 'main'
-        # gitAuthorName: ${{ parameters.teamIdentifier }}
-        # gitAuthorEmail: "${{ parameters.teamIdentifier }}@dynatrace.training"
-        commitMessage: "Initial commit from ${{ parameters.teamIdentifier }} for template ${{ parameters.projectName }} in ${{ parameters.releaseStage }}"
-        sourcePath: "customer-apps"
-        targetPath: "customer-apps"
+        branchName: ${{ parameters.projectName }}-${{ parameters.teamIdentifier}}-${{ parameters.releaseStage }}
+        targetBranchName: "main"
+        title: "New App Onboarding: ${{ parameters.projectName }}-${{ parameters.teamIdentifier}}-${{ parameters.releaseStage }}"
+        description: "A new application is coming! ${{ parameters.projectName }} from ${{ parameters.teamIdentifier}} in ${{ parameters.releaseStage }} is ready for review."
+        update: true
     - id: catalog
       name: Register to Catalog
       action: catalog:register
       input:
-        repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
+        catalogInfoUrl: https://github.com/GITHUB_ORG_NAME_PLACEHOLDER/GITHUB_REPO_NAME_PLACEHOLDER/blob/main/customer-apps/${{ parameters.projectName }}-${{ parameters.teamIdentifier }}-${{ parameters.releaseStage }}/backstage-templates/catalog-info.yaml
         optional: true
   output:
     links:
-      # - title: View on Github
-      #   url: ${{ steps.publish.output.remoteUrl }}
-      # - title: View in Catalog
-      #   icon: catalog
-      #   entityRef: ${{ steps.catalog.output.entityRef }}
+      - title: View on Github
+        url: ${{ steps.publish.output.remoteUrl }}
+      - title: View in Catalog
+        icon: catalog
+        entityRef: ${{ steps.catalog.output.entityRef }}
       - title: View in ArgoCD
         icon: catalog
         url: https://CODESPACE_NAME_PLACEHOLDER-ARGOCD_PORT_NUMBER_PLACEHOLDER.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER/applications/argocd/${{ parameters.projectName }}-${{ parameters.teamIdentifier }}-${{ parameters.releaseStage }}-cd
@@ -185,7 +160,7 @@ kind: Template
 metadata:
   name: gather-feedback
   title: Platform Feedback Form
-  description: Help us improve this platform. Provide feedback here.
+  description: Imagine you need to collecto feedback from your users. Don't make them email you, a web form is much nicer!
   tags:
     - platform
     - feedback
@@ -243,7 +218,6 @@ spec:
         # But I don't know how to use backstage + oAuth
         # Q in #backstage: https://cloud-native.slack.com/archives/C01B5HYR2R3/p1701406188130209
         path: "/proxy/dteventingest"
-        #path: "/notifications"
         headers:
           Content-Type: "application/json; charset=utf-8"
         body: |
