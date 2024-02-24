@@ -1,0 +1,61 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: kubeaudit
+  namespace: "simplenodeservice-team01-preprod-cd"
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: kubeaudit-namespaces-simplenodeservice-team01-preprod
+subjects:
+  - kind: ServiceAccount
+    name: kubeaudit
+    namespace: "simplenodeservice-team01-preprod-cd"
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: kubeaudit-namespaces
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: kubeaudit
+  namespace: "simplenodeservice-team01-preprod-cd"
+subjects:
+  - kind: ServiceAccount
+    name: kubeaudit
+    namespace: "simplenodeservice-team01-preprod-cd"
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: kubeaudit
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: kubeaudit
+  namespace: "simplenodeservice-team01-preprod-cd"
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+    #argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  template:
+    spec:
+      serviceAccountName: kubeaudit
+      restartPolicy: OnFailure
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: kubeaudit
+          image: shopify/kubeaudit:v0.11
+          args: ["all", "--exitcode", "0", "--namespace", "simplenodeservice-team01-preprod-cd"]
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["all"]
+            privileged: false
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true

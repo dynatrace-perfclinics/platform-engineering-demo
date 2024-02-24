@@ -1,0 +1,14 @@
+configs:
+- id: simplenodeservice-team01-preprod_slo
+  config:
+    name: "simplenodeservice-team01-preprod Availability"
+    parameters:
+      metricName: "simplenodeservice_team01_preprod_availability"
+      metricExpression: "(100)*(builtin:service.errors.server.successCount:splitBy()):value:default(0)/(builtin:service.requestCount.server:splitBy()):value:default(0)"
+      filter: "type(SERVICE), tag([KUBERNETES]app.kubernetes.io/part-of:simplenodeservice-team01),tag([KUBERNETES]dynatrace-release-stage:preprod)"
+      thresholdTarget: "99.98"
+      thresholdWarning: "99.99"
+    template: slos.json
+    skip: false
+  type:
+    api: slo
