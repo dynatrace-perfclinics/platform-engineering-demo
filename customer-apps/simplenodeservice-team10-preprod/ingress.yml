@@ -21,4 +21,4 @@ spec:
               service:
                 name: "simplenodeservice-team10"
                 port:
-                  number: 8080
+                  number: 80
