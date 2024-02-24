@@ -2,7 +2,7 @@ apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
   name: app-creator
-  title: Create a New Application (205)
+  title: Create a New Application (206)
   description: Create a new application from a template
   tags:
     - simplenodeservice
@@ -164,6 +164,13 @@ spec:
         targetBranchName: "main"
         title: "PR Title"
         description: "The PR description"
+    
+    - id: catalog
+      name: Register to Catalog
+      action: catalog:register
+      input:
+        repoContentsUrl: https://github.com/agardnerIT/platform-engineering-demo/tree/main/customer-apps/${{ parameters.projectName }}-${{ parameters.teamIdentifier }}-${{ parameters.releaseStage }}
+        catalogInfoPath: customer-apps/${{ parameters.projectName }}-${{ parameters.teamIdentifier }}-${{ parameters.releaseStage }}
 
     # - id: publish
     #   action: publish:github
@@ -206,7 +213,7 @@ spec:
     #   name: Register to Catalog
     #   action: catalog:register
     #   input:
-    #     repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
+    #     repoContentsUrl: github.com/agardnerIT/platform-engineering-demo/tree/main/customer-apps/${{ parameters.projectName }}-${{ parameters.teamIdentifier }}-${{ parameters.releaseStage }}
     #     optional: true
   output:
     links:
