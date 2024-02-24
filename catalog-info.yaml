@@ -2,7 +2,7 @@ apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
   name: app-creator
-  title: Create a New Application (214)
+  title: Create a New Application
   description: Create a new application from a template
   tags:
     - simplenodeservice
