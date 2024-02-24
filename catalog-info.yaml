@@ -118,42 +118,21 @@ spec:
          doraEnabled: ${{ parameters.doraEnabled }}
          includeSecurityScans: ${{ parameters.includeSecurityScans }}
          includeDTConfig: ${{ parameters.includeDTConfig }}
-         # TESTING githubUser: 
-    # - id: publish-privacy-survey
-    #   name: Publish Privacy Survey
-    #   action: privacySurvey:publish
-    #   input:
-    #     survey: ${{ parameters.privacySurvey }}
-    # - id: rename-files
-    #   name: Rename Files
-    #   action: fs:rename
-    #   input:
-    #     files:
-    #       - from: to-be-renamed.txt
-    #         to: a-renamed-file.txt
-    # TODO: Update paths...
     - id: delete-security-scan-files
       name: Delete security scan files
       if: ${{ parameters.includeSecurityScans === false }}
       action: fs:delete
       input:
         files:
-          - "./${{ parameters.projectName }}-content/argoapp/securityScanJob.yml"
+          - "./customer-apps/${{ parameters.projectName }}-${{ parameters.teamIdentifier }}-${{ parameters.releaseStage }}/securityScanJob.yml"
     - id: delete-monaco-files
       name: Delete DT Configuration Files
       if: ${{ parameters.includeDTConfig === false }}
       action: fs:delete
       input:
         files:
-          - "./${{ parameters.projectName }}-content/monaco"
-          - "./${{ parameters.projectName}}-content/argoapp/workflow-post-sync-apply-monaco.yml"
-    # - id: debug
-    #   name: List workspace
-    #   action: debug:log
-    #   input:
-    #     listWorkspace: true
-    #     securityScans: ${{ parameters.includeSecurityScans }}
-    #     projectName: "./${{ parameters.projectName }}-template"
+          - "./customer-apps/${{ parameters.projectName }}-${{ parameters.teamIdentifier }}-${{ parameters.releaseStage }}/monaco"
+          - "./customer-apps/${{ parameters.projectName }}-${{ parameters.teamIdentifier }}-${{ parameters.releaseStage }}/workflow-post-sync-apply-monaco.yml"
 
     - id: publish
       action: publish:github:pull-request
