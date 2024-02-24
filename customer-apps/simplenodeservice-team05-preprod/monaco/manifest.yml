@@ -1,0 +1,26 @@
+manifestVersion: 1.0
+projects:
+  - name: configure-dt
+    path: configure-dt
+environmentGroups:
+  - name: development
+    environments:
+      - name: prod-api-token-only
+        # .live. when using API token only
+        # .apps. when using API + oAuth or just oAuth
+        url:
+          value: "https://jao16384.sprint.dynatracelabs.com"
+        auth:
+          token:
+            name: "monacoToken" 
+      # - name: prod-api-and-oauth
+      #   url:
+      #     value: "https://jao16384.sprint.apps.dynatracelabs.com"
+      #   auth:
+      #     token:
+      #       name: "monacoToken"
+      #     oAuth:
+      #       clientId:
+      #         name: MONACO_OAUTH_CLIENT_ID
+      #       clientSecret:
+      #         name: MONACO_OAUTH_CLIENT_SECRET
