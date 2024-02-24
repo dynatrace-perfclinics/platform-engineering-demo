@@ -9,7 +9,7 @@ How do we do this?
 2. Change the two version fields from the current version to the desired version
 3. Commit the changes and let the automation do the rest!
 
-![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-tutorial/main/images/handson4_41_update_version_1.png)
+![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-demo/main/images/handson4_41_update_version_1.png)
 
 --- 
 
@@ -17,4 +17,4 @@ Now we can observe how ArgoCD is picking up that change, syncs it with K8s and w
 
 Our final result should be that we see all notifications in our Backstage Notification Plugin!
 
-![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-tutorial/main/images/handson4_41_update_version_2.png)
+![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-demo/main/images/handson4_41_update_version_2.png)

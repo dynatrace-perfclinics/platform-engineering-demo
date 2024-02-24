@@ -9,7 +9,7 @@ For this we will be doing three steps:
 
 Here is a quick overview of what we want to achieve:
 
-![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-tutorial/main/images/handson3_srgoverview_animated.gif)
+![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-demo/main/images/handson3_srgoverview_animated.gif)
 
 --- 
 
@@ -27,7 +27,7 @@ As indicated in the video, creating an SRG can start with picking an existing te
 
 Here are those steps visually explained
 
-![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-tutorial/main/images/handson3_31_createsrg_1.png)
+![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-demo/main/images/handson3_31_createsrg_1.png)
 
 #### 3.2 Create a Workflow for the Guardian
 
@@ -37,13 +37,13 @@ As we have validated that the guardian works based on our current set of objecti
 
 Here are those steps visually explained
 
-![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-tutorial/main/images/handson3_32_automate_srg_1.png)
+![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-demo/main/images/handson3_32_automate_srg_1.png)
 
 #### 3.3 Execute the Workflow and validate its working
 
 We can manually trigger a workflow at any time. When clicking `Run` we will be prompted with a sample event that will be used to execute the workflow. As we have earlier queried the events that match our filter the event proposed will be one of our previous `deployment.validated` lifecycle events.
 
-![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-tutorial/main/images/handson3_33_run_srg_workflow_1.png)
+![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-demo/main/images/handson3_33_run_srg_workflow_1.png)
 
 #### 3.4 Extend Workflow with a Notification
 
@@ -60,7 +60,7 @@ Lets therefore add a new HTTP Request task as shown below in the image. Here the
 }
 ```
 
-![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-tutorial/main/images/handson3_34_add_notifications_1.png)
+![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-demo/main/images/handson3_34_add_notifications_1.png)
 
 ---
 

@@ -8,7 +8,7 @@ Now that we are familiar with the core components of our IDP we are ready to use
 
 The following animation shows what we are planning to do in this Hands-On:
 
-![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-tutorial/main/images/handson2_animation_animated.gif)
+![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-demo/main/images/handson2_animation_animated.gif)
 
 #### 2.1: Onboarding a new service through Backstage
 
@@ -23,7 +23,7 @@ As we walk through the workflow please use your unique team identifier.
 * **Name:** Team 13
 * **Email:** team13@somedomain.com
 
-![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-tutorial/main/images/handson2_21_createinbackstage.png)
+![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-demo/main/images/handson2_21_createinbackstage.png)
 
 What you should have learned is:
 * How to create a new service in Backstage based on a Template
@@ -50,13 +50,13 @@ This folder contains all CRDs (Custom Resource Definitions) that ArgoCD will dep
 
 This folder contains Monaco definitions for SLOs, Ownership and Synthetic Tests. This could be replaced with other Config As Code tools such as Terraform, Ansible, Crossplane (support for Crossplane is currently in the works)
 
-![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-tutorial/main/images/handson2_22_explorerepo_1.png)
+![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-demo/main/images/handson2_22_explorerepo_1.png)
 
 ---
 
 ArgoCD in the meantime has started to synchronize this new repository on GitLab with K8s:
 
-![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-tutorial/main/images/handson2_22_explore_argo_1.png)
+![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-demo/main/images/handson2_22_explore_argo_1.png)
 
 ---
 
@@ -70,7 +70,7 @@ The GitLab repository contains a lot of pre-populated meta data in the different
 
 Dynatrace automatically extracts this metadata as part of our [Version detection stragety](https://docs.dynatrace.com/docs/platform-modules/automations/release-monitoring/version-detection-strategies) as well as for [Entity ownership](https://docs.dynatrace.com/docs/manage/ownership/best-practices)
 
-![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-tutorial/main/images/handson2_22_releaseawareness_1.png)
+![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-demo/main/images/handson2_22_releaseawareness_1.png)
 
 ---
 
@@ -83,7 +83,7 @@ Right now we have Dynatrace automatically detect newly deployed services. Dynatr
 
 For this we can use Dynatrace Ownership, Dynatrace Synthetics and Dynatrace SLOs. And instead of manually configuring it we can fully automate the configuration through **Observability as Code**. This can be done by calling the Dynatrace API or using tools such as Terraform, Ansible, Crossplane or Monaco. Our IDP setup uses Monaco which gets executed through an Argo Workflow as a PreSync action. Lets have a quick look at the configuration in GitLab and how this configuration looks in Dynatrace:
 
-![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-tutorial/main/images/handson2_24_configascode_1.png)
+![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-demo/main/images/handson2_24_configascode_1.png)
 
 #### Explore our App Yourself
 
@@ -92,7 +92,7 @@ As you have seen - we have Dynatrace Synthetic Tests that are testing our applic
 2. We can see it in ArgoCD
 3. We can get it from the Ingress Definition in GitLab
 
-![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-tutorial/main/images/handson2_24_exploreourapp_1.png)
+![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-demo/main/images/handson2_24_exploreourapp_1.png)
 
 ---
 
@@ -108,15 +108,15 @@ As of today we are suggesting that CI/CD tools use our BizEvents ingest API to m
 3. (for sync finished) Creates Classic Deployment Events and a Deployment Validated Lifecycle Event
 4. (for sync finished) Sends a Notification to the Backstage Notification Page
 
-![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-tutorial/main/images/handson2_22_lifecycleevents_1.png)
+![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-demo/main/images/handson2_22_lifecycleevents_1.png)
 
 Besides the BizEvents we can also use other events and ways to trigger events:
 
-![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-tutorial/main/images/handson2_22_lifecycleevents_2.png)
+![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-demo/main/images/handson2_22_lifecycleevents_2.png)
 
 Let's also have a closer look at the Workflow itself. You can view it by opening the Workflow App and Opening the `Lifecycle Event Workflow`
 
-![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-tutorial/main/images/handson2_25_understandworkflow_1.png)
+![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-demo/main/images/handson2_25_understandworkflow_1.png)
 
 ---
 

@@ -1,7 +1,7 @@
 ## Hands-On 1: Explore the Platform we have built for you
 
 The following shows the IPD (Internal Development Platform), how it was built and how it will work:
-![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-tutorial/main/images/platform_setup_animation_animated.gif)
+![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-demo/main/images/platform_setup_animation_animated.gif)
 
 ### 1.1 Observability: Dynatrace, OpenTelemetry & Keptn 
 
@@ -16,7 +16,7 @@ The Dynatrace Operator was rolled out by ArgoCD as part of the initial IDP setup
 * **INGEST** OpenTelemetry data from the OTel collector (See Traces)
 * **SCRAPE** Prometheus metrics via the deployed ActiveGate (See Metrics)
 
-![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-tutorial/main/images/dynatrace_overview.png)
+![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-demo/main/images/dynatrace_overview.png)
 
 Please follow the instructor and explore some of the core screens in Dynatrace such as the Kubernetes App, Kubernetes Workloads or the Platform Observability Dashboard!
 
@@ -34,7 +34,7 @@ In our IDP we have an OpenTelemetry Collector that sends collected observability
 
 Those traces can then for instanced be analyzed in our **Dynatrace Distributed Traces app**
 
-![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-tutorial/main/images/platform_overview_otel_argocd.png)
+![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-demo/main/images/platform_overview_otel_argocd.png)
 
 For reference. It literally only takes a handful of config files in the OpenTelemetry Collector ConfigMap to send data to Dynatrace:
 ```
@@ -68,7 +68,7 @@ metadata:
 
 Once enabled, it automatically created OpenTelemetry traces to trace the deployment of all application workloads. Keptn also emits Prometheus metrics that are also sent to OpenTelemetry.
 
-![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-tutorial/main/images/platform_overview_otel_keptn.png)
+![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-demo/main/images/platform_overview_otel_keptn.png)
 
 The benefit of having Keptn is that we automatically get a base set of the DORA metrics (deployment frequency, deployment time, deployment failure rate) as well as distributed traces to troubleshoot failed or long running deployments
 
@@ -88,7 +88,7 @@ In our IDP, ArgoCD on the one hand is used to deploy the core platform component
 On the other hand ArgoCD also deploys any custom application repository on our GitLab instance that follows a certain naming schema (those repositories will later be created through Backstage).
 
 Lets start with exploring ArgoCD by navigating to our ArgoCD UI. Please login with the credentials given and then follow the guidance of your instructor:
-![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-tutorial/main/images/argocd_overview.png)
+![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-demo/main/images/argocd_overview.png)
 
 What you should have learned:
 * How to access ArgoCD
@@ -106,7 +106,7 @@ While our Core IDP components was created from configuration files that are host
 
 Lets start with exploring our GitLab instance by navigating to the GitLab UI. Login and then follow the instructor!
 
-![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-tutorial/main/images/gitlab_overview.png)
+![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-demo/main/images/gitlab_overview.png)
 
 What you should have learned:
 * How to access GitLab
@@ -121,7 +121,7 @@ In our IDP, Backstage is used as a Software Catalog as well as our self-service 
 
 Lets start with exploring Backstage by navigating to the Backstage UI, then follow the guidance of your instructor:
 
-![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-tutorial/main/images/backstage_overview.png)
+![](https://raw.githubusercontent.com/dynatrace-perfclinics/platform-engineering-demo/main/images/backstage_overview.png)
 
 What you should have learned:
 * How to access Backstage
