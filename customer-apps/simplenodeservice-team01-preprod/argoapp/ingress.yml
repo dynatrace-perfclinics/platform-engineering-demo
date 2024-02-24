@@ -1,0 +1,24 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: "simplenodeservice-team01"
+  namespace: "simplenodeservice-team01-preprod-cd"
+  labels:
+    dt.owner: "team01"
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+spec:
+  rules:
+    - http:
+        paths:
+          - path: "/"
+          #- path: "/simplenodeservice-team01-preprod"
+            pathType: Prefix
+            backend:
+              service:
+                name: "simplenodeservice-team01"
+                port:
+                  number: 8080
