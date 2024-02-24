@@ -2,7 +2,7 @@ apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
   name: app-creator
-  title: Create a New Application (201)
+  title: Create a New Application (202)
   description: Create a new application from a template
   tags:
     - simplenodeservice
@@ -122,6 +122,7 @@ spec:
     #     files:
     #       - from: to-be-renamed.txt
     #         to: a-renamed-file.txt
+    # TODO: Update paths...
     - id: delete-security-scan-files
       name: Delete security scan files
       if: ${{ parameters.includeSecurityScans === false }}
@@ -144,35 +145,56 @@ spec:
     #     listWorkspace: true
     #     securityScans: ${{ parameters.includeSecurityScans }}
     #     projectName: "./${{ parameters.projectName }}-template"
+
     - id: publish
-      action: publish:github:pull-request
-      name: Push Changes to Github
+      action: publish:github
+      name: Publish to GitHub
       input:
         repoUrl: "github.com?repo=platform-engineering-demo&owner=agardnerIT"
         branchName: "main"
-        title: "Onboard ${{ parameters.projectName }} for ${{ parameters.teamIdentifier }} in ${{ parameters.releaseStage }}"
-        description: "This is the description of the PR for ${{ parameters.projectName }} > ${{ parameters.teamIdentifier }} in ${{ parameters.releaseStage }}"
-    #     sourcePath: "./${{ parameters.projectName }}-content"
-    #     repoVisibility: 'public'
-        # defaultBranch: 'main'
-        # gitAuthorName: ${{ parameters.teamIdentifier }}
-        # gitAuthorEmail: "${{ parameters.teamIdentifier }}@dynatrace.training"
-        commitMessage: "Initial commit from ${{ parameters.teamIdentifier }} for template ${{ parameters.projectName }} in ${{ parameters.releaseStage }}"
-        sourcePath: "customer-apps"
-        targetPath: "customer-apps"
+        # sourcePath: "./customer-apps/${{ parameters.projectName }}-${{ parameters.teamIdentifier}}-${{ parameters.releaseStage }}"
+        repoVisibility: 'public'
+        defaultBranch: 'main'
+        gitAuthorName: ${{ parameters.teamIdentifier }}
+        gitAuthorEmail: ${{ parameters.teamIdentifier }}@dynatrace.training
+        gitCommitMessage: Initial commit from ${{ parameters.teamIdentifier }} for template ${{ parameters.projectName }} in ${{ parameters.releaseStage }}
+        topics: ["${{ parameters.projectName }}", "${{ parameters.releaseStage }}", "${{ parameters.teamIdentifier }}", "from-template", "backstage" ]
     - id: catalog
       name: Register to Catalog
       action: catalog:register
       input:
         repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
         optional: true
+    # OLD BELOW
+    # - id: publish
+    #   action: publish:github
+    #   name: Push Changes to Github
+    #   input:
+    #     repoUrl: "github.com?repo=platform-engineering-demo&owner=agardnerIT"
+    #     branchName: "main"
+    #     title: "Onboard ${{ parameters.projectName }} for ${{ parameters.teamIdentifier }} in ${{ parameters.releaseStage }}"
+    #     description: "This is the description of the PR for ${{ parameters.projectName }} > ${{ parameters.teamIdentifier }} in ${{ parameters.releaseStage }}"
+    # #     sourcePath: "./${{ parameters.projectName }}-content"
+    # #     repoVisibility: 'public'
+    #     # defaultBranch: 'main'
+    #     # gitAuthorName: ${{ parameters.teamIdentifier }}
+    #     # gitAuthorEmail: "${{ parameters.teamIdentifier }}@dynatrace.training"
+    #     commitMessage: "Initial commit from ${{ parameters.teamIdentifier }} for template ${{ parameters.projectName }} in ${{ parameters.releaseStage }}"
+    #     sourcePath: "customer-apps"
+    #     targetPath: "customer-apps"
+    # - id: catalog
+    #   name: Register to Catalog
+    #   action: catalog:register
+    #   input:
+    #     repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
+    #     optional: true
   output:
     links:
-      # - title: View on Github
-      #   url: ${{ steps.publish.output.remoteUrl }}
-      # - title: View in Catalog
-      #   icon: catalog
-      #   entityRef: ${{ steps.catalog.output.entityRef }}
+      - title: View on Github
+        url: ${{ steps.publish.output.remoteUrl }}
+      - title: View in Catalog
+        icon: catalog
+        entityRef: ${{ steps.catalog.output.entityRef }}
       - title: View in ArgoCD
         icon: catalog
         url: https://humble-orbit-gx66v4rrw47c965j-30100.app.github.dev/applications/argocd/${{ parameters.projectName }}-${{ parameters.teamIdentifier }}-${{ parameters.releaseStage }}-cd
