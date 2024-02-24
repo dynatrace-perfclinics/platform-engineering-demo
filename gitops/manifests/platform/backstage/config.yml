@@ -98,7 +98,7 @@ data:
           instances:
             - name: argocd
               # eg. https://friendly-space-capybara-6vwwx95557r3q47-30100.app.github.dev
-              url: https://${BASE_DOMAIN}-30100.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER
+              url: https://${BASE_DOMAIN}-30100.app.github.dev
               token: ${ARGOCD_TOKEN}
               
     # See https://backstage.io/docs/features/kubernetes/configuration

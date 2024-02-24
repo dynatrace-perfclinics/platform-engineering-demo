@@ -175,7 +175,7 @@ spec:
       #   entityRef: ${{ steps.catalog.output.entityRef }}
       - title: View in ArgoCD
         icon: catalog
-        url: https://humble-orbit-gx66v4rrw47c965j-30100.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER/applications/argocd/${{ parameters.projectName }}-${{ parameters.teamIdentifier }}-${{ parameters.releaseStage }}-cd
+        url: https://humble-orbit-gx66v4rrw47c965j-30100.app.github.dev/applications/argocd/${{ parameters.projectName }}-${{ parameters.teamIdentifier }}-${{ parameters.releaseStage }}-cd
       - title: View in Dynatrace
         icon: catalog
         url: https://jao16384.sprint.apps.dynatracelabs.com
