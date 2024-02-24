@@ -148,7 +148,7 @@ spec:
       action: publish:github:pull-request
       name: Push Changes to Github
       input:
-        repoUrl: "github.com?repo=GITHUB_REPO_NAME_PLACEHOLDER&owner=GITHUB_ORG_NAME_PLACEHOLDER"
+        repoUrl: "github.com?repo=platform-engineering-demo&owner=GITHUB_ORG_NAME_PLACEHOLDER"
         branchName: "main"
         title: "Onboard ${{ parameters.projectName }} for ${{ parameters.teamIdentifier }} in ${{ parameters.releaseStage }}"
         description: "This is the description of the PR for ${{ parameters.projectName }} > ${{ parameters.teamIdentifier }} in ${{ parameters.releaseStage }}"
