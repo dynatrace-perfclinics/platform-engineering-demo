@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: "simplenodeservice-team10"
+  namespace: "simplenodeservice-team10-preprod-cd"
+  labels:
+    dt.owner: "team10"
+spec:
+  ports:
+  - port: 80
+    targetPort: http
+    protocol: TCP
+    name: http
+  selector:
+    app.kubernetes.io/name: "userinterface"
