@@ -46,7 +46,6 @@
 	"forwardPorts": [
 		80,
 		4317,
-		4318,
 		30100,
 		30105
 	],
@@ -56,8 +55,7 @@
 		"80": { "label": "Demo App" },
 		"30100": { "label": "ArgoCD" },
 		"30105": { "label": "Backstage" },
-		"4317": {"label": "OTEL Collector gRPC"},
-		"4318": {"label": "OTEL Collector HTTP"}
+		"4317": {"label": "OTEL Collector gRPC"}
 	},
 
 	// "remoteEnv": {
