@@ -2,7 +2,7 @@ apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
   name: app-creator
-  title: Create a New Application (210)
+  title: Create a New Application (211)
   description: Create a new application from a template
   tags:
     - simplenodeservice
@@ -160,10 +160,10 @@ spec:
       name: Create Pull Request
       input:
         repoUrl: "github.com?repo=platform-engineering-demo&owner=agardnerIT"
-        branchName: "newapp"
+        branchName: "main"
         targetBranchName: "main"
-        title: "PR Title"
-        description: "The PR description"
+        title: "New App Onboarding: ${{ parameters.projectName }}-${{ parameters.teamIdentifier}}-${{ parameters.releaseStage }}"
+        description: "A new application is coming! ${{ parameters.projectName }} from ${{ parameters.teamIdentifier}} in ${{ parameters.releaseStage }} is ready for review."
         update: true
     
     - id: catalog
