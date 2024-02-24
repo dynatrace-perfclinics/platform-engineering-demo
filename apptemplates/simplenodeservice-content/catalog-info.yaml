@@ -19,7 +19,7 @@ metadata:
       icon: subject
     - title: View in ArgoCD
       icon: catalog
-      url: https://CODESPACE_NAME_PLACEHOLDER-ARGOCD_PORT_NUMBER_PLACEHOLDER.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER/applications/argocd/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}-cd # TODO not replacing placeholders. Investigate.
+      url: https://humble-orbit-gx66v4rrw47c965j-ARGOCD_PORT_NUMBER_PLACEHOLDER.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER/applications/argocd/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}-cd # TODO not replacing placeholders. Investigate.
     - title: View in Dynatrace
       icon: catalog
       url: https://jao16384.sprint.apps.dynatracelabs.com
