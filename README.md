@@ -83,7 +83,7 @@ At this point you should have seven pieces of information.
 
 In your fork:
 
-1. Switch to the `codespace` branch
+1. Switch to the `main` branch
 1. Click the green `Code` button
 1. Change to `Codespaces`
 1. Click the `...` and choose `New with options...`
