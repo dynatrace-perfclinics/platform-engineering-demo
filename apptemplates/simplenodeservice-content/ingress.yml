@@ -21,4 +21,4 @@ spec:
               service:
                 name: "${{ values.projectName }}-${{ values.teamIdentifier }}"
                 port:
-                  number: 8080
+                  number: 80
