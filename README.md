@@ -132,7 +132,7 @@ https://abc12345.sprint.apps.dynatracelabs.com/ui/apps/dynatrace.classic.distrib
 2. Filter for `Service Name ~ codespace-platform`
 3. Filter for `Span name (ingested spans only) ~ startup-automated-test`
 
-![startup trace](images/startup-trace.jpg)
+![startup trace](images/startup_trace.png)
 
 ### Logs
 
