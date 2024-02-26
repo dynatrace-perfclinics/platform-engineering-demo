@@ -6,7 +6,7 @@ configs:
       baseUrl: "https://${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}.BASE_DOMAIN_PLACEHOLDER"
       frequencyMin: "1"
       enabled: "true"
-      geoLocation: "GEOLOCATION-3F7C50D0C9065578"
+      geoLocation: "GEOLOCATION_PLACEHOLDER"
       teamIdentifier: "${{ values.teamIdentifier }}"
     template: health-check-http.json
     skip: false
