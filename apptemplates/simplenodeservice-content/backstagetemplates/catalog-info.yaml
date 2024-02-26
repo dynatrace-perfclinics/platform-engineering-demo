@@ -14,7 +14,7 @@ metadata:
     - url: https://github.com/GITHUB_REPOSITORY_PLACEHOLDER
       title: Github Repo
       icon: github
-    - url: https://CODESPACE_NAME_PLACEHOLDER-DEMO_APP_PORT_NUMBER_PLACEHOLDER.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }} # TODO - when ingress is figured out
+    - url: https://CODESPACE_NAME_PLACEHOLDER-DEMO_APP_PORT_NUMBER_PLACEHOLDER.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}
       title: "Browse Application"
       icon: subject
     - title: View in ArgoCD

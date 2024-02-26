@@ -1,24 +1,9 @@
 configs:
-- id: gitlab-health-check-platform-synthetic
-  config:
-    name: "gitlab | platform | healthcheck"
-    parameters:
-      baseUrl: "https://gitlab.BASE_DOMAIN"
-      frequencyMin: "1"
-      enabled: "true"
-      geoLocation: "GEOLOCATION_PLACEHOLDER"
-      teamIdentifier: "platform_team"
-      tagKey: "owner"
-      httpMethod: "GET"
-    template: health-check-http.json
-    skip: false
-  type:
-    api: synthetic-monitor
 - id: backstage-health-check-platform-synthetic
   config:
     name: "backstage | platform | healthcheck"
     parameters:
-      baseUrl: "https://backstage.BASE_DOMAIN"
+      baseUrl: "https://CODESPACE_NAME_PLACEHOLDER-BACKSTAGE_PORT_NUMBER_PLACEHOLDER.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER"
       frequencyMin: "1"
       enabled: "true"
       geoLocation: "GEOLOCATION_PLACEHOLDER"
@@ -33,22 +18,7 @@ configs:
   config:
     name: "argo | platform | healthcheck"
     parameters:
-      baseUrl: "https://argo.BASE_DOMAIN"
-      frequencyMin: "1"
-      enabled: "true"
-      geoLocation: "GEOLOCATION_PLACEHOLDER"
-      teamIdentifier: "platform_team"
-      tagKey: "owner"
-      httpMethod: "GET"
-    template: health-check-http.json
-    skip: false
-  type:
-    api: synthetic-monitor
-- id: workflows-health-check-platform-synthetic
-  config:
-    name: "argo workflows | platform | healthcheck"
-    parameters:
-      baseUrl: "https://workflows.BASE_DOMAIN"
+      baseUrl: "https://CODESPACE_NAME_PLACEHOLDER-ARGOCD_PORT_NUMBER_PLACEHOLDER.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER"
       frequencyMin: "1"
       enabled: "true"
       geoLocation: "GEOLOCATION_PLACEHOLDER"

@@ -115,9 +115,13 @@ git_commit(target_file="-A", commit_msg="update CODESPACE_NAME_PLACEHOLDER", pus
 do_file_replace(pattern="./**/*.y*ml", find_string="ARGOCD_PORT_NUMBER_PLACEHOLDER", replace_string=f"{ARGOCD_PORT_NUMBER}", recursive=True)
 git_commit(target_file="-A", commit_msg="update ARGOCD_PORT_NUMBER_PLACEHOLDER", push=False)
 
-# Find and replace DEMO_APP_PORT_NUMBER_PLACEHOLDER with real text. eg. `30100`
+# Find and replace DEMO_APP_PORT_NUMBER_PLACEHOLDER with real text. eg. `80`
 do_file_replace(pattern="./**/*.y*ml", find_string="DEMO_APP_PORT_NUMBER_PLACEHOLDER", replace_string=f"{DEMO_APP_PORT_NUMBER}", recursive=True)
 git_commit(target_file="-A", commit_msg="update DEMO_APP_PORT_NUMBER_PLACEHOLDER", push=False)
+
+# Find and replace BACKSTAGE_PORT_NUMBER_PLACEHOLDER with real text. eg. `80`
+do_file_replace(pattern="./**/*.y*ml", find_string="BACKSTAGE_PORT_NUMBER_PLACEHOLDER", replace_string=f"{BACKSTAGE_PORT_NUMBER}", recursive=True)
+git_commit(target_file="-A", commit_msg="update BACKSTAGE_PORT_NUMBER_PLACEHOLDER", push=False)
 
 # Find and replace GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER with real text. eg. `.app.github.dev`
 do_file_replace(pattern="./**/*.y*ml", find_string="GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER", replace_string=GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN, recursive=True)
