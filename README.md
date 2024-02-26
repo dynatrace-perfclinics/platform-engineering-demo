@@ -17,6 +17,8 @@ Make a note of the Dynatrace environment name. This is the first part of the URL
 > The following link will provide some oAuth permissions. To these, please **also** include the following
 > - `document:documents:write`
 > - `document:documents:read`
+> - `storage:bizevents:write`
+> - `storage:bizevents:read`
 
 Follow [the documentation](https://www.dynatrace.com/support/help/platform-modules/business-analytics/ba-api-ingest) to set up an OAuth client + policy + bind to your service user account email.
 
