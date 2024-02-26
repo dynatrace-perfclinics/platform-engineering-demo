@@ -211,7 +211,7 @@ output = run_command(["kubectl", "-n", "backstage", "create", "secret", "generic
 
 # Create secret for OneAgent in dynatrace namespace
 output = run_command([
-    "kubectl", "-n", "dynatrace", "create", "secret", "generic", "hot-day-platform-engineering",
+    "kubectl", "-n", "dynatrace", "create", "secret", "generic", "platform-engineering-demo",
     f"--from-literal=apiToken={DT_OP_TOKEN}",
     f"--from-literal=dataIngestToken={DT_ALL_INGEST_TOKEN}"
     ])
