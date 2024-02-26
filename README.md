@@ -60,26 +60,11 @@ In your fork, go to `Actions` and click the green button: `I understand my workf
 
 ![enable actions](images/enable_actions.png)
 
-### Create GitHub Personal Access Token
-
-Go [here](https://github.com/settings/personal-access-tokens/new) and create a new "fine grained" token:
-
-- Resource owner: `YourUser/YourForkedRepo`
-- Choose `Only selected repositories` and again select your fork
-
-#### Permissions required
-
-##### Repository Permisions
-
-- Administration (read + write)
-- Codespaces (read + write)
-- Contents (read and write)
-
 ## Setup Instructions
 
 ### Create Codespace Secrets
 
-At this point you should have seven pieces of information.
+At this point you should have six pieces of information.
 
 In your fork:
 
@@ -100,6 +85,8 @@ Wait until the `Running postStartCommand...` disappears. It should take ~10 minu
 
 ## Usage Instructions
 
+### Login to ArgoCD
+
 Get ArgoCD password:
 ```
 ARGOCDPWD=$(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)
@@ -109,6 +96,8 @@ The username is: `admin`
 
 Change to `Ports` tab and open ArgoCD (port `30100`) & log in.
 
+### Login to Backstage
+
 Backstage is also available (port `30105`).
 
 ### Create An Application
@@ -117,7 +106,13 @@ In backstage (port `30105`), navigate to "Create" and use the "Create a New Appl
 
 The new repo will be templated into the `customer-apps` folder.
 
--When Argo picks up the app, it will become available on port `80`. Click `ports` and open the `Demo App` link.
+When Argo picks up the app, it will become available on port `80`. Click `ports` and open the `Demo App` link.
+
+Append your application name, team name and application environment to the path in the following format:
+
+```
+https://CodeSpaceName-80.app.github.dev/simplenodeservice-team01-preprod
+```
 
 ## Observability of the Codespace
 

@@ -82,13 +82,13 @@
 	},
 
     // Use 'onCreateCommand' to run commands as part of container creation.
-	"onCreateCommand": "chmod +x .devcontainer/on-create.sh && /bin/bash -c .devcontainer/on-create.sh",
+	"onCreateCommand": "chmod +x .devcontainer/on-create.sh && .devcontainer/on-create.sh",
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "chmod +x .devcontainer/post-create.sh && /bin/bash -c .devcontainer/post-create.sh",
+	"postCreateCommand": "chmod +x .devcontainer/post-create.sh && .devcontainer/post-create.sh",
 
 	// Use 'postStartCommand' to run commands after the container starts.
-    "postStartCommand": "chmod +x .devcontainer/post-start.sh && /bin/bash -c .devcontainer/post-start.sh",
+    "postStartCommand": "chmod +x .devcontainer/post-start.sh && .devcontainer/post-start.sh",
 
 	// Add recommended secrets
 	"secrets": {
