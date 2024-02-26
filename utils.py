@@ -15,7 +15,6 @@ SSO_TOKEN_URL_LIVE = "https://sso.dynatrace.com/sso/oauth2/token"
 DT_RW_API_TOKEN = os.environ.get("DT_RW_API_TOKEN") # token to create all other tokens
 DT_ENV_NAME = os.environ.get("DT_ENV_NAME") # abc12345
 DT_ENV = os.environ.get("DT_ENV", "live") # dev, sprint" or "live"
-#GH_RW_TOKEN = os.environ.get("GH_RW_TOKEN") # Token ArgoCD uses to create "customer-apps" repositories. TODO: What permissions does this need?
 
 
 # If any of these words are found in command execution output

@@ -25,10 +25,6 @@ spec:
           description: Which project would you like to deploy?
           enum:
             - 'simplenodeservice'
-          # - 'project2TODOX'
-          #enumNames:
-          #  - 'simplenodeservice'
-          #  - 'project2TODO'
           default: 'simplenodeservice'
     - title: Your Team's Details
       required:
