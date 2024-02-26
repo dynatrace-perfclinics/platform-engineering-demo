@@ -58,25 +58,6 @@
 		"4317": {"label": "OTEL Collector gRPC"}
 	},
 
-	// "remoteEnv": {
-	// 	"SYNC_LOCALHOST_KUBECONFIG": "true"
-	// },
-
-	// "initializeCommand": "cd .devcontainer && bash ensure-mount-sources",
-	// "mounts": [
-	// 	{
-	// 		"source": "${env:HOME}${env:USERPROFILE}/.kube",
-	// 		"target": "/usr/local/share/kube-localhost",
-	// 		"type": "bind"
-	// 	},
-	// 	// Optional mount to also sync certs in your .minikube folder
-	// 	{
-	// 		"source": "${env:HOME}${env:USERPROFILE}/.minikube",
-	// 		"target": "/usr/local/share/minikube-localhost",
-	// 		"type": "bind"
-	// 	}
-	// ],
-
 	"hostRequirements": {
 		"cpus": 2
 	},
@@ -92,9 +73,6 @@
 
 	// Add recommended secrets
 	"secrets": {
-		// "GH_RW_TOKEN": {
-		// 	"description": "Your GitHub Personal Access Token (PAT) with these permissions: `Administration (read + write)`, `Codespaces (read + write)` and `Contents (read and write)`"
-		// },
 		"DT_ENV": {
 			"description": "Please use one of the following words: live, sprint or dev. If unsure, use live"
 		},
