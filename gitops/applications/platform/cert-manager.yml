@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+  labels:
+    dt.owner: "platform_team"
+  name: cert-manager
+  namespace: argocd
+spec:
+  sources:
+    - repoURL: 'https://charts.jetstack.io'
+      targetRevision: v1.14.3
+      chart: cert-manager
+      helm:
+        values: |
+            installCRDs: true
+  destination:
+    namespace: cert-manager
+    server: 'https://kubernetes.default.svc'
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        maxDuration: 3m0s
+        factor: 2
