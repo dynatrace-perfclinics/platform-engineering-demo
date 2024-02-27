@@ -1,12 +1,28 @@
 # Platform Engineering Codespaces Demo
 
-**This is a work in progress.**
+**This is a work in progress: Got feedback? Create an issue or email devrel@dynatrace.com**
+
+**Kudos go to Adam Gartner (@agardnerIT) for doing most of the technical work and Katharina Sick (@katharinasick) for her help with Backstage**
+
+Thanks for being interested in this Platform Engineering Codespace Demo. This demo standsup a reference IDP (Internal Development Platform) to show case a self-service onboarding and release of applications that are automatically observed and validated with Dynatrace.
+The tools in this IDP include: 
+* GitHub (as your git repo)
+* Backstage (as your self-service portal)
+* ArgoCD (as your GitOps operator)
+* Argo Workflows (to trigger post deployment tasks)
+* OpenTelemetry (for standard observability)
+* OpenFeature (for feature flagging)
+* Keptn (for deployment observability)
+* KubeHunter (for additional security checks)
+* Dynatrace (your observability, security and automation platform)
+
+If you follow all instructions you should have your own IDP running in a GitHub Codespace within about 5-10 minutes!
 
 ## Prerequisites
 
-### Grail enabled DT SaaS Tenant
+### Grail enabled Dynatrace SaaS Tenant
 
-If you don't already have a Grail enabled Dynatrace SaaS tenant, sign up for a free trial here: [free 15 day Dynatrace trial](https://www.dynatrace.com/trial)
+If you don't already have a Grail enabled Dynatrace SaaS tenant, sign up for a free trial here: [free 15 day Dynatrace trial](https://bit.ly/dtsaastrial)
 
 Make a note of the Dynatrace environment name. This is the first part of the URL. `abc12345` would be the environment ID for `https://abc12345.apps.dynatrace.com`
 
