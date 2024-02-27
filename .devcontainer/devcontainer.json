@@ -53,7 +53,7 @@
 	},
 
 	"hostRequirements": {
-		"cpus": 2
+		"cpus": 4
 	},
 
 	// Use 'postCreateCommand' to run commands after the container is created.
