@@ -1,4 +1,5 @@
 {
+  "id": "76e01b90-b6ba-44c6-a070-6948616ff328",
   "title": "Lifecycle Events Workflow",
   "description": "This workflow sends notifications back to ArgoCD Notifications Plugin when a new BizEvent is received from Argo",
   "tasks": {
@@ -7,7 +8,7 @@
       "description": "Build a custom task running js Code",
       "action": "dynatrace.automations:run-javascript",
       "input": {
-        "script": "export default async function ({ execution_id }) {\n\n  /**\n   * Setting Workflow-wide defaults that can be used by any task!\n   */\n  \n  return {\n    \"environmentUrl\" : globalThis.environmentUrl,\n    \"notificationEndpoint\" : \"https://backstage.dtulabXXXXXX.dynatrace.training/api/notifications\"\n  }  \n}"
+        "script": "export default async function ({ execution_id }) {\n\n  /**\n   * Setting Workflow-wide defaults that can be used by any task!\n   */\n  \n  return {\n    \"environmentUrl\" : globalThis.environmentUrl,\n    \"notificationEndpoint\" : \"https://CODESPACE_NAME_PLACEHOLDER-BACKSTAGE_PORT_NUMBER_PLACEHOLDER.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER/api/notifications\"\n  }  \n}"
       },
       "position": {
         "x": 0,
@@ -149,10 +150,7 @@
       }
     }
   },
-  "actor": "1eca7c9f-2175-4d5d-992f-b38877c7ee61",
-  "owner": "1eca7c9f-2175-4d5d-992f-b38877c7ee61",
-  "ownerType": "USER",
-  "isPrivate": true,
+  "isPrivate": false,
   "trigger": {
     "eventTrigger": {
       "filterQuery": "event.provider == \"argocd\"",
