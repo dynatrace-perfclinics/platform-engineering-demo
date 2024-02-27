@@ -7,6 +7,8 @@
 Thanks for being interested in this Platform Engineering Codespace Demo. This demo is a smaller version of our [Platform Engineering Tutorial with Dynatrace](https://github.com/dynatrace-perfclinics/platform-engineering-tutorial) that we delivered for Perform 2024 as a HOTDAY.
 This repo stands up a reference IDP (Internal Development Platform) to show case a self-service onboarding and release of applications that are automatically observed and validated with Dynatrace - all with the power of GitHub Codespaces (or any other similiar tool that supports devcontainers).
 
+![](./images/platform-engineering-demo-overview.png)
+
 The tools in this IDP include: 
 * GitHub (as your git repo)
 * Backstage (as your self-service portal)
