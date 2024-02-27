@@ -31,7 +31,7 @@ def test_wait_for_collector():
     COLLECTOR_AVAILABLE = False
     while count < COLLECTOR_WAIT_TIMEOUT_SECONDS:
         # collector_response = requests.get(f"{OPENTELEMETRY_COLLECTOR_ENDPOINT}/v1/logs")
-        collector_response = requests.get(f"{OTEL_EXPORTER_OTLP_ENDPOINT}/v1/logs")
+        collector_response = requests.get(f"http://localhost:4318/v1/logs")
         
         # A 405 code means "GET worked but a GET isn't valid for this endpoint"
         # This is precisely what we're expecting as the real OP should be a POST
