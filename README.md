@@ -2,7 +2,7 @@
 
 **This repo is still work in progress: Got feedback? Create an issue or email devrel@dynatrace.com**
 
-**Kudos go to Adam Gartner (@agardnerIT) for doing most of the technical work and Katharina Sick (@katharinasick) for her help with Backstage**
+**Kudos go to Adam Gardner ([@agardnerIT](https://github.com/agardnerIT)) for doing most of the technical work and Katharina Sick ([@katharinasick](https://github.com/katharinasick)) for her help with Backstage**
 
 Thanks for being interested in this Platform Engineering Codespace Demo. This demo is a smaller version of our [Platform Engineering Tutorial with Dynatrace](https://github.com/dynatrace-perfclinics/platform-engineering-tutorial) that we delivered for Perform 2024 as a HOTDAY.
 This repo stands up a reference IDP (Internal Development Platform) to show case a self-service onboarding and release of applications that are automatically observed and validated with Dynatrace - all with the power of GitHub Codespaces (or any other similiar tool that supports devcontainers).
@@ -10,19 +10,22 @@ This repo stands up a reference IDP (Internal Development Platform) to show case
 ![](./images/platform-engineering-demo-overview.png)
 
 The tools in this IDP include: 
-* GitHub (as your git repo)
-* Backstage (as your self-service portal)
-* ArgoCD (as your GitOps operator)
-* Argo Workflows (to trigger post deployment tasks)
-* OpenTelemetry (for standard observability)
-* OpenFeature (for feature flagging)
-* Keptn (for deployment observability)
+* GitHub (as your Git repo)
+* [Backstage](https://backstage.io/) (as your self-service portal)
+* [ArgoCD](https://argoproj.github.io/cd/) (as your GitOps operator)
+* [Argo Workflows](https://argoproj.github.io/workflows/) (to trigger post deployment tasks)
+* [OpenTelemetry](https://opentelemetry.io) (for standard observability)
+* [OpenFeature](https://github.com/open-feature/open-feature-operator/blob/main/docs/installation.md) (for feature flagging)
+* [Keptn](https://keptn.sh) (for deployment observability)
+* [KubeAudit](https://github.com/Shopify/kubeaudit) (for additional cluster level security checks)
 * KubeHunter (for additional security checks)
 * Dynatrace (your observability, security and automation platform)
 
 If you follow all instructions you should have your own IDP running in a GitHub Codespace within about 5-10 minutes!
 
 ## Prerequisites
+
+Note: This currently only works in GitHub-hosted devcontainers. It does not run locally (yet). We are [investigating support for this](https://github.com/dynatrace-perfclinics/platform-engineering-demo/issues/5) + [Gitpod support](https://github.com/dynatrace-perfclinics/platform-engineering-demo/issues/6). If you have experience in these areas, we ❤️ contributions so get involved!
 
 ### Grail enabled Dynatrace SaaS Tenant
 
@@ -55,8 +58,9 @@ Follow [the documentation](https://www.dynatrace.com/support/help/platform-modul
 
 This is required so that the codespace can create documents (notebooks + dashboards) in Dynatrace and the platform can send business events (aka bizevents) and to Dynatrace.
 
-You should now have 4 pieces of information:
+You should now have 5 pieces of information:
 
+1. A DT environment (`dev`, `sprint` or `live`)
 1. A DT environment ID
 1. An oAuth client ID
 1. An oAuth client secret
@@ -66,11 +70,12 @@ You should now have 4 pieces of information:
 
 Create a Dynatrace access token with the following permissions. This token will be used by the setup script to automatically create all other required DT tokens.
 
-1. apiTokens.read
-1. apiTokens.write
+1. `apiTokens.read`
+1. `apiTokens.write`
 
-You should now have 5 pieces of information:
+You should now have 6 pieces of information:
 
+1. A DT environment (`dev`, `sprint` or `live`)
 1. A DT environment ID
 1. An oAuth client ID
 1. An oAuth client secret
@@ -96,8 +101,6 @@ In your fork, go to `Actions` and click the green button: `I understand my workf
 ## Setup Instructions
 
 ### Create Codespace Secrets
-
-At this point you should have six pieces of information.
 
 In your fork:
 
@@ -125,6 +128,7 @@ If you have **already** defined the environment variables in your repository, yo
 ### Login to ArgoCD
 
 Get ArgoCD password:
+
 ```
 ARGOCDPWD=$(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)
 echo $ARGOCDPWD
@@ -139,7 +143,9 @@ Backstage is also available (port `30105`).
 
 ### Create An Application
 
-In backstage (port `30105`), navigate to "Create" and use the "Create a New Application" template.
+In Backstage (port `30105`), navigate to "Create" and use the "Create a New Application" template.
+
+Backstage will open a Pull Request on GitHub and the [automerge](.github/workflows/automerge.yml) action will immediately merge that PR (for convenience in the demo setup).
 
 The new repo will be templated into the `customer-apps` folder.
 
