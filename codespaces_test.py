@@ -53,11 +53,14 @@ def test_ensure_namespaces_exists():
     assert "argocd" in output.stdout
     assert "argo-rollouts" in output.stdout
     assert "backstage" in output.stdout
+    assert "cert-manager" in output.stdout
     assert "cronjobs" in output.stdout
     assert "dynatrace" in output.stdout
+    assert "ingress-nginx" in output.stdout
     assert "keptn" in output.stdout
     assert "kubeaudit" in output.stdout
     assert "monaco" in output.stdout
+    assert "open-feature-operator-system" in output.stdout
     assert "opentelemetry" in output.stdout
 
 def test_ensure_opentelemetry_dtdetails_secret_exists():
