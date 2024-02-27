@@ -8,7 +8,12 @@ import json
 
 GEOLOCATION_DEV = "GEOLOCATION-0A41430434C388A9"
 GEOLOCATION_SPRINT = "GEOLOCATION-3F7C50D0C9065578"
-GEOLOCATION_LIVE = "GEOLOCATION-4ACFC9B6B78D5BB1"
+GEOLOCATION_LIVE = "GEOLOCATION-45AB48D9D6925ECC"
+# Live locations
+# GEOLOCATION-E7F41460B2A0E4B3 - Amsterdam (Azure)
+# GEOLOCATION-45AB48D9D6925ECC - Frankfurt (AWS)
+# GEOLOCATION-2A90D19543B5871E - Groningen (Google)
+# GEOLOCATION-871416B95457AB88 - London (Alibaba)
 SSO_TOKEN_URL_DEV = "https://sso-dev.dynatracelabs.com/sso/oauth2/token"
 SSO_TOKEN_URL_SPRINT = "https://sso-sprint.dynatracelabs.com/sso/oauth2/token"
 SSO_TOKEN_URL_LIVE = "https://sso.dynatrace.com/sso/oauth2/token"
@@ -22,7 +27,7 @@ DT_ENV = os.environ.get("DT_ENV", "live") # dev, sprint" or "live"
 # Add words here to block more things
 SENSITIVE_WORDS = ["secret", "secrets", "token", "tokens", "generate-token"]
 
-BACKSTAGE_PORT_NUMBER = 7007
+BACKSTAGE_PORT_NUMBER = 30105
 ARGOCD_PORT_NUMBER = 30100
 DEMO_APP_PORT_NUMBER = 80
 
