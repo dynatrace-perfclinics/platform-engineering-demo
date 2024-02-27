@@ -28,3 +28,9 @@ jobs:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           MERGE_LABELS: "" # Merge all PRs
           MERGE_DELETE_BRANCH: "true"
+    - name: notifybackstage
+      uses: fjogeleit/http-request-action@v1
+      with:
+        url: 'https://CODESPACE_NAME_PLACEHOLDER-ARGOCD_PORT_NUMBER_PLACEHOLDER.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER/api/webhook'
+        method: 'POST'      
+        customHeaders: '{"Content-Type": "application/json"}'    
