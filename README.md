@@ -18,8 +18,8 @@ The tools in this IDP include:
 * [OpenFeature](https://github.com/open-feature/open-feature-operator/blob/main/docs/installation.md) (for feature flagging)
 * [Keptn](https://keptn.sh) (for deployment observability)
 * [KubeAudit](https://github.com/Shopify/kubeaudit) (for additional cluster level security checks)
-* KubeHunter (for additional security checks)
-* Dynatrace (your observability, security and automation platform)
+* [KubeHunter](https://github.com/aquasecurity/kube-hunter) (for additional security checks)
+* [Dynatrace](https://bit.ly/dtsaastrial) (your observability, security and automation platform)
 
 If you follow all instructions you should have your own IDP running in a GitHub Codespace within about 5-10 minutes!
 
