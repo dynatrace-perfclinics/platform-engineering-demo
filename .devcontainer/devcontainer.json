@@ -55,7 +55,8 @@
 		"80": { "label": "Demo App" },
 		"30100": { "label": "ArgoCD" },
 		"30105": { "label": "Backstage" },
-		"4317": {"label": "OTEL Collector gRPC"}
+		"4317": {"label": "OTEL Collector gRPC"},
+		"4318": {"label": "OTEL Collector HTTP"}
 	},
 
 	"hostRequirements": {

@@ -15,6 +15,8 @@ nodes:
     protocol: TCP
   - hostPort: 4317
     containerPort: 4317
+  - hostPort: 4318
+    containerPort: 4318
   - hostPort: 30100
     containerPort: 30100
     protocol: TCP
