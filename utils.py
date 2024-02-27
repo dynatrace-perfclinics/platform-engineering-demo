@@ -27,7 +27,7 @@ DT_ENV = os.environ.get("DT_ENV", "live") # dev, sprint" or "live"
 # Add words here to block more things
 SENSITIVE_WORDS = ["secret", "secrets", "token", "tokens", "generate-token"]
 
-BACKSTAGE_PORT_NUMBER = 7007
+BACKSTAGE_PORT_NUMBER = 30105
 ARGOCD_PORT_NUMBER = 30100
 DEMO_APP_PORT_NUMBER = 80
 
