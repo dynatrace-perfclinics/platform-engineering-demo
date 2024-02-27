@@ -8,7 +8,7 @@ metadata:
   annotations:
     workflows.argoproj.io/description: |
       "This workflow runs DT Monaco for ${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}"
-    #argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook: PreSync
     argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
   entrypoint: git-clone
@@ -19,12 +19,12 @@ spec:
       - name: git-files
         path: /src
         git:
-          repo: "https://gitlab.BASE_DOMAIN_PLACEHOLDER/group1/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}.git"
+          repo: "https://github.com/GITHUB_REPOSITORY_PLACEHOLDER.git"        
     container:
       image: dynatrace/dynatrace-configuration-as-code:latest
       args: [
         "deploy",
-        "/src/monaco/manifest.yml",
+        "/src/customer-apps/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}/monaco/manifest.yml",
         "--environment",
         "prod-api-token-only",
         "--project",
