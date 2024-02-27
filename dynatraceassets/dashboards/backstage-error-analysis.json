@@ -90,7 +90,7 @@
         "3": {
             "type": "markdown",
             "title": "",
-            "content": "# Backstage Error Analysis\n\n🌐 [Backstage](https://backstage.dtu-test-s17-2afbea.dynatrace.training/) \n\n📄 [GitLab connected to Backstage](https://gitlab.dtu-test-s17-2afbea.dynatrace.training/)"
+            "content": "# Backstage Error Analysis\n\n🌐 [Backstage](https://CODESPACE_NAME_PLACEHOLDER-BACKSTAGE_PORT_NUMBER_PLACEHOLDER.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER) \n\n📄 [GitHub connected to Backstage](GITHUB_DOT_COM_REPO_PLACEHOLDER)"
         }
     },
     "layouts": {
