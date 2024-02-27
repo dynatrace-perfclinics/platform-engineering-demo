@@ -1,6 +1,6 @@
 # Platform Engineering Codespaces Demo
 
-**This repo is still work in progress: Got feedback? Create an issue or email devrel@dynatrace.com**
+**This repo is still work in progress: Got feedback? We welcome contributions and feedback. Create an issue or email devrel@dynatrace.com**
 
 **Kudos go to Adam Gardner ([@agardnerIT](https://github.com/agardnerIT)) for doing most of the technical work and Katharina Sick ([@katharinasick](https://github.com/katharinasick)) for her help with Backstage**
 
@@ -178,11 +178,21 @@ If something goes wrong setting up the codespace, logs are sent directly to the 
 
 ## Cleanup / Destroy Resources
 
-TODO
+TODO. See [this issue](https://github.com/dynatrace-perfclinics/platform-engineering-demo/issues/10).
 
-# Debugging
+## How GitHub Codespaces Works + Costs
 
-## View Creation Log
+If you follow the above instructions, a GitHub Codespace will be created under your account. This is effectively a container running on GitHub's cloud infrastructure.
+
+GitHub provides generous free usage limits and (by default) sets the billing limit to $0 (so you cannot be charged without explicit consent).
+
+For most users, there will be absolutely no charge for running this demo. However, we advise deleting the codespace after this tutorial. To do so, go to [https://github.com/codespaces](https://github.com/codespaces) and delete the codespace.
+
+For more information, see [GitHub Codespaces documentation](https://docs.github.com/en/codespaces/overview).
+
+## Debugging
+
+### View Creation Log
 
 ```
 tail -f /workspaces/.codespaces/.persistedshare/creation.log
