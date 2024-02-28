@@ -11,12 +11,19 @@ if (
 ):
     exit("Missing mandatory environment variables. Cannot proceed. Exiting.")
 
+print("Got here 1")
+
 # Build DT environment URLs
 DT_TENANT_APPS, DT_TENANT_LIVE = build_dt_urls(dt_env_name=DT_ENV_NAME, dt_env=DT_ENV)
+
+print("Got here 2")
 
 # Get correct SSO URL
 DT_SSO_TOKEN_URL = get_sso_token_url(dt_env=DT_ENV)
 
+print("Got here 3")
+
+print(f"DT_TENANT_LIVE: {DT_TENANT_LIVE}")
 # Create other DT tokens
 DT_ALL_INGEST_TOKEN = create_dt_api_token(token_name="[devrel demo] DT_ALL_INGEST_TOKEN", scopes=[
     "bizevents.ingest",
@@ -30,6 +37,8 @@ DT_ALL_INGEST_TOKEN = create_dt_api_token(token_name="[devrel demo] DT_ALL_INGES
     "settings.write", 
     "activeGateTokenManagement.create"
 ], dt_rw_api_token=DT_RW_API_TOKEN, dt_tenant_live=DT_TENANT_LIVE)
+
+print("Got here 4")
 DT_OP_TOKEN = create_dt_api_token(token_name="[devrel demo] DT_OP_TOKEN", scopes=[
     "InstallerDownload",
     "DataExport", 
@@ -134,7 +143,7 @@ git_commit(target_file="-A", commit_msg="update BACKSTAGE_PORT_NUMBER_PLACEHOLDE
 # Find and replace GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER with real text. eg. `.app.github.dev`
 do_file_replace(pattern="./**/*.y*ml", find_string="GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER", replace_string=GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN, recursive=True)
 do_file_replace(pattern="./**/*.json", find_string="GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER", replace_string=GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN, recursive=True)
-git_commit(target_file="-A", commit_msg="update GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER", push=True)
+git_commit(target_file="-A", commit_msg="update GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER", push=False)
 
 
 ###### Upload DT Assets

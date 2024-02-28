@@ -8,7 +8,7 @@
 	//"image": "mcr.microsoft.com/devcontainers/base:bullseye",
 
 	// do not change these if you want Docker in Docker support
-	"runArgs": ["--init", "--privileged", "--network=host"],
+	"runArgs": ["--init", "--privileged", "--network=host", "--env-file", ".devcontainer/devcontainer.env"],
 	"mounts": [ "source=/var/run/docker.sock,target=/var/run/docker-host.sock,type=bind" ],
 	"overrideCommand": false,
 
@@ -85,7 +85,17 @@
 			"description": "This value will be provided when you create the oAuth client (see above)",
 			"documentationUrl": "https://www.dynatrace.com/support/help/platform-modules/business-analytics/ba-api-ingest"
 		}
-	}
+	},
 
-
+	// Pull container environment variables from local vars
+	// Used when codespace is spun up locally
+	// Does not work
+	// "containerEnv": {
+	// 	"DT_ENV": "${localEnv:DT_ENV}",
+	// 	"DT_ENV_NAME": "${localEnv:DT_ENV_NAME}",
+	// 	"DT_RW_API_TOKEN": "${localEnv:DT_RW_API_TOKEN}",
+	// 	"DT_OAUTH_CLIENT_ID": "${localEnv:DT_OAUTH_CLIENT_ID}",
+	// 	"DT_OAUTH_CLIENT_SECRET": "${localEnv:DT_OAUTH_CLIENT_SECRET}",
+	// 	"DT_OAUTH_ACCOUNT_URN": "${localEnv:DT_OAUTH_ACCOUNT_URN}"
+	// }
 }
