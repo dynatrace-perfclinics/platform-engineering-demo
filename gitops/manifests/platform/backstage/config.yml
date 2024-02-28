@@ -15,7 +15,7 @@ data:
     backend:
       baseUrl: https://${BASE_DOMAIN}-${BACKSTAGE_PORT_NUMBER}.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}
       listen:
-        port: ${BACKSTAGE_PORT_NUMBER} # set the port Backstage is listening on: 7007
+        port: 7007
       csp:
         # Content-Security-Policy directives follow the Helmet format: https://helmetjs.github.io/#reference
         # Default Helmet Content-Security-Policy values can be removed by setting the key to false

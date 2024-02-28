@@ -49,22 +49,7 @@ DT_MONACO_TOKEN = create_dt_api_token(token_name="[devrel demo] DT_MONACO_TOKEN"
     "WriteConfig"
 ], dt_rw_api_token=DT_RW_API_TOKEN, dt_tenant_live=DT_TENANT_LIVE)
 
-###### Upload DT Assets
-# Notebooks
-type = "notebook"
-upload_dt_document_asset(sso_token_url=DT_SSO_TOKEN_URL, path="dynatraceassets/notebooks/analyze-argocd-notification-events.json", name="[devrel demo] ArgoCD: Analyze Notification Events", type=type, dt_tenant_apps=DT_TENANT_APPS)
-upload_dt_document_asset(sso_token_url=DT_SSO_TOKEN_URL, path="dynatraceassets/notebooks/argocd-log-analytics.json", name="[devrel demo] ArgoCD: Log Analytics", type=type, dt_tenant_apps=DT_TENANT_APPS)
-upload_dt_document_asset(sso_token_url=DT_SSO_TOKEN_URL, path="dynatraceassets/notebooks/platform-engineering-walkthrough.json", name="[devrel demo] Platform Engineering Walkthrough", type=type, dt_tenant_apps=DT_TENANT_APPS)
-# Dashboards
-type = "dashboard"
-upload_dt_document_asset(sso_token_url=DT_SSO_TOKEN_URL, path="dynatraceassets/dashboards/argocd-lifecycle-dashboard.json", name="[devrel demo] ArgoCD: Lifecycle Dashboard", type=type, dt_tenant_apps=DT_TENANT_APPS)
-upload_dt_document_asset(sso_token_url=DT_SSO_TOKEN_URL, path="dynatraceassets/dashboards/argocd-platform-observability.json", name="[devrel demo] ArgoCD: Platform Observability", type=type, dt_tenant_apps=DT_TENANT_APPS)
-upload_dt_document_asset(sso_token_url=DT_SSO_TOKEN_URL, path="dynatraceassets/dashboards/backstage-error-analysis.json", name="[devrel demo] Backstage: Error Analysis", type=type, dt_tenant_apps=DT_TENANT_APPS)
-upload_dt_document_asset(sso_token_url=DT_SSO_TOKEN_URL, path="dynatraceassets/dashboards/platform-observability-cockpit.json", name="[devrel demo] Platform Observability Cockpit", type=type, dt_tenant_apps=DT_TENANT_APPS)
-upload_dt_document_asset(sso_token_url=DT_SSO_TOKEN_URL, path="dynatraceassets/dashboards/team-ownership-dashboard.json", name="[devrel demo] Team Ownership Dashboard", type=type, dt_tenant_apps=DT_TENANT_APPS)
-# Workflows
-upload_dt_workflow_asset(sso_token_url=DT_SSO_TOKEN_URL, path="dynatraceassets/workflows/lifecycle-events-workflow.json", name="[devrel demo] Lifecycle Events Workflow", dt_tenant_apps=DT_TENANT_APPS)
-
+## Keptn
 # Should Keptn be installed or not?
 INSTALL_KEPTN = os.environ.get("INSTALL_KEPTN", "false")
 
@@ -92,53 +77,83 @@ run_command(["kind", "delete", "cluster"])
 # Push = False for the first set
 # because we push on the final git commit
 do_file_replace(pattern="./**/*.y*ml", find_string="DT_TENANT_LIVE_PLACEHOLDER", replace_string=DT_TENANT_LIVE, recursive=True)
+do_file_replace(pattern="./**/*.json", find_string="DT_TENANT_LIVE_PLACEHOLDER", replace_string=DT_TENANT_LIVE, recursive=True)
 git_commit(target_file="-A", commit_msg="update DT_TENANT_LIVE_PLACEHOLDER", push=False)
 
 # Find and replace DT_TENANT_APPS_PLACEHOLDER with real text eg. "https://abc12345.live.apps.dynatrace.com"
 do_file_replace(pattern="./**/*.y*ml", find_string="DT_TENANT_APPS_PLACEHOLDER", replace_string=DT_TENANT_APPS, recursive=True)
+do_file_replace(pattern="./**/*.json", find_string="DT_TENANT_APPS_PLACEHOLDER", replace_string=DT_TENANT_APPS, recursive=True)
 git_commit(target_file="-A", commit_msg="update DT_TENANT_APPS_PLACEHOLDER", push=False)
 
 # Find and replace GITHUB_DOT_COM_REPO_PLACEHOLDER with real text eg. "https://github.com/yourOrg/yourRepo.git"
 do_file_replace(pattern="./**/*.y*ml", find_string="GITHUB_DOT_COM_REPO_PLACEHOLDER", replace_string=GITHUB_DOT_COM_REPO, recursive=True)
+do_file_replace(pattern="./**/*.json", find_string="GITHUB_DOT_COM_REPO_PLACEHOLDER", replace_string=GITHUB_DOT_COM_REPO, recursive=True)
 git_commit(target_file="-A", commit_msg="update GITHUB_DOT_COM_REPO_PLACEHOLDER", push=False)
 
 # Find and replace GEOLOCATION_PLACEHOLDER with real text. eg. "GEOLOCATION-0A41430434C388A9"
 do_file_replace(pattern="./**/*.y*ml", find_string="GEOLOCATION_PLACEHOLDER", replace_string=DT_GEOLOCATION, recursive=True)
+do_file_replace(pattern="./**/*.json", find_string="GEOLOCATION_PLACEHOLDER", replace_string=DT_GEOLOCATION, recursive=True)
 git_commit(target_file="-A", commit_msg="update GEOLOCATION_PLACEHOLDER", push=False)
 
 # Find and replace GITHUB_REPOSITORY_PLACEHOLDER with real text. eg "yourOrg/yourRepo"
 do_file_replace(pattern="./**/*.y*ml", find_string="GITHUB_REPOSITORY_PLACEHOLDER", replace_string=GITHUB_ORG_SLASH_REPOSITORY, recursive=True)
+do_file_replace(pattern="./**/*.json", find_string="GITHUB_REPOSITORY_PLACEHOLDER", replace_string=GITHUB_ORG_SLASH_REPOSITORY, recursive=True)
 git_commit(target_file="-A", commit_msg="update GITHUB_REPOSITORY_PLACEHOLDER", push=False)
 
 # Find and replace GITHUB_REPO_NAME_PLACEHOLDER with real text. eg. `yourRepo`
 do_file_replace(pattern="./**/*.y*ml", find_string="GITHUB_REPO_NAME_PLACEHOLDER", replace_string=GITHUB_REPO_NAME, recursive=True)
+do_file_replace(pattern="./**/*.json", find_string="GITHUB_REPO_NAME_PLACEHOLDER", replace_string=GITHUB_REPO_NAME, recursive=True)
 git_commit(target_file="-A", commit_msg="update GITHUB_REPO_NAME_PLACEHOLDER", push=False)
 
 github_org = get_github_org(github_repo=GITHUB_ORG_SLASH_REPOSITORY)
 # Find and replace GITHUB_ORG_NAME_PLACEHOLDER with real text. eg. `yourOrg`
 do_file_replace(pattern="./**/*.y*ml", find_string="GITHUB_ORG_NAME_PLACEHOLDER", replace_string=github_org, recursive=True)
+do_file_replace(pattern="./**/*.json", find_string="GITHUB_ORG_NAME_PLACEHOLDER", replace_string=github_org, recursive=True)
 git_commit(target_file="-A", commit_msg="update GITHUB_ORG_NAME_PLACEHOLDER", push=False)
 
 # Find and replace CODESPACE_NAME_PLACEHOLDER with real text. eg. `fantastic-onion-123ab233`
 do_file_replace(pattern="./**/*.y*ml", find_string="CODESPACE_NAME_PLACEHOLDER", replace_string=CODESPACE_NAME, recursive=True)
+do_file_replace(pattern="./**/*.json", find_string="CODESPACE_NAME_PLACEHOLDER", replace_string=CODESPACE_NAME, recursive=True)
 git_commit(target_file="-A", commit_msg="update CODESPACE_NAME_PLACEHOLDER", push=False)
 
 # Find and replace ARGOCD_PORT_NUMBER_PLACEHOLDER with real text. eg. `30100`
 do_file_replace(pattern="./**/*.y*ml", find_string="ARGOCD_PORT_NUMBER_PLACEHOLDER", replace_string=f"{ARGOCD_PORT_NUMBER}", recursive=True)
+do_file_replace(pattern="./**/*.json", find_string="ARGOCD_PORT_NUMBER_PLACEHOLDER", replace_string=f"{ARGOCD_PORT_NUMBER}", recursive=True)
 git_commit(target_file="-A", commit_msg="update ARGOCD_PORT_NUMBER_PLACEHOLDER", push=False)
 
 # Find and replace DEMO_APP_PORT_NUMBER_PLACEHOLDER with real text. eg. `80`
 do_file_replace(pattern="./**/*.y*ml", find_string="DEMO_APP_PORT_NUMBER_PLACEHOLDER", replace_string=f"{DEMO_APP_PORT_NUMBER}", recursive=True)
+do_file_replace(pattern="./**/*.json", find_string="DEMO_APP_PORT_NUMBER_PLACEHOLDER", replace_string=f"{DEMO_APP_PORT_NUMBER}", recursive=True)
 git_commit(target_file="-A", commit_msg="update DEMO_APP_PORT_NUMBER_PLACEHOLDER", push=False)
 
 # Find and replace BACKSTAGE_PORT_NUMBER_PLACEHOLDER with real text. eg. `80`
 do_file_replace(pattern="./**/*.y*ml", find_string="BACKSTAGE_PORT_NUMBER_PLACEHOLDER", replace_string=f"{BACKSTAGE_PORT_NUMBER}", recursive=True)
+do_file_replace(pattern="./**/*.json", find_string="BACKSTAGE_PORT_NUMBER_PLACEHOLDER", replace_string=f"{BACKSTAGE_PORT_NUMBER}", recursive=True)
 git_commit(target_file="-A", commit_msg="update BACKSTAGE_PORT_NUMBER_PLACEHOLDER", push=False)
 
 # Find and replace GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER with real text. eg. `.app.github.dev`
 do_file_replace(pattern="./**/*.y*ml", find_string="GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER", replace_string=GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN, recursive=True)
+do_file_replace(pattern="./**/*.json", find_string="GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER", replace_string=GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN, recursive=True)
 git_commit(target_file="-A", commit_msg="update GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER", push=True)
 
+
+###### Upload DT Assets
+# Notebooks
+type = "notebook"
+upload_dt_document_asset(sso_token_url=DT_SSO_TOKEN_URL, path="dynatraceassets/notebooks/analyze-argocd-notification-events.json", name="[devrel demo] ArgoCD: Analyze Notification Events", type=type, dt_tenant_apps=DT_TENANT_APPS)
+upload_dt_document_asset(sso_token_url=DT_SSO_TOKEN_URL, path="dynatraceassets/notebooks/argocd-log-analytics.json", name="[devrel demo] ArgoCD: Log Analytics", type=type, dt_tenant_apps=DT_TENANT_APPS)
+upload_dt_document_asset(sso_token_url=DT_SSO_TOKEN_URL, path="dynatraceassets/notebooks/platform-engineering-walkthrough.json", name="[devrel demo] Platform Engineering Demo Walkthrough", type=type, dt_tenant_apps=DT_TENANT_APPS)
+# Dashboards
+type = "dashboard"
+upload_dt_document_asset(sso_token_url=DT_SSO_TOKEN_URL, path="dynatraceassets/dashboards/argocd-lifecycle-dashboard.json", name="[devrel demo] ArgoCD: Lifecycle Dashboard", type=type, dt_tenant_apps=DT_TENANT_APPS)
+upload_dt_document_asset(sso_token_url=DT_SSO_TOKEN_URL, path="dynatraceassets/dashboards/argocd-platform-observability.json", name="[devrel demo] ArgoCD: Platform Observability", type=type, dt_tenant_apps=DT_TENANT_APPS)
+upload_dt_document_asset(sso_token_url=DT_SSO_TOKEN_URL, path="dynatraceassets/dashboards/backstage-error-analysis.json", name="[devrel demo] Backstage: Error Analysis", type=type, dt_tenant_apps=DT_TENANT_APPS)
+upload_dt_document_asset(sso_token_url=DT_SSO_TOKEN_URL, path="dynatraceassets/dashboards/platform-observability-cockpit.json", name="[devrel demo] Platform Observability Cockpit", type=type, dt_tenant_apps=DT_TENANT_APPS)
+upload_dt_document_asset(sso_token_url=DT_SSO_TOKEN_URL, path="dynatraceassets/dashboards/team-ownership-dashboard.json", name="[devrel demo] Team Ownership Dashboard", type=type, dt_tenant_apps=DT_TENANT_APPS)
+# Workflows
+upload_dt_workflow_asset(sso_token_url=DT_SSO_TOKEN_URL, path="dynatraceassets/workflows/lifecycle-events-workflow.json", name="[devrel demo] Lifecycle Events Workflow", dt_tenant_apps=DT_TENANT_APPS)
+
+## Lets get started with Kind
 # Create cluster
 output = run_command(["kind", "create", "cluster", "--config", ".devcontainer/kind-cluster.yml", "--wait", STANDARD_TIMEOUT])
 
