@@ -253,8 +253,6 @@ def build_dt_urls(dt_env, dt_env_name):
         dt_tenant_apps = dt_tenant_apps.replace(".dynatrace.com", ".dynatracelabs.com")
         dt_tenant_live = dt_tenant_live.replace(".dynatrace.com", ".dynatracelabs.com")
     
-    print(f"[utils.py] dt_tenant_apps: {dt_tenant_apps}. dt_tenant_live: {dt_tenant_live}")
-    
     return dt_tenant_apps, dt_tenant_live
 
 def get_sso_auth_token(sso_token_url, oauth_client_id, oauth_client_secret, oauth_urn, permissions):
