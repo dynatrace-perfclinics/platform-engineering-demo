@@ -6,6 +6,8 @@
 
 **Watch a full demo** and more on YouTube as part of [Observability Guide for Platform Engineering - Part 2](https://www.youtube.com/watch?v=YPyRg3Mso6g)
 
+**Download** the [Observability Guide to Platform Engineering eBook](https://dt-url.net/ebook-plateng-angr)
+
 Thanks for being interested in this Platform Engineering Codespace Demo. This demo is a smaller version of our [Platform Engineering Tutorial with Dynatrace](https://github.com/dynatrace-perfclinics/platform-engineering-tutorial) that we delivered for Perform 2024 as a HOTDAY.
 This repo stands up a reference IDP (Internal Development Platform) to show case a self-service onboarding and release of applications that are automatically observed and validated with Dynatrace - all with the power of GitHub Codespaces (or any other similiar tool that supports devcontainers).
 
