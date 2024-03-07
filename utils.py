@@ -5,6 +5,7 @@ import glob
 import time
 import os
 import json
+import hashlib
 
 GEOLOCATION_DEV = "GEOLOCATION-0A41430434C388A9"
 GEOLOCATION_SPRINT = "GEOLOCATION-3F7C50D0C9065578"
@@ -124,6 +125,11 @@ def get_otel_collector_endpoint():
 
 def get_github_org(github_repo):
     return github_repo[:github_repo.index("/")]
+
+def hash_string(input_str, charset="UTF-8", algorithm="SHA256"):
+    hash_factory = hashlib.new(algorithm)
+    hash_factory.update(input_str.encode(charset))
+    return hash_factory.hexdigest()
 
 ##############################
 # DT FUNCTIONS
