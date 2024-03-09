@@ -253,3 +253,6 @@ wait_for_artifact_to_exist(namespace="backstage", artifact_type="deployment", ar
 # restart backstage to pick up secret and start successfully
 output = run_command(["kubectl", "-n", "backstage", "rollout", "restart", "deployment/backstage"])
 output = run_command(["kubectl", "-n", "backstage", "rollout", "status", "deployment/backstage", f"--timeout={STANDARD_TIMEOUT}"])
+
+# Send startup ping
+send_startup_ping()

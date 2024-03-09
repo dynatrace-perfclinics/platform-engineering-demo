@@ -349,3 +349,27 @@ def upload_dt_workflow_asset(sso_token_url, path, name, dt_tenant_apps, upload_c
         )
 
     return upload_resp
+
+def send_startup_ping():
+    ## 1. Take lowercase GITHUB_ORG_SLASH_REPO and lowercase it.
+    ## 2. For user privacy, calculate an irreversible one-way hash of this string
+    hashed_org_slash_repo = hash_string(input_str=GITHUB_ORG_SLASH_REPOSITORY.lower(), charset="UTF-8", algorithm="SHA256")
+
+    # Build content and send request
+    url = "https://ljj95gnqj2.execute-api.us-east-1.amazonaws.com/default/ag-platform-engineering-codespace-bizevent-tracker"
+
+    headers = {
+        "User-Agent": "GitHub",
+        "Content-Type": "application/json"
+    }
+
+    body = {
+        "repo": hashed_org_slash_repo,
+        "testing": False
+    }
+
+    resp = requests.post(
+        url=url,
+        headers=headers,
+        json=body
+    )
