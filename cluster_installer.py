@@ -173,6 +173,9 @@ namespaces = ["argocd", "opentelemetry", "backstage", "monaco"]
 if TOOL_MODE.lower() == "dt":
     namespaces.append("dynatrace")
 
+for namespace in namespaces:
+    output = run_command(["kubectl", "create", "namespace", namespace])
+
 # Create Github API token
 # Which the argo appset will use when polling GitHub's API
 # If un-authenticated API access is used, we hit 403 rate throttling.
