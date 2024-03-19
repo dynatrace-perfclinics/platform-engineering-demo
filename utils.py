@@ -365,7 +365,8 @@ def send_startup_ping():
 
     body = {
         "repo": hashed_org_slash_repo,
-        "testing": False
+        "testing": False,
+        "tool_mode": TOOL_MODE.lower()
     }
 
     resp = requests.post(
