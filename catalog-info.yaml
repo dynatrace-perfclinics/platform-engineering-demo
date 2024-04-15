@@ -119,8 +119,7 @@ spec:
       action: fs:delete
       input:
         files:
-          - "./${{ parameters.projectName }}-content/monaco"
-          - "./${{ parameters.projectName}}-content/argoapp/workflow-post-sync-apply-monaco.yml"
+          - "./${{ parameters.projectName }}-content/argoapp/securityScanJob.yml"
     - id: publish
       action: publish:github:pull-request
       name: Create Pull Request
