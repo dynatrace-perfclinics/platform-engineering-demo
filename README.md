@@ -119,13 +119,13 @@ Fill in the form and launch the codespace.
 
 ![codespaces new with options](images/codespace_new_with_options.jpg)
 
-The codespace will launch in a new browser window.
-
-Wait until the `Running postStartCommand...` disappears. It should take ~10 minutes.
-
 If you have **already** defined the environment variables in your repository, you'll see a screen asking you to associate those secrets with this repository. Please check the boxes as shown below.
 
 ![codespaces associate with ](images/codespaces_associate_with_repo.png)
+
+The codespace will launch in a new browser window.
+
+Wait until the `Running postStartCommand...` disappears. It should take ~10 minutes.
 
 ## Usage Instructions
 
