@@ -1,6 +1,6 @@
 # Platform Engineering Codespaces Demo
 
-**This repo is still work in progress: Got feedback? We welcome contributions and feedback. Create an issue or email devrel@dynatrace.com**
+**Got feedback? We welcome contributions and feedback. Create an issue or email devrel@dynatrace.com**
 
 **Kudos go to Adam Gardner ([@agardnerIT](https://github.com/agardnerIT)) for doing most of the technical work and Katharina Sick ([@katharinasick](https://github.com/katharinasick)) for her help with Backstage.**
 
