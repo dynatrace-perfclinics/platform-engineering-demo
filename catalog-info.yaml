@@ -124,7 +124,7 @@ spec:
       action: publish:github:pull-request
       name: Create Pull Request
       input:
-        repoUrl: "github.com?repo=platform-engineering-demo&owner=GITHUB_ORG_NAME_PLACEHOLDER"
+        repoUrl: "github.com?repo=platform-engineering-demo&owner=dynatrace-perfclinics"
         branchName: ${{ parameters.projectName }}-${{ parameters.teamIdentifier}}-${{ parameters.releaseStage }}
         targetBranchName: "main"
         title: "New App Onboarding: ${{ parameters.projectName }}-${{ parameters.teamIdentifier}}-${{ parameters.releaseStage }}"
@@ -134,7 +134,7 @@ spec:
       name: Register to Catalog
       action: catalog:register
       input:
-        catalogInfoUrl: https://github.com/GITHUB_ORG_NAME_PLACEHOLDER/platform-engineering-demo/blob/main/customer-apps/${{ parameters.projectName }}-${{ parameters.teamIdentifier }}-${{ parameters.releaseStage }}/backstage-templates/catalog-info.yaml
+        catalogInfoUrl: https://github.com/dynatrace-perfclinics/platform-engineering-demo/blob/main/customer-apps/${{ parameters.projectName }}-${{ parameters.teamIdentifier }}-${{ parameters.releaseStage }}/backstage-templates/catalog-info.yaml
         optional: true
   output:
     links:
