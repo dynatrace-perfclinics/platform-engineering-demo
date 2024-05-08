@@ -14,7 +14,7 @@ metadata:
     - url: https://github.com/dynatrace-perfclinics/platform-engineering-demo
       title: Github Repo
       icon: github
-    - url: https://fantastic-engine-gx66v4rrr49cwq9q-DEMO_APP_PORT_NUMBER_PLACEHOLDER.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}
+    - url: https://fantastic-engine-gx66v4rrr49cwq9q-80.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}
       title: "Browse Application"
       icon: subject
     - title: View in ArgoCD
