@@ -3,7 +3,7 @@ configs:
   config:
     name: "backstage | platform | healthcheck"
     parameters:
-      baseUrl: "https://fantastic-engine-gx66v4rrr49cwq9q-30105.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER"
+      baseUrl: "https://fantastic-engine-gx66v4rrr49cwq9q-30105.app.github.dev"
       frequencyMin: "1"
       enabled: "true"
       geoLocation: "GEOLOCATION-3F7C50D0C9065578"
@@ -18,7 +18,7 @@ configs:
   config:
     name: "argo | platform | healthcheck"
     parameters:
-      baseUrl: "https://fantastic-engine-gx66v4rrr49cwq9q-30100.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER"
+      baseUrl: "https://fantastic-engine-gx66v4rrr49cwq9q-30100.app.github.dev"
       frequencyMin: "1"
       enabled: "true"
       geoLocation: "GEOLOCATION-3F7C50D0C9065578"

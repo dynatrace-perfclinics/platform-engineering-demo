@@ -30,7 +30,7 @@ spec:
              \"stage\": \"${{ values.releaseStage }}\", 
              \"owner\":\"${{ values.teamIdentifier }}\", 
              \"git\" : \"https://github.com/dynatrace-perfclinics/platform-engineering-demo.git\",
-             \"argocd\" : \"https://fantastic-engine-gx66v4rrr49cwq9q-30100.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER/applications/argocd/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}\",
+             \"argocd\" : \"https://fantastic-engine-gx66v4rrr49cwq9q-30100.app.github.dev/applications/argocd/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}\",
              \"result\": \"success\" 
           }"
         ]
@@ -88,7 +88,7 @@ spec:
              \"stage\": \"${{ values.releaseStage }}\", 
              \"owner\":\"${{ values.teamIdentifier }}\", 
              \"git\" : \"https://github.com/dynatrace-perfclinics/platform-engineering-demo.git\",
-             \"argocd\" : \"https://fantastic-engine-gx66v4rrr49cwq9q-30100.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER/applications/argocd/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}\",
+             \"argocd\" : \"https://fantastic-engine-gx66v4rrr49cwq9q-30100.app.github.dev/applications/argocd/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}\",
              \"result\": \"success\" 
           }"
         ]
@@ -146,7 +146,7 @@ spec:
              \"stage\": \"${{ values.releaseStage }}\", 
              \"owner\":\"${{ values.teamIdentifier }}\", 
              \"git\" : \"https://github.com/dynatrace-perfclinics/platform-engineering-demo.git\",
-             \"argocd\" : \"https://fantastic-engine-gx66v4rrr49cwq9q-30100.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER/applications/argocd/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}\",
+             \"argocd\" : \"https://fantastic-engine-gx66v4rrr49cwq9q-30100.app.github.dev/applications/argocd/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}\",
              \"result\": \"success\" 
           }"
         ]
@@ -204,7 +204,7 @@ spec:
              \"stage\": \"${{ values.releaseStage }}\", 
              \"owner\":\"${{ values.teamIdentifier }}\", 
              \"git\" : \"https://github.com/dynatrace-perfclinics/platform-engineering-demo.git\",
-             \"argocd\" : \"https://fantastic-engine-gx66v4rrr49cwq9q-30100.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER/applications/argocd/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}\",
+             \"argocd\" : \"https://fantastic-engine-gx66v4rrr49cwq9q-30100.app.github.dev/applications/argocd/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}\",
              \"result\": \"failed\" 
           }"          
         ]
