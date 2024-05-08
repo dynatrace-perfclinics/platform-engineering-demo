@@ -51,7 +51,7 @@ DT_MONACO_TOKEN = create_dt_api_token(token_name="[devrel demo] DT_MONACO_TOKEN"
 
 ## Keptn
 # Should Keptn be installed or not?
-INSTALL_KEPTN = os.environ.get("INSTALL_KEPTN", "false")
+INSTALL_KEPTN = os.environ.get("INSTALL_KEPTN", "true")
 
 if INSTALL_KEPTN.lower() == "false" or INSTALL_KEPTN.lower() == "no":
     # Rename files to prevent installation by argoCD
