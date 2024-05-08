@@ -155,7 +155,7 @@ kind: Template
 metadata:
   name: gather-feedback
   title: Platform Feedback Form
-  description: Imagine you need to collecto feedback from your users. Don't make them email you, a web form is much nicer!
+  description: Imagine you need to collect feedback from your users. Don't make them email you, a web form is much nicer!
   tags:
     - platform
     - feedback
