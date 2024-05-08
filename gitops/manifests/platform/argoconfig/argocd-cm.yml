@@ -14,4 +14,4 @@ data:
   # Enables application status badge feature
   statusbadge.enabled: "true"
   context: |
-    argocdUrl: "https://fantastic-engine-gx66v4rrr49cwq9q-30100.app.github.dev"  
+    argocdUrl: "https://CODESPACE_NAME_PLACEHOLDER-ARGOCD_PORT_NUMBER_PLACEHOLDER.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER"  

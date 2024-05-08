@@ -137,7 +137,7 @@ do_file_replace(pattern="./**/*.y*ml", find_string="DEMO_APP_PORT_NUMBER_PLACEHO
 do_file_replace(pattern="./**/*.json", find_string="DEMO_APP_PORT_NUMBER_PLACEHOLDER", replace_string=f"{DEMO_APP_PORT_NUMBER}", recursive=True)
 git_commit(target_file="-A", commit_msg="update DEMO_APP_PORT_NUMBER_PLACEHOLDER", push=False)
 
-# Find and replace BACKSTAGE_PORT_NUMBER_PLACEHOLDER with real text. eg. `80`
+# Find and replace BACKSTAGE_PORT_NUMBER_PLACEHOLDER with real text. eg. `30105`
 do_file_replace(pattern="./**/*.y*ml", find_string="BACKSTAGE_PORT_NUMBER_PLACEHOLDER", replace_string=f"{BACKSTAGE_PORT_NUMBER}", recursive=True)
 do_file_replace(pattern="./**/*.json", find_string="BACKSTAGE_PORT_NUMBER_PLACEHOLDER", replace_string=f"{BACKSTAGE_PORT_NUMBER}", recursive=True)
 git_commit(target_file="-A", commit_msg="update BACKSTAGE_PORT_NUMBER_PLACEHOLDER", push=False)

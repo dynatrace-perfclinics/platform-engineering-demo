@@ -8,7 +8,7 @@
       "description": "Build a custom task running js Code",
       "action": "dynatrace.automations:run-javascript",
       "input": {
-        "script": "export default async function ({ execution_id }) {\n\n  /**\n   * Setting Workflow-wide defaults that can be used by any task!\n   */\n  \n  return {\n    \"environmentUrl\" : globalThis.environmentUrl,\n    \"notificationEndpoint\" : \"https://fantastic-engine-gx66v4rrr49cwq9q-30105.app.github.dev/api/notifications\"\n  }  \n}"
+        "script": "export default async function ({ execution_id }) {\n\n  /**\n   * Setting Workflow-wide defaults that can be used by any task!\n   */\n  \n  return {\n    \"environmentUrl\" : globalThis.environmentUrl,\n    \"notificationEndpoint\" : \"https://CODESPACE_NAME_PLACEHOLDER-BACKSTAGE_PORT_NUMBER_PLACEHOLDER.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER/api/notifications\"\n  }  \n}"
       },
       "position": {
         "x": 0,

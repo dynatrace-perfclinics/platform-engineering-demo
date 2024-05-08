@@ -8,7 +8,7 @@ spec:
   goTemplateOptions: ["missingkey=error"]
   generators:
   - git:
-      repoURL: "https://github.com/dynatrace-perfclinics/platform-engineering-demo.git"
+      repoURL: "GITHUB_DOT_COM_REPO_PLACEHOLDER"
       revision: HEAD
       directories:
       - path: "customer-apps/*"
@@ -27,7 +27,7 @@ spec:
     spec:
       project: "default"
       source:
-        repoURL: "https://github.com/dynatrace-perfclinics/platform-engineering-demo.git"
+        repoURL: "GITHUB_DOT_COM_REPO_PLACEHOLDER"
         targetRevision: HEAD
         path: '{{.path.path}}'
       destination:

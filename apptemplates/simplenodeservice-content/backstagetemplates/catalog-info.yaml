@@ -11,18 +11,18 @@ metadata:
     'backstage.io/kubernetes-namespace': '${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}'
     argocd/app-name: ${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}
   links:
-    - url: https://github.com/dynatrace-perfclinics/platform-engineering-demo
+    - url: GITHUB_DOT_COM_REPO_PLACEHOLDER
       title: Github Repo
       icon: github
-    - url: https://fantastic-engine-gx66v4rrr49cwq9q-80.app.github.dev/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}
+    - url: https://CODESPACE_NAME_PLACEHOLDER-DEMO_APP_PORT_NUMBER_PLACEHOLDER.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}
       title: "Browse Application"
       icon: subject
     - title: View in ArgoCD
       icon: catalog
-      url: https://fantastic-engine-gx66v4rrr49cwq9q-30100.app.github.dev/applications/argocd/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}
+      url: https://CODESPACE_NAME_PLACEHOLDER-ARGOCD_PORT_NUMBER_PLACEHOLDER.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER/applications/argocd/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}
     - title: View in Dynatrace
       icon: catalog
-      url: https://jao16384.sprint.apps.dynatracelabs.com
+      url: DT_TENANT_APPS_PLACEHOLDER
     - url: https://community.dynatrace.com
       title: Dynatrace community
       icon: dashboard

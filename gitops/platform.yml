@@ -8,7 +8,7 @@ metadata:
 spec:
   source:
     path: "gitops/applications/platform"
-    repoURL: "https://github.com/dynatrace-perfclinics/platform-engineering-demo.git"
+    repoURL: "GITHUB_DOT_COM_REPO_PLACEHOLDER"
     targetRevision: main
   destination:
     namespace: argocd

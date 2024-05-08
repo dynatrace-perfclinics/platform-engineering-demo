@@ -10,13 +10,13 @@ environmentGroups:
         # .live. when using API token only
         # .apps. when using API + oAuth or just oAuth
         url:
-          value: "https://jao16384.sprint.dynatracelabs.com"
+          value: "DT_TENANT_LIVE_PLACEHOLDER"
         auth:
           token:
             name: "monacoToken" 
       - name: prod-api-and-oauth
         url:
-          value: "https://jao16384.sprint.apps.dynatracelabs.com"
+          value: "DT_TENANT_APPS_PLACEHOLDER"
         auth:
           token:
             name: "monacoToken"

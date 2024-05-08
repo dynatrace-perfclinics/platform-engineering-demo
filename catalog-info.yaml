@@ -124,7 +124,7 @@ spec:
       action: publish:github:pull-request
       name: Create Pull Request
       input:
-        repoUrl: "github.com?repo=platform-engineering-demo&owner=dynatrace-perfclinics"
+        repoUrl: "github.com?repo=GITHUB_REPO_NAME_PLACEHOLDER&owner=GITHUB_ORG_NAME_PLACEHOLDER"
         branchName: ${{ parameters.projectName }}-${{ parameters.teamIdentifier}}-${{ parameters.releaseStage }}
         targetBranchName: "main"
         title: "New App Onboarding: ${{ parameters.projectName }}-${{ parameters.teamIdentifier}}-${{ parameters.releaseStage }}"
@@ -134,7 +134,7 @@ spec:
       name: Register to Catalog
       action: catalog:register
       input:
-        catalogInfoUrl: https://github.com/dynatrace-perfclinics/platform-engineering-demo/blob/main/customer-apps/${{ parameters.projectName }}-${{ parameters.teamIdentifier }}-${{ parameters.releaseStage }}/backstage-templates/catalog-info.yaml
+        catalogInfoUrl: GITHUB_DOT_COM_REPO_PLACEHOLDER/blob/main/customer-apps/${{ parameters.projectName }}-${{ parameters.teamIdentifier }}-${{ parameters.releaseStage }}/backstage-templates/catalog-info.yaml
         optional: true
   output:
     links:
@@ -145,10 +145,10 @@ spec:
         entityRef: ${{ steps.catalog.output.entityRef }}
       - title: View in ArgoCD
         icon: catalog
-        url: https://fantastic-engine-gx66v4rrr49cwq9q-30100.app.github.dev/applications/argocd/${{ parameters.projectName }}-${{ parameters.teamIdentifier }}-${{ parameters.releaseStage }}
+        url: https://CODESPACE_NAME_PLACEHOLDER-ARGOCD_PORT_NUMBER_PLACEHOLDER.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER/applications/argocd/${{ parameters.projectName }}-${{ parameters.teamIdentifier }}-${{ parameters.releaseStage }}
       - title: View in Dynatrace
         icon: catalog
-        url: https://jao16384.sprint.apps.dynatracelabs.com
+        url: DT_TENANT_APPS_PLACEHOLDER
 ---
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
