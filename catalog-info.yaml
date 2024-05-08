@@ -145,7 +145,7 @@ spec:
         entityRef: ${{ steps.catalog.output.entityRef }}
       - title: View in ArgoCD
         icon: catalog
-        url: https://fantastic-engine-gx66v4rrr49cwq9q-ARGOCD_PORT_NUMBER_PLACEHOLDER.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER/applications/argocd/${{ parameters.projectName }}-${{ parameters.teamIdentifier }}-${{ parameters.releaseStage }}
+        url: https://fantastic-engine-gx66v4rrr49cwq9q-30100.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER/applications/argocd/${{ parameters.projectName }}-${{ parameters.teamIdentifier }}-${{ parameters.releaseStage }}
       - title: View in Dynatrace
         icon: catalog
         url: https://jao16384.sprint.apps.dynatracelabs.com
