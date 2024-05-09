@@ -111,15 +111,15 @@ spec:
       action: fs:delete
       input:
         files:
-          - "./customer-apps/${{ parameters.projectName }}-${{ parameters.teamIdentifier }}-${{ parameters.releaseStage }}/monaco"
-          - "./customer-apps/${{ parameters.projectName }}-${{ parameters.teamIdentifier }}-${{ parameters.releaseStage }}/workflow-post-sync-apply-monaco.yml"
+          - "./${{ parameters.projectName }}-content/argoapp/securityScanJob.yml"
     - id: delete-monaco-files
       name: Delete DT Configuration Files
       if: ${{ parameters.includeDTConfig === false }}
       action: fs:delete
       input:
         files:
-          - "./${{ parameters.projectName }}-content/argoapp/securityScanJob.yml"
+          - "./customer-apps/${{ parameters.projectName }}-${{ parameters.teamIdentifier }}-${{ parameters.releaseStage }}/monaco"
+          - "./customer-apps/${{ parameters.projectName }}-${{ parameters.teamIdentifier }}-${{ parameters.releaseStage }}/workflow-post-sync-apply-monaco.yml"
     - id: publish
       action: publish:github:pull-request
       name: Create Pull Request
