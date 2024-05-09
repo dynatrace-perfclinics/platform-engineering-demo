@@ -78,15 +78,15 @@
 		},
 		"DT_OAUTH_CLIENT_ID": {
 			"description": "Create an oAuth client to send business events (see documentation link for instructions)",
-			"documentationUrl": "https://www.dynatrace.com/support/help/platform-modules/business-analytics/ba-api-ingest"
+			"documentationUrl": "https://www.dynatrace.com/support/help/platform-modules/business-analytics/ba-api-ingest#oauth"
 		},
 		"DT_OAUTH_CLIENT_SECRET": {
 			"description": "This value will be provided when you create the oAuth client (see above)",
-			"documentationUrl": "https://www.dynatrace.com/support/help/platform-modules/business-analytics/ba-api-ingest"
+			"documentationUrl": "https://www.dynatrace.com/support/help/platform-modules/business-analytics/ba-api-ingest#oauth"
 		},
 		"DT_OAUTH_ACCOUNT_URN": {
 			"description": "This value will be provided when you create the oAuth client (see above)",
-			"documentationUrl": "https://www.dynatrace.com/support/help/platform-modules/business-analytics/ba-api-ingest"
+			"documentationUrl": "https://www.dynatrace.com/support/help/platform-modules/business-analytics/ba-api-ingest#oauth"
 		}
 	}
 
