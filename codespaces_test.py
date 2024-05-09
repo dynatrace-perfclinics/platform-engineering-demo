@@ -5,11 +5,7 @@ from utils import *
 # This file should be executed by pytest
 # like: pytest --export-traces
 
-#COLLECTOR_WAIT_TIMEOUT_SECONDS = 300
-#opentelemetry_collector_endpoint = "http://localhost:4318"
-
-#dt_tenant_live = os.environ.get("DT_TENANT_LIVE")
-#dt_api_token = os.environ.get("DT_ALL_INGEST_TOKEN")
+COLLECTOR_WAIT_TIMEOUT_SECONDS = 300
 
 #################################################
 # TEST SUITE BEGINS
