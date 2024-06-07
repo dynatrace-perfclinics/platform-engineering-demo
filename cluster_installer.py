@@ -196,6 +196,11 @@ output = run_command(["kubectl", "apply", "-n", "argocd", "-f", "gitops/manifest
 output = run_command(["kubectl", "apply", "-n", "argocd", "-f", "gitops/manifests/platform/argoconfig/argocd-no-tls.yml"])
 output = run_command(["kubectl", "apply", "-n", "argocd", "-f", "gitops/manifests/platform/argoconfig/argocd-nodeport.yml"])
 
+# Create argocd-notifications-secret
+output = run_command(["kubectl", "-n", "argocd", "create", "secret", "generic", "argocd-notifications-secret", f"--from-literal=dynatrace-url={DT_TENANT_LIVE}", f"--from-literal=dynatrace-token={DT_ALL_INGEST_TOKEN}"])
+output = run_command(["kubectl", "-n", "argocd", "scale", "deploy/argocd-notifications-controller", "--replicas=0"])
+output = run_command(["kubectl", "-n", "argocd", "scale", "deploy/argocd-notifications-controller", "--replicas=1"])
+
 # Restart argo server
 output = run_command(["kubectl", "-n", "argocd", "scale", "deployment/argocd-server", "--replicas", "0"])
 output = run_command(["kubectl", "-n", "argocd", "scale", "deployment/argocd-server", "--replicas", "1"])
