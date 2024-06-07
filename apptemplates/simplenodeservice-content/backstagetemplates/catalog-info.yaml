@@ -34,7 +34,7 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: Group
 metadata:
-  name: ${{ values.teamIdentifier }}
+  name: "${{ values.teamIdentifier }}"
   description: Group for application team ${{ values.teamIdentifier }}
 spec:
   type: business-unit
