@@ -64,9 +64,6 @@
 
 	// Add recommended secrets
 	"secrets": {
-		"TOOL_MODE": {
-			"description": "Use 'dt' or 'oss'. Which mode should the system run in? 'oss' mode (Open source) or 'dt' (Dynatrace). Defaults to 'dt'."
-		},
 		"DT_ENV": {
 			"description": "Please use one of the following words: live, sprint or dev. If unsure, use live"
 		},
