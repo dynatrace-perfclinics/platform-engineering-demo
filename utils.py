@@ -21,12 +21,6 @@ SSO_TOKEN_URL_LIVE = "https://sso.dynatrace.com/sso/oauth2/token"
 DT_RW_API_TOKEN = os.environ.get("DT_RW_API_TOKEN") # token to create all other tokens
 DT_ENV_NAME = os.environ.get("DT_ENV_NAME") # abc12345
 DT_ENV = os.environ.get("DT_ENV", "live") # dev, sprint" or "live"
-TOOL_MODE = os.environ.get("TOOL_MODE", "dt") # "dt" or "oss". Defaults to "dt".
-# Be more user friendly in case they enter 'dt' or `DT` or something with other chars.
-if "oss" in TOOL_MODE.lower():
-    TOOL_MODE = "oss"
-else:
-    TOOL_MODE = "dt"
 
 # If any of these words are found in command execution output
 # The printing of the output to console will be suppressed
@@ -370,8 +364,7 @@ def send_startup_ping():
 
     body = {
         "repo": hashed_org_slash_repo,
-        "testing": False,
-        "tool_mode": TOOL_MODE.lower()
+        "testing": False
     }
 
     resp = requests.post(

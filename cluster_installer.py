@@ -63,17 +63,6 @@ if INSTALL_KEPTN.lower() == "false" or INSTALL_KEPTN.lower() == "no":
     except:
         print("Exception caught renaming (to remove) Keptn files. No big deal. You're probably re-running this script. Continuing.")
 
-if TOOL_MODE.lower() == "oss":
-    # Rename DT files to prevent installation by argoCD
-    try:
-        rename_file(src="gitops/applications/platform/dynatrace.yml", dst="gitops/applications/platform/dynatrace.yml.BAK")
-        rename_file(src="gitops/manifests/platform/dynatrace/dynatrace.yml", dst="gitops/manifests/platform/dynatrace/dynatrace.yml.BAK")
-        rename_file(src="gitops/manifests/platform/dynatrace/workflow.yml", dst="gitops/manifests/platform/dynatrace/workflow.yml.BAK")
-        rename_file(src="gitops/manifests/platform/namespaces/dt.yaml", dst="gitops/manifests/platform/namespaces/dt.yaml.BAK")
-        git_commit(target_file="-A", commit_msg="do not install Dynatrace OneAgent", push=True)
-    except:
-        print("Exception caught renaming (to remove) DT files. No big deal. You're probably re-running this script. Continuing.")
-
 # Set DT GEOLOCATION based on env type used
 # TODO: Find a better way here. If this was widely used, all load would be on one GEOLOCATION.
 DT_GEOLOCATION = get_geolocation(dt_env=DT_ENV)
@@ -169,9 +158,7 @@ upload_dt_workflow_asset(sso_token_url=DT_SSO_TOKEN_URL, path="dynatraceassets/w
 output = run_command(["kind", "create", "cluster", "--config", ".devcontainer/kind-cluster.yml", "--wait", STANDARD_TIMEOUT])
 
 # Create namespaces
-namespaces = ["argocd", "opentelemetry", "backstage", "monaco"]
-if TOOL_MODE.lower() == "dt":
-    namespaces.append("dynatrace")
+namespaces = ["argocd", "opentelemetry", "backstage", "monaco", "dynatrace"]
 
 for namespace in namespaces:
     output = run_command(["kubectl", "create", "namespace", namespace])
@@ -183,8 +170,7 @@ for namespace in namespaces:
 output = run_command(["kubectl", "-n", "argocd", "create", "secret", "generic" ,"github-token", f"--from-literal=token={GITHUB_TOKEN}"])
 
 # Create bizevent secrets
-if TOOL_MODE.lower() == "dt":
-    output = run_command(["kubectl", "-n", "dynatrace", "create", "secret", "generic", "dt-bizevent-oauth-details", f"--from-literal=dtTenant={DT_TENANT_LIVE}", f"--from-literal=oAuthClientID={DT_OAUTH_CLIENT_ID}", f"--from-literal=oAuthClientSecret={DT_OAUTH_CLIENT_SECRET}", f"--from-literal=accountURN={DT_OAUTH_ACCOUNT_URN}"])
+output = run_command(["kubectl", "-n", "dynatrace", "create", "secret", "generic", "dt-bizevent-oauth-details", f"--from-literal=dtTenant={DT_TENANT_LIVE}", f"--from-literal=oAuthClientID={DT_OAUTH_CLIENT_ID}", f"--from-literal=oAuthClientSecret={DT_OAUTH_CLIENT_SECRET}", f"--from-literal=accountURN={DT_OAUTH_ACCOUNT_URN}"])
 output = run_command(["kubectl", "-n", "opentelemetry", "create", "secret", "generic", "dt-bizevent-oauth-details", f"--from-literal=dtTenant={DT_TENANT_LIVE}", f"--from-literal=oAuthClientID={DT_OAUTH_CLIENT_ID}", f"--from-literal=oAuthClientSecret={DT_OAUTH_CLIENT_SECRET}", f"--from-literal=accountURN={DT_OAUTH_ACCOUNT_URN}"])
 
 # Install argocd
@@ -257,18 +243,16 @@ output = run_command(["kubectl", "-n", "backstage", "create", "secret", "generic
                     ])
 
 # Create secret for OneAgent in dynatrace namespace
-if TOOL_MODE.lower() == "dt":
-    output = run_command([
-        "kubectl", "-n", "dynatrace", "create", "secret", "generic", "platform-engineering-demo",
-        f"--from-literal=apiToken={DT_OP_TOKEN}",
-        f"--from-literal=dataIngestToken={DT_ALL_INGEST_TOKEN}"
-        ])
+output = run_command([
+    "kubectl", "-n", "dynatrace", "create", "secret", "generic", "platform-engineering-demo",
+    f"--from-literal=apiToken={DT_OP_TOKEN}",
+    f"--from-literal=dataIngestToken={DT_ALL_INGEST_TOKEN}"
+    ])
 
 # Create monaco-secret in monaco namespace
 output = run_command(["kubectl", "-n", "monaco", "create", "secret", "generic", "monaco-secret", f"--from-literal=monacoToken={DT_MONACO_TOKEN}"])
 # Create monaco-secret in dynatrace namespace
-if TOOL_MODE.lower() == "dt":
-    output = run_command(["kubectl", "-n", "dynatrace", "create", "secret", "generic", "monaco-secret", f"--from-literal=monacoToken={DT_MONACO_TOKEN}"])
+output = run_command(["kubectl", "-n", "dynatrace", "create", "secret", "generic", "monaco-secret", f"--from-literal=monacoToken={DT_MONACO_TOKEN}"])
 
 # Wait for backstage deployment to be created
 wait_for_artifact_to_exist(namespace="backstage", artifact_type="deployment", artifact_name="backstage")
