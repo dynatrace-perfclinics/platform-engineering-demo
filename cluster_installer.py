@@ -1,6 +1,8 @@
 import os
 from utils import *
 
+ARGOCD_VERSION="v2.12.2"
+
 if (
     DT_RW_API_TOKEN is None or
     DT_ENV_NAME is None or
@@ -188,7 +190,9 @@ if TOOL_MODE.lower() == "dt":
 output = run_command(["kubectl", "-n", "opentelemetry", "create", "secret", "generic", "dt-bizevent-oauth-details", f"--from-literal=dtTenant={DT_TENANT_LIVE}", f"--from-literal=oAuthClientID={DT_OAUTH_CLIENT_ID}", f"--from-literal=oAuthClientSecret={DT_OAUTH_CLIENT_SECRET}", f"--from-literal=accountURN={DT_OAUTH_ACCOUNT_URN}"])
 
 # Install argocd
-output = run_command(["kubectl", "apply", "-n", "argocd", "-f", "https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml"])
+print(f"Installing argo cd version: {ARGOCD_VERSION}")
+output = run_command(["kubectl", "apply", "-n", "argocd", "-f", f"https://raw.githubusercontent.com/argoproj/argo-cd/{ARGOCD_VERSION}/manifests/install.yaml"])
+
 output = run_command(["kubectl", "wait", "--for=condition=Available=True", "deployments", "-n", "argocd", "--all", f"--timeout={STANDARD_TIMEOUT}"])
 
 # Configure argocd
