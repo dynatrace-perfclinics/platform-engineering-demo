@@ -22,15 +22,7 @@
 			"settings": {
 				"terminal.integrated.defaultProfile.linux": "zsh"
 			},			
-			"extensions": [
-				"ms-azuretools.vscode-docker",
-				"ms-kubernetes-tools.vscode-kubernetes-tools",
-				"davidanson.vscode-markdownlint",
-				"gruntfuggly.todo-tree",
-				"mutantdino.resourcemonitor",
-				"humao.rest-client",
-				"ms-vscode.makefile-tools"
-			]
+			"extensions": []
 		}
 	},
 
