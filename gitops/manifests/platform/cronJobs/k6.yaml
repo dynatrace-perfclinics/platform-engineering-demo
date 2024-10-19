@@ -1,0 +1,77 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: k6-config
+  namespace: opentelemetry
+data:
+  script.js: |
+    import http from 'k6/http';
+    import { sleep } from 'k6';
+
+    export const options = {
+      discardResponseBodies: true,
+      scenarios: {
+        backstage: {
+          executor: 'constant-vus',
+          exec: 'backstage',
+          vus: 10,
+          duration: '1m',
+        },
+        argocd: {
+          executor: 'constant-vus',
+          exec: 'argocd',
+          vus: 10,
+          duration: '1m',
+        },
+      },
+    };
+
+    export function backstage() {
+      sleep(1);
+      http.get('http://backstage.backstage.svc.cluster.local:30105', {
+        tags: { endpoint: 'backstage' },
+      });
+      sleep(1);
+    }
+
+    export function argocd() {
+      http.get('http://argocd-server.argocd.svc.cluster.local', { tags: { endpoint: 'argocd' } });
+      sleep(1);
+    }
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: run-k6
+  namespace: opentelemetry
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: k6
+            image: hrexed/xk6-dynatrace-output:0.11
+            args: ["run", "/script.js", "-o", "output-dynatrace"]
+            volumeMounts:
+            - name: config-volume
+              mountPath: /script.js
+              subPath: script.js
+            env:
+              - name: K6_DYNATRACE_URL
+                valueFrom:
+                  secretKeyRef:
+                    name: dt-details
+                    key: DT_URL
+              - name: K6_DYNATRACE_APITOKEN
+                valueFrom:
+                  secretKeyRef:
+                    name: dt-details
+                    key: DT_OTEL_ALL_INGEST_TOKEN
+          volumes:
+            - name: config-volume
+              configMap:
+                name: k6-config
+          restartPolicy: OnFailure
