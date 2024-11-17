@@ -6071,7 +6071,7 @@ spec:
 apiVersion: dynatrace.com/v1beta1
 kind: DynaKube
 metadata:
-  name: pe-demo-CODESPACE_NAME_PLACEHOLDER
+  name: CODESPACE_NAME_PLACEHOLDER
   namespace: dynatrace
   annotations:
     feature.dynatrace.com/k8s-app-enabled: "true"  
@@ -6153,7 +6153,7 @@ spec:
   # Configuration for OneAgent instances
   #
   oneAgent:
-    hostGroup: pe-demo-CODESPACE_NAME_PLACEHOLDER
+    hostGroup: CODESPACE_NAME_PLACEHOLDER
     # Enables application-only monitoring and changes its settings
     # Cannot be used in conjunction with cloud-native fullstack monitoring, classic fullstack monitoring or host monitoring
     #
