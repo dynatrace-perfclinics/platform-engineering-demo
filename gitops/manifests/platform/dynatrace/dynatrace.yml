@@ -6133,27 +6133,9 @@ spec:
   #      operator: In
   #      values: [my-frontend, my-backend, my-database]
 
-  metadataEnrichment:
-    # Optional: Enables or disables metadata enrichment
-    # Defaults to "true"
-    #
-    enabled: true
-    # The namespaces in which metadata enrichment should be injected into
-    # If unset, all namespace will be injected into
-    # For examples regarding namespaceSelectors, see https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#resources-that-support-set-based-requirements
-    #
-    # namespaceSelector:
-    #   matchLabels:
-    #     app: my-app
-    #   matchExpressions:
-    #    - key: app
-    #      operator: In
-    #      values: [my-frontend, my-backend, my-database]  
-
   # Configuration for OneAgent instances
   #
   oneAgent:
-    hostGroup: CODESPACE_NAME_PLACEHOLDER
     # Enables application-only monitoring and changes its settings
     # Cannot be used in conjunction with cloud-native fullstack monitoring, classic fullstack monitoring or host monitoring
     #
