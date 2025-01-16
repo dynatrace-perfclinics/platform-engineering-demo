@@ -14,7 +14,7 @@ if (
     exit("Missing mandatory environment variables. Cannot proceed. Exiting.")
 
 # Build DT environment URLs
-DT_TENANT_APPS, DT_TENANT_LIVE = build_dt_urls(dt_env_name=DT_ENV_NAME, dt_env=DT_ENV)
+DT_TENANT_APPS, DT_TENANT_LIVE = build_dt_urls(dt_env_id=DT_ENV_NAME, dt_env_type=DT_ENV)
 
 # Get correct SSO URL
 DT_SSO_TOKEN_URL = get_sso_token_url(dt_env=DT_ENV)
