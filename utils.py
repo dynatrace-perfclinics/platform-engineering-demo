@@ -355,7 +355,7 @@ def send_startup_ping():
     hashed_org_slash_repo = hash_string(input_str=GITHUB_ORG_SLASH_REPOSITORY.lower(), charset="UTF-8", algorithm="SHA256")
 
     # Build content and send request
-    url = "https://ljj95gnqj2.execute-api.us-east-1.amazonaws.com/default/ag-platform-engineering-codespace-bizevent-tracker"
+    url = "https://grzxx1q7wd.execute-api.us-east-1.amazonaws.com/default/codespace-tracker"
 
     headers = {
         "User-Agent": "GitHub",
@@ -364,7 +364,9 @@ def send_startup_ping():
 
     body = {
         "repo": hashed_org_slash_repo,
-        "testing": False
+        "testing": False,
+        "tenant": DT_ENV_NAME,
+        "demo": "perfclinics-platform-engineering-demo"
     }
 
     resp = requests.post(
