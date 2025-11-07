@@ -1,0 +1,33 @@
+{
+    "name":"{{ .name }}",
+    "description":"{{ .descr }}",
+    "identifier":"{{ .team_id }}",
+    "responsibilities":
+    {
+        "development": {{ .development }},
+        "security":{{ .security }},
+        "operations":{{ .operations }},
+        "infrastructure":{{ .infrastructure }},
+        "lineOfBusiness":{{ .lineOfBusiness }}
+    },
+        "contactDetails": [
+            {
+                "integrationType":"SLACK",
+                "slackChannel":"{{ .slackChannel }}",
+                "url":"{{ .slackURL }}"
+            },
+            {
+                "integrationType":"EMAIL",
+                "email":"{{ .email }}"
+            }
+        ],
+         "links":[],
+    "additionalInformation":
+    [
+        {
+            "key":"{{ .addInfoKey }}",
+            "value":"{{ .addInfoValue }}", 
+            "url":"{{ .addInfoUrl }}"
+        }
+    ]
+}
