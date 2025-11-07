@@ -124,7 +124,7 @@ spec:
       action: publish:github:pull-request
       name: Create Pull Request
       input:
-        repoUrl: "github.com?repo=GITHUB_REPO_NAME_PLACEHOLDER&owner=GITHUB_ORG_NAME_PLACEHOLDER"
+        repoUrl: "github.com?repo=platform-engineering-demo&owner=GITHUB_ORG_NAME_PLACEHOLDER"
         branchName: ${{ parameters.projectName }}-${{ parameters.teamIdentifier}}-${{ parameters.releaseStage }}
         targetBranchName: "main"
         title: "New App Onboarding: ${{ parameters.projectName }}-${{ parameters.teamIdentifier}}-${{ parameters.releaseStage }}"
