@@ -24,7 +24,7 @@ spec:
         dt.owner: "team01"
         app.kubernetes.io/name: userinterface
         app.kubernetes.io/part-of: "simplenodeservice-team01"
-        app.kubernetes.io/version: "1.0.2"
+        app.kubernetes.io/version: "1.0.4"
         dynatrace-release-stage: "preprod"
         backstage.io/component: "default.simplenodeservice-team01-preprod"
     spec:
@@ -47,7 +47,7 @@ spec:
         - name: DT_CUSTOM_PROP
           value: "owner=team01 project=simplenodeservice stage=preprod"
         - name: DT_TAGS
-          value: "dt.owner=team01"
+          value: "dt.owner=team01, env=prod"
         ports:
         - name: http
           containerPort: 8080
