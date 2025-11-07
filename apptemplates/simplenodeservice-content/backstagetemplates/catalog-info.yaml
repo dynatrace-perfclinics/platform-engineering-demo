@@ -14,12 +14,12 @@ metadata:
     - url: https://github.com/matteocalo-dt/platform-engineering-demo.git
       title: Github Repo
       icon: github
-    - url: https://verbose-memory-97q959749rvv2pjj9-80.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}
+    - url: https://verbose-memory-97q959749rvv2pjj9-80.app.github.dev/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}
       title: "Browse Application"
       icon: subject
     - title: View in ArgoCD
       icon: catalog
-      url: https://verbose-memory-97q959749rvv2pjj9-30100.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER/applications/argocd/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}
+      url: https://verbose-memory-97q959749rvv2pjj9-30100.app.github.dev/applications/argocd/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}
     - title: View in Dynatrace
       icon: catalog
       url: https://jmr79231.sprint.apps.dynatracelabs.com

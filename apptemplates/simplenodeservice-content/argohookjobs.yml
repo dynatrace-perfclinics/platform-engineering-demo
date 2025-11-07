@@ -30,7 +30,7 @@ spec:
              \"stage\": \"${{ values.releaseStage }}\", 
              \"owner\":\"${{ values.teamIdentifier }}\", 
              \"git\" : \"https://github.com/matteocalo-dt/platform-engineering-demo.git\",
-             \"argocd\" : \"https://verbose-memory-97q959749rvv2pjj9-30100.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER/applications/argocd/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}\",
+             \"argocd\" : \"https://verbose-memory-97q959749rvv2pjj9-30100.app.github.dev/applications/argocd/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}\",
              \"result\": \"success\" 
           }"
         ]
@@ -88,7 +88,7 @@ spec:
              \"stage\": \"${{ values.releaseStage }}\", 
              \"owner\":\"${{ values.teamIdentifier }}\", 
              \"git\" : \"https://github.com/matteocalo-dt/platform-engineering-demo.git\",
-             \"argocd\" : \"https://verbose-memory-97q959749rvv2pjj9-30100.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER/applications/argocd/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}\",
+             \"argocd\" : \"https://verbose-memory-97q959749rvv2pjj9-30100.app.github.dev/applications/argocd/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}\",
              \"result\": \"success\" 
           }"
         ]
@@ -146,7 +146,7 @@ spec:
              \"stage\": \"${{ values.releaseStage }}\", 
              \"owner\":\"${{ values.teamIdentifier }}\", 
              \"git\" : \"https://github.com/matteocalo-dt/platform-engineering-demo.git\",
-             \"argocd\" : \"https://verbose-memory-97q959749rvv2pjj9-30100.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER/applications/argocd/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}\",
+             \"argocd\" : \"https://verbose-memory-97q959749rvv2pjj9-30100.app.github.dev/applications/argocd/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}\",
              \"result\": \"success\" 
           }"
         ]
@@ -204,7 +204,7 @@ spec:
              \"stage\": \"${{ values.releaseStage }}\", 
              \"owner\":\"${{ values.teamIdentifier }}\", 
              \"git\" : \"https://github.com/matteocalo-dt/platform-engineering-demo.git\",
-             \"argocd\" : \"https://verbose-memory-97q959749rvv2pjj9-30100.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER/applications/argocd/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}\",
+             \"argocd\" : \"https://verbose-memory-97q959749rvv2pjj9-30100.app.github.dev/applications/argocd/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}\",
              \"result\": \"failed\" 
           }"          
         ]
