@@ -1,0 +1,15 @@
+{
+    "enabled": true,
+    "name": "{{ .name }}",
+    "metricName": "{{ .metricName }}",
+    "metricExpression": "{{ .metricExpression }}",
+    "evaluationType": "AGGREGATE",
+    "filter": "{{ .filter }}",
+    "evaluationWindow": "-1w",
+    "targetSuccess": {{ .thresholdTarget }},
+    "targetWarning": {{ .thresholdWarning }},
+    "errorBudgetBurnRate": {
+        "burnRateVisualizationEnabled": true,
+        "fastBurnThreshold": 10
+    }
+}
