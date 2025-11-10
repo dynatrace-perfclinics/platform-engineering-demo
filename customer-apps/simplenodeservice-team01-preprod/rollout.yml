@@ -5,7 +5,7 @@ metadata:
   name: "simplenodeservice-team01"
   namespace: "simplenodeservice-team01-preprod"
   labels:
-    dt.owner: "team01"
+    dt.owner: "team013"
 spec:
   replicas: 2
   strategy:
@@ -21,10 +21,10 @@ spec:
   template:
     metadata:
       labels:
-        dt.owner: "team01"
+        dt.owner: "team013"
         app.kubernetes.io/name: userinterface
         app.kubernetes.io/part-of: "simplenodeservice-team01"
-        app.kubernetes.io/version: "1.0.2"
+        app.kubernetes.io/version: "1.0.5"
         dynatrace-release-stage: "preprod"
         backstage.io/component: "default.simplenodeservice-team01-preprod"
     spec:
