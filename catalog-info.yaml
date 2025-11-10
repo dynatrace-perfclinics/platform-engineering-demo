@@ -124,7 +124,7 @@ spec:
       action: publish:github:pull-request
       name: Create Pull Request
       input:
-        repoUrl: "github.com?repo=GITHUB_REPO_NAME_PLACEHOLDER&owner=GITHUB_ORG_NAME_PLACEHOLDER"
+        repoUrl: "github.com?repo=demo&owner=matteocalo-dt"
         branchName: ${{ parameters.projectName }}-${{ parameters.teamIdentifier}}-${{ parameters.releaseStage }}
         targetBranchName: "main"
         title: "New App Onboarding: ${{ parameters.projectName }}-${{ parameters.teamIdentifier}}-${{ parameters.releaseStage }}"
@@ -134,7 +134,7 @@ spec:
       name: Register to Catalog
       action: catalog:register
       input:
-        catalogInfoUrl: GITHUB_DOT_COM_REPO_PLACEHOLDER/blob/main/customer-apps/${{ parameters.projectName }}-${{ parameters.teamIdentifier }}-${{ parameters.releaseStage }}/backstage-templates/catalog-info.yaml
+        catalogInfoUrl: https://github.com/matteocalo-dt/demo.git/blob/main/customer-apps/${{ parameters.projectName }}-${{ parameters.teamIdentifier }}-${{ parameters.releaseStage }}/backstage-templates/catalog-info.yaml
         optional: true
   output:
     links:
@@ -145,10 +145,10 @@ spec:
         entityRef: ${{ steps.catalog.output.entityRef }}
       - title: View in ArgoCD
         icon: catalog
-        url: https://CODESPACE_NAME_PLACEHOLDER-ARGOCD_PORT_NUMBER_PLACEHOLDER.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER/applications/argocd/${{ parameters.projectName }}-${{ parameters.teamIdentifier }}-${{ parameters.releaseStage }}
+        url: https://literate-space-giggle-q79q4q7g7vqwh96px-30100.app.github.dev/applications/argocd/${{ parameters.projectName }}-${{ parameters.teamIdentifier }}-${{ parameters.releaseStage }}
       - title: View in Dynatrace
         icon: catalog
-        url: DT_TENANT_APPS_PLACEHOLDER
+        url: https://jmr79231.sprint.apps.dynatracelabs.com
 ---
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template

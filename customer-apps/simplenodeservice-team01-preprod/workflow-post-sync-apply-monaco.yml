@@ -7,7 +7,7 @@ metadata:
     workflows.argoproj.io/archive-strategy: "false"
   annotations:
     workflows.argoproj.io/description: |
-      "This workflow runs DT Monaco for ${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}"
+      "This workflow runs DT Monaco for simplenodeservice-team01-preprod"
     argocd.argoproj.io/hook: PreSync
     argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
@@ -24,7 +24,7 @@ spec:
       image: dynatrace/dynatrace-configuration-as-code:latest
       args: [
         "deploy",
-        "/src/customer-apps/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}/monaco/manifest.yml",
+        "/src/customer-apps/simplenodeservice-team01-preprod/monaco/manifest.yml",
         "--environment",
         "prod-api-token-only",
         "--project",

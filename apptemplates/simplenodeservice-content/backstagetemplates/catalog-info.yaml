@@ -11,18 +11,18 @@ metadata:
     'backstage.io/kubernetes-namespace': '${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}'
     argocd/app-name: ${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}
   links:
-    - url: GITHUB_DOT_COM_REPO_PLACEHOLDER
+    - url: https://github.com/matteocalo-dt/demo.git
       title: Github Repo
       icon: github
-    - url: https://CODESPACE_NAME_PLACEHOLDER-DEMO_APP_PORT_NUMBER_PLACEHOLDER.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}
+    - url: https://literate-space-giggle-q79q4q7g7vqwh96px-80.app.github.dev/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}
       title: "Browse Application"
       icon: subject
     - title: View in ArgoCD
       icon: catalog
-      url: https://CODESPACE_NAME_PLACEHOLDER-ARGOCD_PORT_NUMBER_PLACEHOLDER.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER/applications/argocd/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}
+      url: https://literate-space-giggle-q79q4q7g7vqwh96px-30100.app.github.dev/applications/argocd/${{ values.projectName }}-${{ values.teamIdentifier }}-${{ values.releaseStage }}
     - title: View in Dynatrace
       icon: catalog
-      url: DT_TENANT_APPS_PLACEHOLDER
+      url: https://jmr79231.sprint.apps.dynatracelabs.com
     - url: https://community.dynatrace.com
       title: Dynatrace community
       icon: dashboard

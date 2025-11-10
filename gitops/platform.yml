@@ -8,7 +8,7 @@ metadata:
 spec:
   source:
     path: "gitops/applications/platform"
-    repoURL: "GITHUB_DOT_COM_REPO_PLACEHOLDER"
+    repoURL: "https://github.com/matteocalo-dt/demo.git"
     targetRevision: main
   destination:
     namespace: argocd

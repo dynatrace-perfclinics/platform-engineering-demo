@@ -9,7 +9,7 @@ metadata:
   namespace: argocd
 spec:
   source:
-    repoURL: "GITHUB_DOT_COM_REPO_PLACEHOLDER"
+    repoURL: "https://github.com/matteocalo-dt/demo.git"
     targetRevision: main
     path: "gitops/manifests/platform/argo-rollouts"
   destination:

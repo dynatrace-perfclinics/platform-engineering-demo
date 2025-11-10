@@ -5,7 +5,7 @@ metadata:
   namespace: keptn
 spec:
   type: dynatrace
-  targetServer: "DT_TENANT_LIVE_PLACEHOLDER"
+  targetServer: "https://jmr79231.sprint.dynatracelabs.com"
   secretKeyRef:
     name: dt-metrics-read-token
     key: DT_TOKEN

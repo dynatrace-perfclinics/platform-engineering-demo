@@ -19,7 +19,7 @@ spec:
       - name: git-files
         path: /src
         git:
-          repo: "GITHUB_DOT_COM_REPO_PLACEHOLDER"
+          repo: "https://github.com/matteocalo-dt/demo.git"
     container:
       image: dynatrace/dynatrace-configuration-as-code:latest
       args: [
