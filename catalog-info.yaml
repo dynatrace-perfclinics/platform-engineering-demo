@@ -145,7 +145,7 @@ spec:
         entityRef: ${{ steps.catalog.output.entityRef }}
       - title: View in ArgoCD
         icon: catalog
-        url: https://literate-space-giggle-q79q4q7g7vqwh96px-ARGOCD_PORT_NUMBER_PLACEHOLDER.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER/applications/argocd/${{ parameters.projectName }}-${{ parameters.teamIdentifier }}-${{ parameters.releaseStage }}
+        url: https://literate-space-giggle-q79q4q7g7vqwh96px-30100.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN_PLACEHOLDER/applications/argocd/${{ parameters.projectName }}-${{ parameters.teamIdentifier }}-${{ parameters.releaseStage }}
       - title: View in Dynatrace
         icon: catalog
         url: https://jmr79231.sprint.apps.dynatracelabs.com
